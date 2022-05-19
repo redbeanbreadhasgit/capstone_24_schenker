@@ -2,7 +2,7 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('', main),
+    path('', signup),
     path('login/', login),
     path('welcome/', welcome), # page after login
     path('create/', create), # create job matching page

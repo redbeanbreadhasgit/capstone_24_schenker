@@ -1,23 +1,31 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
+from django.contrib import messages
 from django.contrib.auth.models import User, auth
-# from .models import Student, LoginModel
 
 # Create your views here.
-def main(request):
-    return HttpResponse("<h1>Hello World</h1>")
-
-def login(request):
+def signup(request):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
-        print(username)
-        print(password)
-        # print(LoginModel.objects.all())
-        return redirect('/welcome')
-        
-    else:
-        return render(request, "login.html")
+        password2 = request.POST["password2"]
+
+        if password == password2:
+            if User.objects.filter(username=username).exists():
+                messages.info(request, "Username Taken")
+                return redirect('/')
+            else:
+                user = User.objects.create_user(username=username, password=password)
+                user.save()
+                messages.info(request, "Account created")
+        else:
+            messages.info(request, "Password Not Matching")
+            return redirect('/')
+    else:   
+        return render(request, "signup.html")
+
+def login(request):
+    return HttpResponse("<h1>Login Page</h1>")
 
 def welcome(request):
     return HttpResponse("<h1>Welcome Page</h1>")
