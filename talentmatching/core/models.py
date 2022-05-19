@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 # login id and password will be stored under auth_user, default table created by django
@@ -38,7 +39,7 @@ class MatchedJobModel(models.Model):
     job_matching_date = models.DateField(auto_now_add=True)
     job_update_date = models.DateField(auto_now=True)
 
-    recruiter_id = models.IntegerField() # link to user table
+    recruiter_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     hiring_manager_id = models.ForeignKey("HiringManagerModel", on_delete=models.CASCADE)
 
 # model predictions table
