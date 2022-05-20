@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib import messages
-from django.contrib.auth.models import User, auth
+from django.contrib.auth.models import User
 
 # Create your views here.
 def signup(request):
@@ -17,7 +17,8 @@ def signup(request):
             else:
                 user = User.objects.create_user(username=username, password=password)
                 user.save()
-                messages.info(request, "Account created")
+                messages.info(request, "Account created, proceed to login")
+                return redirect('/')
         else:
             messages.info(request, "Password Not Matching")
             return redirect('/')
