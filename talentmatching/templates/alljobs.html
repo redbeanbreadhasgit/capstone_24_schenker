@@ -1,0 +1,25 @@
+<div>
+    <h1>All Jobs Page</h1>
+</div>
+  
+<table>
+    <tr>
+        <th>Job Title</th>
+        <th>Department</th>
+        <th>Matching Date</th>
+        <th>Update Date</th>
+        <th>Hiring Manager</th>
+        <th>Recruiter</th>
+    </tr>
+        {% for column in data %}
+        <tr>
+            <td>{{column.job_name}}</td>
+            <td>{{column.job_department}}</td>
+            <td>{{column.job_matching_date}}</td>
+            <td>{{column.job_update_date}}</td>
+            <td>{{column.hiring_manager_id_id}}</td>
+            <td>{{column.recruiter_id_id}}</td>
+        </tr>
+        {% endfor %}
+
+</table>
