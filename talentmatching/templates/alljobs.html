@@ -10,15 +10,17 @@
         <th>Update Date</th>
         <th>Hiring Manager</th>
         <th>Recruiter</th>
+        <th>Job Description</th>
     </tr>
         {% for column in data %}
         <tr>
-            <td>{{column.job_name}}</td>
+            <td><a href="{% url 'job' %}">{{column.job_name}}</a></td>
             <td>{{column.job_department}}</td>
             <td>{{column.job_matching_date}}</td>
             <td>{{column.job_update_date}}</td>
             <td>{{column.hiring_manager_id_id}}</td>
             <td>{{column.recruiter_id_id}}</td>
+            <td>{{column.job_description}}</td>
         </tr>
         {% endfor %}
 

@@ -38,6 +38,8 @@ class MatchedJobModel(models.Model):
     job_department = models.CharField(max_length=100)
     job_matching_date = models.DateField(auto_now_add=True)
     job_update_date = models.DateField(auto_now=True)
+    job_description = models.FileField(upload_to='job_description')
+
 
     recruiter_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     hiring_manager_id = models.ForeignKey("HiringManagerModel", on_delete=models.CASCADE)

@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import MatchedJobModel
+from .models import MatchedJobModel, ApplicantModel, PredictionResultModel
 
 
 # Create your views here.
@@ -36,25 +36,55 @@ def welcome(request):
 def create(request):
     return HttpResponse("<h1>Create new job matching page</h1>")
 
-# def alljobs(request):
-#     return render(request, "alljobs.html")
-    # return HttpResponse("<h1>View created job matches page</h1>")
 
+# @login_required(login_url='signin')
+# TODO: filter by recruiter
 def alljobs(request):
-    data = MatchedJobModel.objects.all() #All users apart from the SuperUser admin
-    # store_data = []
-    # for user in data:
-    #     sta_time = Starttime.objects.filter(user_id = user)
-    #     sta_data = sta_time.values_list('start_time', flat=True).latest('start_time')
-
-    #     sto_time = Stoptime.objects.filter(user_id = user)
-    #     sto_data = sto_time.values_list('stop_time', flat=True).latest('stop_time')
-
-    #     store_data.append((user.first_name, sta_data, sto_data))
+    data = MatchedJobModel.objects.all() 
     return render(request, 'alljobs.html', {'data': data})
 
+# 
 def viewjob(request):
-    return HttpResponse("<h1>View job matching result page</h1>")
+    store_data = []
+    data = ApplicantModel.objects.all() # TODO: filter by recruiter & selected job
+    for applicant in data:
+        print(applicant)
+        name = applicant.applicant_name
+        percent = PredictionResultModel.objects.filter(applicant_id_id = applicant.applicant_id).values_list("applicant_percent", flat=True)[0]
+        decision = applicant.recruiter_decision
+        experience = applicant.applicant_experience
+        education = applicant.applicant_education
+        skills = applicant.applicant_skills
+
+        store_data.append({"applicant_name": name,
+        "applicant_percent": percent,
+        "recruiter_decision": decision,
+        "applicant_experience": experience,
+        "applicant_education": education,
+        "applicant_skills": skills})
+
+    return render(request, 'viewjob.html', {'data': store_data})
 
 def viewapplicant(request):
-    return HttpResponse("<h1>View applicant page</h1>")
+    applicant = ApplicantModel.objects.get(applicant_id=1) # TODO: filter by recruiter & selected job
+    name = applicant.applicant_name
+    percent = PredictionResultModel.objects.filter(applicant_id_id = applicant.applicant_id).values_list("applicant_percent", flat=True)[0]
+    decision = applicant.recruiter_decision
+    experience = applicant.applicant_experience
+    education = applicant.applicant_education
+    skills = applicant.applicant_skills
+    resume = applicant.applicant_resume
+    jd = MatchedJobModel.objects.filter(job_id = applicant.job_id_id).values_list("job_description", flat=True)[0]
+
+
+    store_data = {"applicant_name": name,
+    "applicant_percent": percent,
+    "recruiter_decision": decision,
+    "applicant_experience": experience,
+    "applicant_education": education,
+    "applicant_skills": skills,
+    "applicant_resume": resume,
+    "job_description": jd}
+
+    return render(request, 'viewapplicant.html', {'data': store_data})
+

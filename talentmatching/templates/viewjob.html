@@ -1,0 +1,28 @@
+<div>
+    <h1>Individual Job Page</h1>
+</div>
+  
+<table>
+    <tr>
+        <th>Applicant Name</th>
+        <th>% Suitability</th>
+        <th>Applicant Status</th>
+        <th>Applicant Experience</th>
+        <th>Applicant Education</th>
+        <th>Applicant Skills</th>
+        <th>Select</th>
+
+    </tr>
+        {% for column in data %}
+        <tr>
+            <td><a href="{% url 'applicant' %}">{{column.applicant_name}}</a></td>
+            <td>{{column.applicant_percent}}</td>
+            <td>{{column.recruiter_decision}}</td>
+            <td>{{column.applicant_experience}}</td>
+            <td>{{column.applicant_education}}</td>
+            <td>{{column.applicant_skills}}</td>
+            <td><input type="checkbox"></td>
+        </tr>
+        {% endfor %}
+
+</table>
