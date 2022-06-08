@@ -1,7 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import SignIn from './pages/sign-in/SignIn.js'
-import DashBoard from './pages/dashboard/Dashboard.js'
+import DashBoard_applicantList from './pages/dashboard-applicantList/Dashboard-applicantList'
+import DashBoard_homepage from './pages/dashboard-homepage/Dashboard-homepage'
+import DashBoard_createJobMatching from './pages/dashboard-createJobMatching/Dashboard-createJobMatching'
 // function App() {
 //   return (
 //     <div className="App">
@@ -57,10 +59,14 @@ import DashBoard from './pages/dashboard/Dashboard.js'
 
 function App() {
   return (
-    <SignIn>
-    </SignIn>
-    // <DashBoard>
-    // </DashBoard>
+    // <SignIn>
+    // </SignIn>
+    // <DashBoard_applicantList>
+    // </DashBoard_applicantList>
+    // <DashBoard_homepage>
+    // </DashBoard_homepage>
+    <DashBoard_createJobMatching>
+    </DashBoard_createJobMatching>
   );
 }
 
