@@ -10,6 +10,10 @@ import Title from './Title';
 import { Subtitles } from '@material-ui/icons';
 import Typography from '@material-ui/core/Typography';
 
+// filter stuffs import
+import { Radio, FormControl, FormLabel, FormControlLabel, RadioGroup, } from '@material-ui/core';
+
+
 // Generate Order Data
 function createData(id, title, e1, e2, e3, e4, e5, e6) {
   return { id, title, e1, e2, e3, e4, e5, e6 };
@@ -33,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Orders() {
+export default function Filter() {
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -41,12 +45,24 @@ export default function Orders() {
       <Typography component="p" variant="h10">
         Click to filter
       </Typography>
+
+      {/* <FormControl component="fieldset">
+        <FormLabel component="legend">Gender</FormLabel>
+        <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+          <FormControlLabel value="female" control={<Radio />} label="Female" />
+          <FormControlLabel value="male" control={<Radio />} label="Male" />
+          <FormControlLabel value="other" control={<Radio />} label="Other" />
+          <FormControlLabel value="disabled" disabled control={<Radio />} label="(Disabled option)" />
+        </RadioGroup>
+      </FormControl> */}
+
+      {/* older version */}
       <Table size="small">
         <TableHead>
           <TableRow>
         
             
-            {/* <TableCell align="right">Selected or not</TableCell> */}
+            
           </TableRow>
         </TableHead>
         <TableBody>
@@ -59,11 +75,13 @@ export default function Orders() {
               <TableCell>{row.e4}</TableCell>
               <TableCell>{row.e5}</TableCell>
               <TableCell>{row.e6}</TableCell>
-              {/* <TableCell align="right">{row.selected}</TableCell> */}
+              <TableCell align="right">{row.selected}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
+
+      
       <div className={classes.seeMore}>
         <Link color="primary" href="#" onClick={preventDefault}>
           See more

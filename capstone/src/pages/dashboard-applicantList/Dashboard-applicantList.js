@@ -21,7 +21,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
-import Orders from './Orders';
+import ApplicantList from './ApplicantList';
 import Filter from './Filter';
 
 function Copyright() {
@@ -192,10 +192,10 @@ export default function DashBoard_applicantList() {
                 <Filter />
               </Paper>
             </Grid>
-            {/* Recent Orders */}
+            {/* applicants list */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Orders />
+                <ApplicantList />
               </Paper>
             </Grid>
           </Grid>

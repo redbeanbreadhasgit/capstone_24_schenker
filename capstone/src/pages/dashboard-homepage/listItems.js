@@ -13,10 +13,13 @@ import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
 import WorkIcon from '@material-ui/icons/Work';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import { Container, Grid } from '@material-ui/core';
+// import { Router, Route, Link } from 'react-router';
+import { RecentActorsRounded } from '@material-ui/icons';
+
 
 export const mainListItems = (
   <div>
-    <ListItem button>
+    <ListItem button >
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
@@ -97,3 +100,14 @@ export const jobIcon =(
     <WorkIcon style={{fontSize : 150}}></WorkIcon>
   </div>
 );
+
+// React.render((
+//   <Router>
+//     <Route path="/" component={App}>
+//       <Route path="about" component={About} />
+//       <Route path="inbox" component={Inbox}>
+//         <Route path="messages/:id" component={Message} />
+//       </Route>
+//     </Route>
+//   </Router>
+// ), document.body)

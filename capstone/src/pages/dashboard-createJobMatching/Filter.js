@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Orders() {
+export default function Filter() {
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -41,12 +41,15 @@ export default function Orders() {
       <Typography component="p" variant="h10">
         Click to filter
       </Typography>
-      <Table size="small">
+
+
+      {/* older version */}
+      {/* <Table size="small">
         <TableHead>
           <TableRow>
         
             
-            {/* <TableCell align="right">Selected or not</TableCell> */}
+            
           </TableRow>
         </TableHead>
         <TableBody>
@@ -59,11 +62,13 @@ export default function Orders() {
               <TableCell>{row.e4}</TableCell>
               <TableCell>{row.e5}</TableCell>
               <TableCell>{row.e6}</TableCell>
-              {/* <TableCell align="right">{row.selected}</TableCell> */}
+              <TableCell align="right">{row.selected}</TableCell>
             </TableRow>
           ))}
         </TableBody>
-      </Table>
+      </Table> */}
+
+      
       <div className={classes.seeMore}>
         <Link color="primary" href="#" onClick={preventDefault}>
           See more

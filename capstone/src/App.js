@@ -4,6 +4,7 @@ import SignIn from './pages/sign-in/SignIn.js'
 import DashBoard_applicantList from './pages/dashboard-applicantList/Dashboard-applicantList'
 import DashBoard_homepage from './pages/dashboard-homepage/Dashboard-homepage'
 import DashBoard_createJobMatching from './pages/dashboard-createJobMatching/Dashboard-createJobMatching'
+import Signup from "./pages/sign-up/SignUp.js"
 // function App() {
 //   return (
 //     <div className="App">
@@ -61,12 +62,13 @@ function App() {
   return (
     // <SignIn>
     // </SignIn>
-    // <DashBoard_applicantList>
-    // </DashBoard_applicantList>
+    <DashBoard_applicantList>
+    </DashBoard_applicantList>
     // <DashBoard_homepage>
     // </DashBoard_homepage>
-    <DashBoard_createJobMatching>
-    </DashBoard_createJobMatching>
+    // <DashBoard_createJobMatching>
+    // </DashBoard_createJobMatching>
+    // <Signup></Signup>
   );
 }
 
