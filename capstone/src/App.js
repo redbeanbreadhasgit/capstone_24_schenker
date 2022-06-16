@@ -5,6 +5,9 @@ import DashBoard_applicantList from './pages/dashboard-applicantList/Dashboard-a
 import DashBoard_homepage from './pages/dashboard-homepage/Dashboard-homepage'
 import DashBoard_createJobMatching from './pages/dashboard-createJobMatching/Dashboard-createJobMatching'
 import Signup from "./pages/sign-up/SignUp.js"
+import Dashboard_jobList from "./pages/dashboard-jobList/Dashboard-jobList.js"
+import { Link } from 'react-router-dom';
+
 // function App() {
 //   return (
 //     <div className="App">
@@ -62,13 +65,27 @@ function App() {
   return (
     // <SignIn>
     // </SignIn>
-    <DashBoard_applicantList>
-    </DashBoard_applicantList>
+    // <DashBoard_applicantList>
+    // </DashBoard_applicantList>
     // <DashBoard_homepage>
     // </DashBoard_homepage>
     // <DashBoard_createJobMatching>
     // </DashBoard_createJobMatching>
     // <Signup></Signup>
+    // <Dashboard_jobList></Dashboard_jobList>
+    <div>
+      <h1>Bookkeeper</h1>
+      <nav
+        style={{
+          borderBottom: "solid 1px",
+          paddingBottom: "1rem",
+        }}
+      >
+        <Link to="/invoices">Invoices</Link> |{" "}
+        <Link to="/expenses">Expenses</Link>
+      </nav>
+    </div>
+
   );
 }
 

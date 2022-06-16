@@ -1,0 +1,209 @@
+{
+    "type": "table",
+    "database": null,
+    "name": "core_applicantmodel",
+    "withoutRowId": true,
+    "ddl": "CREATE TABLE \"core_applicantmodel\" (\"applicant_id\" integer NOT NULL PRIMARY KEY, \"applicant_name\" varchar(100) NOT NULL, \"applicant_resume\" varchar(100) NOT NULL, \"recruiter_decision\" varchar(1) NOT NULL, \"job_id_id\" integer NOT NULL REFERENCES \"core_matchedjobmodel\" (\"job_id\") DEFERRABLE INITIALLY DEFERRED);",
+    "columns": [
+        {
+            "name": "applicant_id",
+            "type": "integer",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL "
+                },
+                {
+                    "type": "PRIMARY KEY",
+                    "definition": "PRIMARY KEY"
+                }
+            ]
+        },
+        {
+            "name": "applicant_name",
+            "type": "varchar",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        },
+        {
+            "name": "applicant_resume",
+            "type": "varchar",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        },
+        {
+            "name": "recruiter_decision",
+            "type": "varchar",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        },
+        {
+            "name": "job_id_id",
+            "type": "integer",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL "
+                },
+                {
+                    "type": "FOREIGN KEY",
+                    "definition": "REFERENCES \"core_matchedjobmodel\" (\"job_id\") "
+                }
+            ]
+        }
+    ],
+    "rows": [
+        [
+            1,
+            "Sample Field Support CV 1 (ML - Selected)_GQxa9b2",
+            "Sample Field Support CV 1 (ML - Selected)_GQxa9b2.pdf",
+            "P",
+            1
+        ],
+        [
+            2,
+            "Sample Field Support CV 2 (ABA - Rejected)_C2scvZv",
+            "Sample Field Support CV 2 (ABA - Rejected)_C2scvZv.pdf",
+            "P",
+            1
+        ],
+        [
+            3,
+            "Sample Field Support CV 3 (GQ - Rejected)_oEMRlAm",
+            "Sample Field Support CV 3 (GQ - Rejected)_oEMRlAm.pdf",
+            "P",
+            1
+        ],
+        [
+            4,
+            "Sample Field Support CV 4 (MSBI - Rejected)_loZznZr",
+            "Sample Field Support CV 4 (MSBI - Rejected)_loZznZr.pdf",
+            "P",
+            1
+        ],
+        [
+            5,
+            "Sample Field Support CV 5 (LCG - Selected)_h4jIvJ9",
+            "Sample Field Support CV 5 (LCG - Selected)_h4jIvJ9.pdf",
+            "P",
+            1
+        ],
+        [
+            6,
+            "Sample System Analyst CV 1 (RM - Rejected)_lMoBjQk",
+            "Sample System Analyst CV 1 (RM - Rejected)_lMoBjQk.pdf",
+            "P",
+            2
+        ],
+        [
+            7,
+            "Sample System Analyst CV 2 (ZMH - Rejected)_y4ZX9jk",
+            "Sample System Analyst CV 2 (ZMH - Rejected)_y4ZX9jk.pdf",
+            "P",
+            2
+        ],
+        [
+            8,
+            "Sample System Analyst CV 3 (KA - Selected)_z4u77Wf",
+            "Sample System Analyst CV 3 (KA - Selected)_z4u77Wf.pdf",
+            "P",
+            2
+        ],
+        [
+            9,
+            "Sample System Analyst CV 4 (NSH - Rejected)_WYAmSfB",
+            "Sample System Analyst CV 4 (NSH - Rejected)_WYAmSfB.pdf",
+            "P",
+            2
+        ],
+        [
+            10,
+            "Sample System Analyst CV 5 (TSN - Rejected)_s36WItY",
+            "Sample System Analyst CV 5 (TSN - Rejected)_s36WItY.pdf",
+            "P",
+            2
+        ],
+        [
+            11,
+            "Not Suitable - 1",
+            "Not Suitable - 1.pdf",
+            "P",
+            3
+        ],
+        [
+            12,
+            "Not Suitable - 2",
+            "Not Suitable - 2.pdf",
+            "P",
+            3
+        ],
+        [
+            13,
+            "Not Suitable - 3",
+            "Not Suitable - 3.pdf",
+            "P",
+            3
+        ],
+        [
+            14,
+            "Not Suitable - 4",
+            "Not Suitable - 4.pdf",
+            "P",
+            3
+        ],
+        [
+            15,
+            "Not Suitable - 5",
+            "Not Suitable - 5.pdf",
+            "P",
+            3
+        ],
+        [
+            16,
+            "Not Suitable - 6",
+            "Not Suitable - 6.pdf",
+            "P",
+            4
+        ],
+        [
+            17,
+            "Not Suitable - 7",
+            "Not Suitable - 7.pdf",
+            "P",
+            4
+        ],
+        [
+            18,
+            "Not Suitable - 8",
+            "Not Suitable - 8.pdf",
+            "P",
+            4
+        ],
+        [
+            19,
+            "Not Suitable - 9",
+            "Not Suitable - 9.pdf",
+            "P",
+            4
+        ],
+        [
+            20,
+            "Not Suitable - 10",
+            "Not Suitable - 10.pdf",
+            "P",
+            4
+        ]
+    ]
+}

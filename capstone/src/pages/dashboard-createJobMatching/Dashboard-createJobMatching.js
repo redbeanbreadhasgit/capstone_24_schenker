@@ -21,6 +21,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 
 import { Button } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+
 import Chart from './Chart';
 import Deposits from './Deposits';
 import FileDescription from './FileComponents';
@@ -199,6 +201,14 @@ export default function DashBoard_createJobMatching() {
               <Paper className={classes.paper}>
                 <Typography variant="h4">Upload Job Description</Typography>
                 <Button variant="contained" color="primary">Click to upload</Button>           
+              </Paper>
+            </Grid>
+
+            <Grid item xs={12} md={6} lg={6} >
+              <Paper className={classes.paper}>
+                <Typography variant="h4">Job Name</Typography>     
+                <TextField id="jobKeyIn" label="Key in job title here" />
+                <Button variant="contained" color="primary">Click to Check</Button>            
               </Paper>
             </Grid>
 
