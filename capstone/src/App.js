@@ -6,7 +6,7 @@ import DashBoard_homepage from './pages/dashboard-homepage/Dashboard-homepage'
 import DashBoard_createJobMatching from './pages/dashboard-createJobMatching/Dashboard-createJobMatching'
 import Signup from "./pages/sign-up/SignUp.js"
 import Dashboard_jobList from "./pages/dashboard-jobList/Dashboard-jobList.js"
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 // function App() {
 //   return (
@@ -73,6 +73,9 @@ function App() {
     // </DashBoard_createJobMatching>
     // <Signup></Signup>
     // <Dashboard_jobList></Dashboard_jobList>
+
+
+    // test
     <div>
       <h1>Bookkeeper</h1>
       <nav
@@ -82,7 +85,9 @@ function App() {
         }}
       >
         <Link to="/invoices">Invoices</Link> |{" "}
-        <Link to="/expenses">Expenses</Link>
+        <Link to="/expenses">Expenses</Link> |{" "}
+        <Link to="/">Home</Link>
+        <Outlet />
       </nav>
     </div>
 

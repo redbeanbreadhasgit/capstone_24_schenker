@@ -16,10 +16,12 @@ import { Container, Grid } from '@material-ui/core';
 // import { Router, Route, Link } from 'react-router';
 import { RecentActorsRounded } from '@material-ui/icons';
 
+import { Link } from 'react-router-dom';
+
 
 export const mainListItems = (
   <div>
-    <ListItem button >
+    <ListItem button component={Link} to="/homepage">
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
@@ -31,19 +33,20 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Orders" />
     </ListItem> */}
-    <ListItem button>
+    <ListItem button component={Link} to="/applicantList">
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
       <ListItemText primary="Applicants" />
     </ListItem>
-    <ListItem button>
+    {/* ?? what is activity button */}
+    <ListItem button component={Link} to="/applicantList">
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="Activities" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component={Link} to="/jobList">
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
