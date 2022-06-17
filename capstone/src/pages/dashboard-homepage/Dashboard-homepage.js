@@ -18,16 +18,13 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems, applicantIcon, jobIcon } from './listItems';
+import { mainListItems, secondaryListItems,  } from '../components/listItems';
+import { applicantIcon, jobIcon } from '../components/icons';
 import { Button } from '@material-ui/core';
 
 
 
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
-import Filter from './Filter';
-import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
+
 
 function Copyright() {
   return (

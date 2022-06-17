@@ -18,15 +18,13 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
+import { mainListItems, secondaryListItems } from '../components/listItems';
 
 import { Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 
-import Chart from './Chart';
-import Deposits from './Deposits';
-import FileDescription from './FileComponents';
-import Filter from './Filter';
+
+
 
 function Copyright() {
   return (
@@ -178,25 +176,7 @@ export default function DashBoard_createJobMatching() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* Chart */}
-            {/* <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Chart />
-              </Paper>
-            </Grid> */}
-            {/* Recent Deposits */}
-            {/* <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <Deposits />
-              </Paper>
-            </Grid> */}
-            {/* Filter */}
-            {/* <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Filter />
-              </Paper>
-            </Grid> */}
-            {/* Recent Orders */}
+            
             <Grid  item xs={12} md={6} lg={6} >
               <Paper className={classes.paper}>
                 <Typography variant="h4">Upload Job Description</Typography>

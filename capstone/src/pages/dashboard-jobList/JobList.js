@@ -6,10 +6,10 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Title from './Title';
-import applicants from './json/all_applicants.json';
-import pred from "./json/model_prediction.json";
-import jobs from "./json/all_jobs.json";
+import Title from '../components/Title';
+import applicants from '../json/all_applicants.json';
+import pred from "../json/model_prediction.json";
+import jobs from "../json/all_jobs.json";
 import { Button, RootRef } from '@material-ui/core';
 
 

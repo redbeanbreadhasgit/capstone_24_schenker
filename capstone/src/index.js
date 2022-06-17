@@ -23,7 +23,8 @@ root.render(
   // </React.StrictMode>
 
   <BrowserRouter>
-    <Routes>
+    {/* test */}
+    {/* <Routes>
     <Route path="/" element={<App />} >
       <Route path="/invoices" element={<Invoices />}>
       <Route
@@ -46,16 +47,19 @@ root.render(
       }
       />
     </Route>
+    </Routes> */}
 
-
-      {/* <Route path="/" element={<App />} />
+    <Routes>
+      <Route path="/" element={<App />} />
       <Route path="homepage" element={<Dashboard_homepage />} />
       <Route path="createJobMatching" element={<DashBoard_createJobMatching/>} />
       <Route path="applicantList" element={<DashBoard_applicantList/>}/>
       <Route path="jobList" element={<Dashboard_jobList/>}/>
       <Route path="signIn" element={<SignIn/>}/>
-      <Route path="signUp" element={<SignUp/>}/> */}
+      <Route path="signUp" element={<SignUp/>}/>      
     </Routes>
+
+    
   </BrowserRouter>
 );
 

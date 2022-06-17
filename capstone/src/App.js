@@ -67,8 +67,8 @@ function App() {
     // </SignIn>
     // <DashBoard_applicantList>
     // </DashBoard_applicantList>
-    // <DashBoard_homepage>
-    // </DashBoard_homepage>
+    <DashBoard_homepage>
+    </DashBoard_homepage>
     // <DashBoard_createJobMatching>
     // </DashBoard_createJobMatching>
     // <Signup></Signup>
@@ -76,20 +76,20 @@ function App() {
 
 
     // test
-    <div>
-      <h1>Bookkeeper</h1>
-      <nav
-        style={{
-          borderBottom: "solid 1px",
-          paddingBottom: "1rem",
-        }}
-      >
-        <Link to="/invoices">Invoices</Link> |{" "}
-        <Link to="/expenses">Expenses</Link> |{" "}
-        <Link to="/">Home</Link>
-        <Outlet />
-      </nav>
-    </div>
+    // <div>
+    //   <h1>Bookkeeper</h1>
+    //   <nav
+    //     style={{
+    //       borderBottom: "solid 1px",
+    //       paddingBottom: "1rem",
+    //     }}
+    //   >
+    //     <Link to="/invoices">Invoices</Link> |{" "}
+    //     <Link to="/expenses">Expenses</Link> |{" "}
+    //     <Link to="/">Home</Link>
+    //     <Outlet />
+    //   </nav>
+    // </div>
 
   );
 }
