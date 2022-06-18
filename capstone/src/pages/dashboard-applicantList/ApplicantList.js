@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import Link from '@material-ui/core/Link';
+import React, { useState, useEffect, Component } from 'react';
+import {Link as routerLink, Outlet } from 'react-router-dom';
+import {Link as Link} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,6 +11,8 @@ import Title from '../components/Title';
 import applicants from '../json/all_applicants.json';
 import pred from "../json/model_prediction.json";
 import { Button, RootRef } from '@material-ui/core';
+import Invoice from '../../routes/invoice';
+
 
 
 
@@ -176,7 +179,7 @@ export default function Orders() {
             <TableRow key={row.id}>
               <TableCell>{row.id}</TableCell>
               <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
+              <TableCell><Link component={routerLink} to={`/applicantList:${row.id}` } key={row.id}>{row.name}</Link></TableCell>
               <TableCell>{row.role}</TableCell>
               <TableCell>{row.suitability}</TableCell>
               <TableCell>{row.status}</TableCell>
@@ -201,7 +204,7 @@ export default function Orders() {
         // });
         }
       }>sort by applicantId </Button>
-      <h3>{pred.rows[2]}</h3>
+      <h3>{(applicants.rows)[4][1]}</h3>
       <Button variant="contained" color="primary">
         
       </Button>
@@ -210,6 +213,8 @@ export default function Orders() {
           See more updates
         </Link>
       </div>
+
+      {/* <Outlet></Outlet> */}
     </React.Fragment>
   );
 }

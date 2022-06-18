@@ -6,6 +6,7 @@ import DashBoard_homepage from './pages/dashboard-homepage/Dashboard-homepage'
 import DashBoard_createJobMatching from './pages/dashboard-createJobMatching/Dashboard-createJobMatching'
 import Signup from "./pages/sign-up/SignUp.js"
 import Dashboard_jobList from "./pages/dashboard-jobList/Dashboard-jobList.js"
+import DashBoard_applicantList_detailed from './pages/dashboard-applicantList-detailed/Dashboard-applicantList-detailed';
 import { Link, Outlet } from 'react-router-dom';
 
 // function App() {
@@ -67,12 +68,13 @@ function App() {
     // </SignIn>
     // <DashBoard_applicantList>
     // </DashBoard_applicantList>
-    <DashBoard_homepage>
-    </DashBoard_homepage>
-    // <DashBoard_createJobMatching>
-    // </DashBoard_createJobMatching>
+    // <DashBoard_homepage>
+    // </DashBoard_homepage> 
+    // // <DashBoard_createJobMatching>
+    // // </DashBoard_createJobMatching>
     // <Signup></Signup>
     // <Dashboard_jobList></Dashboard_jobList>
+    <DashBoard_applicantList_detailed></DashBoard_applicantList_detailed>
 
 
     // test
