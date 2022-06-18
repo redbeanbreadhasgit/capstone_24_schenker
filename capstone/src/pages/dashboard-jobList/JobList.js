@@ -12,6 +12,8 @@ import pred from "../json/model_prediction.json";
 import jobs from "../json/all_jobs.json";
 import { Button, RootRef } from '@material-ui/core';
 
+import {getApplicantInfo, getJobInfo, getPredictionInfo} from "../json/jsonUtil";
+import {Link as routerLink, Outlet } from 'react-router-dom';
 
 
 let num=applicants.rows.length;
@@ -103,52 +105,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// export default class extends React.Component{
-//   render(){
-//     const classes = useStyles();
-//   return (
-//     <React.Fragment>
-//       <Title>Applications</Title>
-//       <Table size="small">
-//         <TableHead>
-//           <TableRow>
-//             <TableCell>ID</TableCell>
-//             <TableCell>Date</TableCell>
-//             <TableCell>Name</TableCell>
-//             <TableCell>Applied Role</TableCell>
-//             <TableCell>Suitability</TableCell>
-//             <TableCell>Pending Status</TableCell>
-            
-//             {/* <TableCell align="right">Selected or not</TableCell> */}
-//           </TableRow>
-//         </TableHead>
-//         <TableBody>
-//           {rows.map((row) => (
-//             <TableRow key={row.id}>
-//               <TableCell>{row.id}</TableCell>
-//               <TableCell>{row.date}</TableCell>
-//               <TableCell>{row.name}</TableCell>
-//               <TableCell>{row.role}</TableCell>
-//               <TableCell>{row.suitability}</TableCell>
-//               <TableCell>{row.status}</TableCell>
-//               {/* <TableCell align="right">{row.selected}</TableCell> */}
-//             </TableRow>
-//           ))}
-//         </TableBody>
-//       </Table>
-//       <Button variant="contained" color="primary" onClick={()=>{rows=rows.sort(sortSuitability)}}>sort 1</Button>
-//       <Button variant="contained" color="primary">sort 2</Button>
-//       <h3>{pred.rows[2]}</h3>
-//       <div className={classes.seeMore}>
-//         <Link color="primary" href="#" onClick={preventDefault}>
-//           See more updates
-//         </Link>
-//       </div>
-//     </React.Fragment>
-//   );
-//   }
-// }
- 
 const prevRowsInfo=rows;
 
 export default function Orders() {
@@ -179,7 +135,7 @@ export default function Orders() {
           {rows.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.id}</TableCell>
-              <TableCell>{row.jobTitle}</TableCell>
+              <TableCell><Link component={routerLink} to={`/jobList:${row.id}`}>{row.jobTitle}</Link></TableCell>
               <TableCell>{row.matchingDate}</TableCell>
               <TableCell>{row.updateDate}</TableCell>
               <TableCell>{row.hiringManager}</TableCell>

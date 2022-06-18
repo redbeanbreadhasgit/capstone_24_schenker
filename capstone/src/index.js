@@ -15,6 +15,8 @@ import Dashboard_jobList from './pages/dashboard-jobList/Dashboard-jobList'
 import SignIn from './pages/sign-in/SignIn'
 import SignUp from './pages/sign-up/SignUp'
 import DashBoard_applicantList_detailed from './pages/dashboard-applicantList-detailed/Dashboard-applicantList-detailed';
+import DashBoard_jobList_detailed from './pages/dashboard-jobList-detailed/Dashboard-jobList-detailed';
+// import 'fontsource-roboto';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -54,16 +56,15 @@ root.render(
       <Route path="/" element={<App />} />
       <Route path="homepage" element={<Dashboard_homepage />} />
       <Route path="createJobMatching" element={<DashBoard_createJobMatching/>} />
-      <Route path="applicantList" element={<DashBoard_applicantList/>}>
-        
-      </Route>
+      <Route path="applicantList" element={<DashBoard_applicantList/>}></Route>
       <Route path="applicantList:applicantID" element={<DashBoard_applicantList_detailed/>}/>
 
       <Route path="jobList" element={<Dashboard_jobList/>}/>
+      <Route path="jobList:jobID" element={<DashBoard_jobList_detailed/>}/>
       <Route path="signIn" element={<SignIn/>}/>
       <Route path="signUp" element={<SignUp/>}/>     
       
-      <Route path="test" element={<DashBoard_applicantList_detailed/>}/> 
+      {/* <Route path="test" element={<DashBoard_applicantList_detailed/>}/>  */}
 
     </Routes>
 

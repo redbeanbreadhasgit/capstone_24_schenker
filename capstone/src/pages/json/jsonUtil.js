@@ -40,7 +40,7 @@ export function getPredictionInfo(applicantID, jobID){
     for (let i=0; i<allPredictionsNum; i++){
         let entry= allPredictions[i];
         if (applicantID===entry[2] && jobID===entry[3]){
-            return ({predictinoID:entry[0], predictionResult:entry[1], 
+            return ({predictionID:entry[0], predictionResult:entry[1], 
                 applicantID:entry[2], jobID:entry[3], 
                 applicantEducation:entry[4], applicantExperience:entry[5], applicantSkills:entry[6]});
         }
