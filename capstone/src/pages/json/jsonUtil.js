@@ -10,6 +10,18 @@ let allApplicantsNum=allApplicants.length;
 let allJobsNum=allJobs.length;
 let allPredictionsNum=allPredictions.length;
 
+export function getApplicantsNum(){
+    return allApplicantsNum;
+}
+
+export function getJobsNum(){
+    return allJobsNum;
+}
+
+export function getPredictionsNum(){
+    return allPredictionsNum;
+}
+
 export function getApplicantInfo(applicantID){
     for (let i=0; i<allApplicantsNum; i++){
         let entry= allApplicants[i];
@@ -47,3 +59,4 @@ export function getPredictionInfo(applicantID, jobID){
     }
     return "error";
 }
+

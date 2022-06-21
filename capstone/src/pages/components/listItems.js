@@ -33,7 +33,7 @@ export const mainListItems = (
       <ListItemText primary="Applicants" />
     </ListItem>
     {/* ?? what is activity button */}
-    <ListItem button component={Link} to="/applicantList">
+    <ListItem button component={Link} to="/createJobMatching">
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
