@@ -8,7 +8,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
@@ -19,8 +18,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems,  } from '../components/listItems';
-import { applicantIcon, jobIcon } from '../components/icons';
+import { applicantIcon, jobIcon, jobmatchingIcon } from '../components/icons';
 import { Button } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
 
 
 
@@ -188,27 +188,46 @@ export default function DashBoard_homepage() {
                 <Typography variant='h1'> 20 </Typography>
               </Grid> 
               <Grid item xs={12} md={3} lg={3}>
-                <Button variant="contained" color="primary">View applicants</Button>
-              </Grid>              
-              {/* </Paper> */}
-            </Grid>
-            {/* </Paper> */}
-            {/* number of jobs */}
-            <Grid container item xs={12} md={12} lg={12} space={10}>          
-              {/* <Paper className={fixedHeightPaper}> */}
-              <Grid item xs={12} md={3} lg={3}>
                 {jobIcon}
               </Grid>
               <Grid item xs={12} md={3} lg={3}>
                 <Typography variant='h6'> Number of jobs : </Typography>
                 <Typography variant='h1'> 7 </Typography>
               </Grid>  
-              <Grid item xs={12} md={2} lg={2}>
-                <Button variant="contained" color="primary">View jobs</Button>
+              <Grid item xs={12} md={6} lg={6}>
+                <div align='center'>
+                  <Button variant="contained" color="primary" >View applicants</Button>
+                </div>                
+              </Grid>      
+              <Grid item xs={12} md={6} lg={6}>
+                <div align='center'>
+                  <Button variant="contained" color="primary">View jobs</Button>
+                </div>                
               </Grid>
-              <Grid item xs={12} md={2} lg={3}>
-                <Button variant="contained" color="primary">Create new jobs</Button>
+              <br/>
+              <Grid item xs={12} md={3} lg={3}>
+                {jobmatchingIcon}
+              </Grid>
+              <Grid item xs={12} md={9} lg={9}>
+                <Typography variant='h6'> Create new jobs </Typography>
+              </Grid>  
+              <Grid item xs={12} md={6} lg={6}>
+                <div align='center'>
+                  
+                  <Button variant="contained" color="primary">Create new jobs</Button>
+                </div>                
               </Grid>                
+       
+                      
+              {/* </Paper> */}
+            </Grid>
+            {/* </Paper> */}
+            {/* number of jobs */}
+            <Grid container item xs={12} md={12} lg={12} space={10}>          
+              {/* <Paper className={fixedHeightPaper}> */}
+              
+              
+              
               {/* </Paper> */}
             </Grid>
             {/* Filter */}

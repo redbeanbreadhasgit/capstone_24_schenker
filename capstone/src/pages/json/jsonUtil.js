@@ -60,3 +60,15 @@ export function getPredictionInfo(applicantID, jobID){
     return "error";
 }
 
+export function getAppliedApplicants(jobID){
+    let result=[];
+    
+    for (let i=1; i++; i<=allApplicantsNum){
+        let appliedJobID=getApplicantInfo(i).applicantJob;
+        if (appliedJobID==jobID){
+            result.push(i);
+        }
+    }
+    return result;
+}
+

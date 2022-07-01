@@ -21,7 +21,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems,  } from '../components/listItems';
 import { applicantIcon, jobIcon } from '../components/icons';
 import { Button } from '@material-ui/core';
-import ReturnJobInfo from './GetJobInfo';
+import {ReturnJobInfo, GetJobTitle} from './GetJobInfo';
+import {ReturnApplicantsInfo} from './ReturnApplicantsInfo';
 
 
 
@@ -147,7 +148,7 @@ export default function DashBoard_homepage() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Detailed Applicant Page 
+            Job : <GetJobTitle></GetJobTitle>            
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
@@ -184,22 +185,12 @@ export default function DashBoard_homepage() {
                 <ReturnJobInfo></ReturnJobInfo>
               </Paper> 
             </Grid>
-            {/* <h4>{b}</h4> */}
-            {/* </Paper> */}
-            {/* number of jobs */}
+            <Grid container item xs={12} md={12} lg={12} space={10}>          
+              <Paper className={classes.paper}>
+                <ReturnApplicantsInfo></ReturnApplicantsInfo>
+              </Paper> 
+            </Grid>
             
-            {/* Filter */}
-            {/* <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Filter />
-              </Paper>
-            </Grid> */}
-            {/* Recent Orders */}
-            {/* <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
-            </Grid> */}
           </Grid>
           <Box pt={4}>
             <Copyright />

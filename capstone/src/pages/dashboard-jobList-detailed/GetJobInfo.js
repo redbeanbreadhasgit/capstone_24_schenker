@@ -3,8 +3,7 @@ import {getApplicantInfo, getJobInfo, getPredictionInfo} from "../json/jsonUtil"
 import { Typography } from "@material-ui/core";
 import {Box} from '@material-ui/core';
 
-
-export default function ReturnJobInfo(){
+export function ReturnJobInfo(){
     let params=useParams();
     let jobID=params.jobID;
     let jobSelected=getJobInfo(parseInt(jobID.substring(1,)));
@@ -67,20 +66,14 @@ export default function ReturnJobInfo(){
                 </Box> 
                 
             </Typography>
-            {/* <Typography>Applicant ID : {applicantSelected.applicantID} </Typography>
-            <Typography>Applicant Name : {applicantSelected.applicantName} </Typography>
-            <Typography>Applicant File : {applicantSelected.applicantFile} </Typography>
-            <Typography>Applicant Status : {applicantSelected.applicantStatus} </Typography>
-            <Typography>Applicant Applied Job ID: {applicantSelected.applicantJob} </Typography>
-            <Typography>Job Title : {jobSelected.jobTitle} </Typography>
-            <Typography>Job Matching date : {jobSelected.jobMatchingDate} </Typography>
-            <Typography>Job Update Date : {jobSelected.jobUpdateDate} </Typography>
-            <Typography>Job Recruiter ID : {jobSelected.recruiterID} </Typography>
-            <Typography>Job Hiring Manager ID : {jobSelected.hiringManagerID} </Typography>
-            <Typography>Job Description : {jobSelected.jobDescription} </Typography>
-            <Typography>Job Requirments : {jobSelected.jobRequirements} </Typography> */}
-
-    
         </div>
     );     
+}
+
+export function GetJobTitle(){
+    let params=useParams();
+    let jobID=params.jobID;
+    let jobSelected=getJobInfo(parseInt(jobID.substring(1,)));
+
+    return (jobSelected.jobTitle);
 }

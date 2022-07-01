@@ -58,11 +58,6 @@ function findSuitability(applicantId,jobId){
 // findSuitability(1,1);
 
 let rows = [
-  // createData(0, '16 Mar, 2022', 'Elvis Presley', '45%', 'Java Engineer', 'rejected', 312.44),
-  // createData(1, '16 Mar, 2022', 'Paul McCartney', '78%', 'C Engineer', 'completed', 866.99),
-  // createData(2, '16 Mar, 2022', 'Tom Scholz', '19%', 'Data Analyst', 'rejected', 100.81),
-  // createData(3, '16 Mar, 2022', 'Michael Jackson', '99%', 'Java Engineer', 'pending', 654.39),
-  // createData(4, '15 Mar, 2022', 'Bruce Springsteen', '120%', 'Accountant', 'pending', 212.79),
 ];
 
 // create rows
@@ -107,7 +102,7 @@ const useStyles = makeStyles((theme) => ({
 
 const prevRowsInfo=rows;
 
-export default function Orders() {
+export default function JobListTable() {
   const classes = useStyles();
   const [rowsInfo,setRowsInfo]=useState(rows);
   const prevRowsInfo=rows;
@@ -148,11 +143,12 @@ export default function Orders() {
       </Table>
       
       
-      <div className={classes.seeMore}>
+      {/* <div className={classes.seeMore}>
         <Link color="primary" href="#" onClick={preventDefault}>
           See more updates
         </Link>
-      </div>
+      </div> */}
+      
     </React.Fragment>
   );
 }

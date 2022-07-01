@@ -13,6 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
+import {Link as routerLink} from 'react-router-dom';
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -57,16 +59,7 @@ export default function SignUp() {
             Sign Up
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
+            
             <TextField
               margin="normal"
               required
@@ -92,7 +85,17 @@ export default function SignUp() {
               required
               fullWidth
               id="email"
-              label="User ID"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Username"
               name="email"
               autoComplete="email"
               autoFocus
@@ -112,7 +115,7 @@ export default function SignUp() {
               required
               fullWidth
               name="password_repeated"
-              label="Repeat your Password"
+              label="Confirm Password"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -131,19 +134,19 @@ export default function SignUp() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link variant="body2" component={routerLink} to="">
                   Help
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link variant="body2"  component={routerLink} to="/signin">
                   {"Already have an account? Sign In"}
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </ThemeProvider>
   );
