@@ -12,7 +12,33 @@ export function ReturnJobInfo(){
         <div>
             <Typography variant="h5" >Selected Job : jobID {jobID}</Typography>
             <Typography>
-                <Box fontWeight="fontWeightRegular" > 
+
+                <Box fontWeight="fontWeightBold" > 
+                    Job Matching date : 
+                </Box>
+                <Box fontWeight="fontWeightRegular" fontStyle="italic"> 
+                    {jobSelected.jobMatchingDate}
+                </Box>
+                <Box fontWeight="fontWeightBold" > 
+                    Job Update Date : 
+                </Box>
+                <Box fontWeight="fontWeightRegular" fontStyle="italic"> 
+                    {jobSelected.jobUpdateDate}
+                </Box>
+                <Box fontWeight="fontWeightBold" > 
+                    Job Recruiter ID : 
+                </Box>
+                <Box fontWeight="fontWeightRegular" fontStyle="italic"> 
+                    {jobSelected.recruiterID}
+                </Box>
+                <Box fontWeight="fontWeightBold" > 
+                    Job Requirments : 
+                </Box>
+                <Box fontWeight="fontWeightRegular" fontStyle="italic"> 
+                    {jobSelected.jobRequirements}
+                </Box> 
+
+                {/* <Box fontWeight="fontWeightRegular" > 
                     Selected Applicant Infomation :
                 </Box>
                 <Box fontWeight="fontWeightBold" > 
@@ -28,24 +54,8 @@ export function ReturnJobInfo(){
                 {jobSelected.jobTitle}
                 </Box>
                 
-                <Box fontWeight="fontWeightBold" > 
-                Job Matching date : 
-                </Box>
-                <Box fontWeight="fontWeightRegular" fontStyle="italic"> 
-                {jobSelected.jobMatchingDate}
-                </Box>
-                <Box fontWeight="fontWeightBold" > 
-                Job Update Date : 
-                </Box>
-                <Box fontWeight="fontWeightRegular" fontStyle="italic"> 
-                {jobSelected.jobUpdateDate}
-                </Box>
-                <Box fontWeight="fontWeightBold" > 
-                Job Recruiter ID : 
-                </Box>
-                <Box fontWeight="fontWeightRegular" fontStyle="italic"> 
-                {jobSelected.recruiterID}
-                </Box>
+                
+                
                 <Box fontWeight="fontWeightBold" > 
                 Job Hiring Manager ID : 
                 </Box>
@@ -58,12 +68,7 @@ export function ReturnJobInfo(){
                 <Box fontWeight="fontWeightRegular" fontStyle="italic"> 
                 {jobSelected.jobDescription}
                 </Box>
-                <Box fontWeight="fontWeightBold" > 
-                Job Requirments : 
-                </Box>
-                <Box fontWeight="fontWeightRegular" fontStyle="italic"> 
-                {jobSelected.jobRequirements}
-                </Box> 
+                 */}
                 
             </Typography>
         </div>

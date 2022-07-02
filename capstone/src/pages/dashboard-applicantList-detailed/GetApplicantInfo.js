@@ -1,19 +1,24 @@
 import { useParams } from "react-router-dom";
-import {getApplicantInfo, getJobInfo, getPredictionInfo} from "../json/jsonUtil";
-import { Typography } from "@material-ui/core";
+import {getApplicantInfo, getJobInfo, getPredictionInfo, getAllPredictionInfo} from "../json/jsonUtil";
+import { Tab, TableBody, TableCell, TableHead, TableRow, Typography } from "@material-ui/core";
 import {Box} from '@material-ui/core';
+import Title from "../components/Title";
+import {Select} from "@material-ui/core";
 
 
-export default function ReturnApplicantInfo(){
+export function ReturnApplicantInfo(){
     let params=useParams();
     let applicantID=params.applicantID;
     let applicantSelected=getApplicantInfo(parseInt(applicantID.substring(1,),10));
     let jobSelected=getJobInfo(parseInt(applicantSelected.applicantJob));
     let predictionSelected=getPredictionInfo(parseInt(applicantID.substring(1,),10),parseInt(applicantSelected.applicantJob));
+    
+    
+    
     return (
         <div>
-            <Typography variant="h5" >Selected Applicant : applicantID {applicantID}</Typography>
-            <Typography>
+            {/* <Typography variant="h5" >Selected Applicant : applicantID {applicantID}</Typography> */}
+            {/* <Typography>
                 <Box fontWeight="fontWeightRegular" > 
                     Selected Applicant Infomation :
                 </Box>
@@ -118,22 +123,88 @@ export default function ReturnApplicantInfo(){
                 </Box>
                 <Box fontWeight="fontWeightRegular" fontStyle="italic"> 
                 {predictionSelected.applicantSkills}
-                </Box>  
+                </Box>
+            </Typography> */}
+        
+            <Typography>
+                <Box fontWeight={"fontWeightBold"}>
+                    Applicant Applied Job: {jobSelected.jobTitle}
+                </Box>
+                <Box fontWeight={"fontWeightBold"}>
+                    Current Reprofiled Job: {}
+                </Box>
+                <Box fontWeight={"fontWeightBold"}>
+                    Applicant Status:  {applicantSelected.applicantStatus}
+                </Box>
+                
             </Typography>
-            {/* <Typography>Applicant ID : {applicantSelected.applicantID} </Typography>
-            <Typography>Applicant Name : {applicantSelected.applicantName} </Typography>
-            <Typography>Applicant File : {applicantSelected.applicantFile} </Typography>
-            <Typography>Applicant Status : {applicantSelected.applicantStatus} </Typography>
-            <Typography>Applicant Applied Job ID: {applicantSelected.applicantJob} </Typography>
-            <Typography>Job Title : {jobSelected.jobTitle} </Typography>
-            <Typography>Job Matching date : {jobSelected.jobMatchingDate} </Typography>
-            <Typography>Job Update Date : {jobSelected.jobUpdateDate} </Typography>
-            <Typography>Job Recruiter ID : {jobSelected.recruiterID} </Typography>
-            <Typography>Job Hiring Manager ID : {jobSelected.hiringManagerID} </Typography>
-            <Typography>Job Description : {jobSelected.jobDescription} </Typography>
-            <Typography>Job Requirments : {jobSelected.jobRequirements} </Typography> */}
-
-    
+            
         </div>
     );     
+}
+
+export function ReturnApplicantInfoTable(){
+    let params=useParams();
+    let applicantID=params.applicantID;
+    let applicantSelected=getApplicantInfo(parseInt(applicantID.substring(1,),10));
+    let jobSelected=getJobInfo(parseInt(applicantSelected.applicantJob));
+    let predictionSelected=getPredictionInfo(parseInt(applicantID.substring(1,),10),parseInt(applicantSelected.applicantJob));
+    
+    let AllPredictionInfoTable=getAllPredictionInfo(applicantID.substring(1,),10);
+
+    return(
+        <div>
+            <Title>
+                Job Matching Results:
+            </Title>
+            <TableHead>
+                <TableCell>Job Name</TableCell>
+                <TableCell>% Suitability</TableCell>
+                <TableCell>Rank in Job</TableCell>
+                <TableCell>Applciant Job Skilles</TableCell>
+            </TableHead>
+            <TableBody>
+                {
+                    AllPredictionInfoTable.map(each =>(
+                        <TableRow>
+                            <TableCell>{getJobInfo(each.jobID).jobTitle}</TableCell>
+                            <TableCell>{each.predictionResult}</TableCell>
+                            <TableCell>{each.Rank}</TableCell>
+                            <TableCell>{each.applicantSkills}</TableCell>
+                        </TableRow>
+                    ))
+                }
+            </TableBody>
+        </div>
+    )
+}
+
+export function ReturnApplicantName(){
+    let params=useParams();
+    let applicantID=params.applicantID;
+    let applicantSelected=getApplicantInfo(parseInt(applicantID.substring(1,),10));
+    return applicantSelected.applicantName;
+}
+
+export function Reprofile(){
+
+
+    return (
+        <div>
+            <Title>Reprofile</Title>
+            <TableHead>
+                <TableCell>Recruiter Decision</TableCell>
+                <TableCell>Or</TableCell>
+                <TableCell>If profiling, select job:</TableCell>
+            </TableHead>
+            <TableBody>
+                <TableRow>
+                    <TableCell><Select></Select></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell><Select></Select></TableCell>
+                </TableRow>
+            </TableBody>
+        </div>
+
+    )
 }

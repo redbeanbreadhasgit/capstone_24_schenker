@@ -21,7 +21,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems,  } from '../components/listItems';
 import { applicantIcon, jobIcon } from '../components/icons';
 import { Button } from '@material-ui/core';
-import ReturnApplicantInfo from './GetApplicantInfo';
+import {ReturnApplicantInfo,ReturnApplicantName,ReturnApplicantInfoTable, Reprofile} from './GetApplicantInfo';
 
 
 
@@ -147,7 +147,7 @@ export default function DashBoard_homepage() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Detailed Applicant Page 
+            Applicant : CV - <ReturnApplicantName></ReturnApplicantName>
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
@@ -179,10 +179,22 @@ export default function DashBoard_homepage() {
           <Grid container spacing={10}>
             {/* number of applicants */}
             {/* <Paper className={fixedHeightPaper}> */}
-            <Grid container item xs={12} md={12} lg={12} space={10}>          
-              <Paper className={classes.paper}>
+            <Grid container item xs={12} md={12} lg={12} spacing={3}>  
+              <Grid item >
+                <Paper className={classes.paper}>
                 <ReturnApplicantInfo></ReturnApplicantInfo>
-              </Paper> 
+               </Paper> 
+              </Grid>        
+              <Grid item >
+                <Paper className={classes.paper}>
+                <ReturnApplicantInfoTable></ReturnApplicantInfoTable>
+               </Paper> 
+              </Grid>   
+              <Grid item >
+                <Paper className={classes.paper}>
+                <Reprofile></Reprofile>
+               </Paper> 
+              </Grid> 
             </Grid>
             {/* <h4>{b}</h4> */}
             {/* </Paper> */}

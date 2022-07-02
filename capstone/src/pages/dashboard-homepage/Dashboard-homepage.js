@@ -146,7 +146,7 @@ export default function DashBoard_homepage() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard - Homepage
+            Homepage
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">

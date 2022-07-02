@@ -4,16 +4,44 @@ import { Table, TableCell, TableHead, Typography, TableRow, TableBody } from "@m
 import {Box} from '@material-ui/core';
 import React from "react";
 import Title from '../components/Title';
+import { TabUnselected } from "@material-ui/icons";
+import {Checkbox} from "@material-ui/core";
+
+function createTable(applicantList){
+    let table=[];
+    for (let i in applicantList){
+        table.push(getApplicantInfo(applicantList[i]));
+    }
+    return table;
+}
 
 
+//checkboxes
+
+function Checkboxes() {
+    const [checked, setChecked] = React.useState(true);
+  
+    const handleChange = (event) => {
+      setChecked(event.target.checked);
+    };
+
+    return (
+        <div>
+          <Checkbox
+            checked={checked}
+            onChange={handleChange}
+            inputProps={{ 'aria-label': 'primary checkbox' }}
+          />
+        </div>)
+}
 
 export function ReturnApplicantsInfo(){
     let params=useParams();
     let jobID=params.jobID;
     let jobSelected=getJobInfo(parseInt(jobID.substring(1,)));
-    // let appliedApplicantsList=getAppliedApplicants(parseInt(jobID.substring(1,)));
-    let appliedApplicantsList=[1,2,3];
-    let test=getApplicantInfo(1);
+    let appliedApplicantsList=getAppliedApplicants(parseInt(jobID.substring(1,)));
+    let table=createTable(appliedApplicantsList);
+    let suitability=getPredictionInfo()
 
 
     return (
@@ -28,12 +56,23 @@ export function ReturnApplicantsInfo(){
                         <TableCell>Applicant Status</TableCell>
                         <TableCell>Change Applicant Status</TableCell>
                     </TableRow>
-                    <TableBody>
-                        
-                    </TableBody>
                 </TableHead>
+                <TableBody>
+                    {
+                        table.map(each => (
+                            <TableRow>
+                                <TableCell>{each.applicantName}</TableCell>
+                                <TableCell>{getPredictionInfo(each.applicantID,each.applicantJob).predictionResult}</TableCell>
+                                <TableCell>{getPredictionInfo(each.applicantID,each.applicantJob).applicantSkills}</TableCell>
+                                <TableCell>{getApplicantInfo(each.applicantID).applicantStatus}</TableCell>
+                                <TableCell><Checkbox/></TableCell>
+                            </TableRow>
+                        ))
+                    }
+                </TableBody>
+                
             </Table>
-            <h3>{test}</h3>
+            {/* <text>Test: {appliedApplicantsList}</text> */}
         </React.Fragment>
     )
 }

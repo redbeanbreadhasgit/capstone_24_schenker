@@ -146,7 +146,7 @@ export default function DashBoard_createJobMatching() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard - Create new Job Matching
+            Create new Job Matching
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
@@ -176,15 +176,8 @@ export default function DashBoard_createJobMatching() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            
-            <Grid  item xs={12} md={6} lg={6} >
-              <Paper className={classes.paper}>
-                <Typography variant="h4">Upload Job Description</Typography>
-                <Button variant="contained" color="primary">Click to upload</Button>           
-              </Paper>
-            </Grid>
 
-            <Grid item xs={12} md={6} lg={6} >
+            <Grid item xs={12} md={12} lg={12} >
               <Paper className={classes.paper}>
                 <Typography variant="h4">Job Name</Typography>     
                 <TextField id="jobKeyIn" label="Key in job title here" />
@@ -192,17 +185,35 @@ export default function DashBoard_createJobMatching() {
               </Paper>
             </Grid>
 
-            <Grid item xs={12} md={6} lg={6} >
+            <Grid  item xs={12} md={12} lg={12} >
+              <Paper className={classes.paper}>
+                <Typography variant="h4">Upload Job Description</Typography>
+                <Button variant="contained" color="primary">Click to upload</Button>           
+              </Paper>
+            </Grid>            
+
+            <Grid item xs={12} md={12} lg={12} >
               <Paper className={classes.paper}>
                 <Typography variant="h4">Upload Resume</Typography>     
                 <Button variant="contained" color="primary">Click to upload</Button>            
               </Paper>
             </Grid>
 
+            <Grid item xs={12} md={12} lg={12} >    
+              <Paper className={classes.paper}>
+
+                <Typography>Enter some techical skill words for matching. single words only. e.g.:HTML, CSS, Javascript</Typography>     
+                <TextField label="Key in word here." ></TextField>
+                <Button variant="contained" color="primary">Get Job Matching</Button>    
+              </Paper>
+
+                       
+            </Grid>
+
           </Grid>
-          <Box pt={4}>
+          {/* <Box pt={4}>
             <Copyright />
-          </Box>
+          </Box> */}
         </Container>
       </main>
     </div>

@@ -21,7 +21,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems,  } from '../components/listItems';
 import { applicantIcon, jobIcon } from '../components/icons';
 import { Button } from '@material-ui/core';
-import {ReturnJobInfo, GetJobTitle} from './GetJobInfo';
+import {ReturnJobInfo, GetJobTitle} from './ReturnJobInfo';
 import {ReturnApplicantsInfo} from './ReturnApplicantsInfo';
 
 
@@ -177,7 +177,7 @@ export default function DashBoard_homepage() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={10}>
+          <Grid container spacing={4}>
             {/* number of applicants */}
             {/* <Paper className={fixedHeightPaper}> */}
             <Grid container item xs={12} md={12} lg={12} space={10}>          
@@ -192,9 +192,9 @@ export default function DashBoard_homepage() {
             </Grid>
             
           </Grid>
-          <Box pt={4}>
+          {/* <Box pt={4}>
             <Copyright />
-          </Box>
+          </Box> */}
         </Container>
       </main>
     </div>

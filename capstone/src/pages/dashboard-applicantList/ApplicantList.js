@@ -118,17 +118,16 @@ export default function Orders() {
   // });
   return (
     <React.Fragment>
-      <Title>Applications</Title>
+      <Title>All Applicants</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell>Date</TableCell>
+            <TableCell>ID</TableCell>            
             <TableCell>Name</TableCell>
             <TableCell>Applied Role</TableCell>
             <TableCell>Suitability</TableCell>
             <TableCell>Pending Status</TableCell>
-            
+            <TableCell>Date</TableCell>
             {/* <TableCell align="right">Selected or not</TableCell> */}
           </TableRow>
         </TableHead>
@@ -136,11 +135,11 @@ export default function Orders() {
           {rows.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.id}</TableCell>
-              <TableCell>{row.date}</TableCell>
               <TableCell><Link component={routerLink} to={`/applicantList:${row.id}` } key={row.id}>{row.name}</Link></TableCell>
               <TableCell>{row.role}</TableCell>
               <TableCell>{row.suitability}</TableCell>
               <TableCell>{row.status}</TableCell>
+              <TableCell>{row.date}</TableCell>
               {/* <TableCell align="right">{row.selected}</TableCell> */}
             </TableRow>
           ))}

@@ -115,7 +115,7 @@ export default function JobListTable() {
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>
+            {/* <TableCell>ID</TableCell> */}
             <TableCell>Job Title</TableCell>
             <TableCell>Matching Date</TableCell>
             <TableCell>Update Date</TableCell>
@@ -124,12 +124,13 @@ export default function JobListTable() {
             <TableCell>Job Description</TableCell>
             
             {/* <TableCell align="right">Selected or not</TableCell> */}
+
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.id}>
-              <TableCell>{row.id}</TableCell>
+              {/* <TableCell>{row.id}</TableCell> */}
               <TableCell><Link component={routerLink} to={`/jobList:${row.id}`}>{row.jobTitle}</Link></TableCell>
               <TableCell>{row.matchingDate}</TableCell>
               <TableCell>{row.updateDate}</TableCell>

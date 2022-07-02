@@ -143,7 +143,7 @@ export default function DashBoard_jobList() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard - Job List
+            Job List
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
@@ -179,9 +179,9 @@ export default function DashBoard_jobList() {
               </Paper>
             </Grid>
           </Grid>
-          <Box pt={4}>
+          {/* <Box pt={4}>
             <Copyright />
-          </Box>
+          </Box> */}
         </Container>
       </main>
     </div>
