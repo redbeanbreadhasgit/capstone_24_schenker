@@ -1,0 +1,266 @@
+{
+    "type": "table",
+    "database": null,
+    "name": "auth_user",
+    "withoutRowId": true,
+    "ddl": "CREATE TABLE auth_user (id integer NOT NULL PRIMARY KEY AUTOINCREMENT, username varchar (150) NOT NULL UNIQUE, first_name varchar (150) NOT NULL, last_name varchar (150) NOT NULL, password varchar (128) NOT NULL, last_login datetime, is_superuser bool NOT NULL, email varchar (254) NOT NULL, is_staff bool NOT NULL, is_active bool NOT NULL, date_joined datetime NOT NULL);",
+    "columns": [
+        {
+            "name": "id",
+            "type": "integer",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL "
+                },
+                {
+                    "type": "PRIMARY KEY",
+                    "definition": "PRIMARY KEY AUTOINCREMENT"
+                }
+            ]
+        },
+        {
+            "name": "username",
+            "type": "varchar",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL "
+                },
+                {
+                    "type": "UNIQUE",
+                    "definition": "UNIQUE"
+                }
+            ]
+        },
+        {
+            "name": "first_name",
+            "type": "varchar",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        },
+        {
+            "name": "last_name",
+            "type": "varchar",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        },
+        {
+            "name": "password",
+            "type": "varchar",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        },
+        {
+            "name": "last_login",
+            "type": "datetime"
+        },
+        {
+            "name": "is_superuser",
+            "type": "bool",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        },
+        {
+            "name": "email",
+            "type": "varchar",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        },
+        {
+            "name": "is_staff",
+            "type": "bool",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        },
+        {
+            "name": "is_active",
+            "type": "bool",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        },
+        {
+            "name": "date_joined",
+            "type": "datetime",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        }
+    ],
+    "rows": [
+        [
+            1,
+            "1234",
+            "Hermina",
+            "Bould",
+            "pbkdf2_sha256$320000$PoPE6Uu8rm2ZCCobwcfdDv$KrWzc7Tcofgc1+3VA4Ml+F\/zstkaRMwsMWP27RJOzHY=",
+            "2022-06-20 17:43:41.163278",
+            0,
+            "",
+            0,
+            1,
+            "2022-05-19 12:07:19.673353"
+        ],
+        [
+            2,
+            "cap",
+            "Teresina",
+            "Vitte",
+            "pbkdf2_sha256$320000$3DCiRCtyFWH4ze5ErPFL3T$7Uk+KtXtMriH+T6lJBz\/uPMHJfBvyDwTqjqyrc9\/oPs=",
+            "2022-06-27 09:37:11.651532",
+            0,
+            "",
+            0,
+            1,
+            "2022-05-19 12:17:09.265475"
+        ],
+        [
+            3,
+            "username",
+            "Ernest",
+            "Gauthorpp",
+            "pbkdf2_sha256$320000$lwIgCYj4I2oa0IKfKIaiMT$oM5xTJMy+X6AX0N4RzojrBdhS28aE6Oe6cVeuz9xGvI=",
+            null,
+            0,
+            "",
+            0,
+            1,
+            "2022-05-19 12:19:28.567561"
+        ],
+        [
+            4,
+            "user",
+            "Merl",
+            "Myott",
+            "pbkdf2_sha256$320000$HiEDgv4C7qaQl8o4rZG8cN$mKlzAVgmkQvSFVTpCR8M75at25w43YQNLI0xaHndu00=",
+            null,
+            0,
+            "",
+            0,
+            1,
+            "2022-05-19 12:26:07.290936"
+        ],
+        [
+            5,
+            "yansiew",
+            "Alexi",
+            "Arnaut",
+            "pbkdf2_sha256$320000$TawCxckjee1xhNNip8Ybna$UXYPwBYXoZ3K1N40KX+sU4nfbhu5DDfdGlcPJkRPrwA=",
+            null,
+            0,
+            "",
+            0,
+            1,
+            "2022-05-20 01:46:04.598536"
+        ],
+        [
+            6,
+            "water",
+            "Ofilia",
+            "Lawly",
+            "pbkdf2_sha256$320000$NSx94fiNFiFUID7pHPHZ51$y+JxdCozfXh5Z+KMWY9n+EHnHNcZLT9vyGtRkoRzYGs=",
+            "2022-05-30 12:43:42.127650",
+            0,
+            "",
+            0,
+            1,
+            "2022-05-20 01:54:48.231606"
+        ],
+        [
+            7,
+            "banana",
+            "Dawna",
+            "Rawlins",
+            "pbkdf2_sha256$320000$T1lshdTTN39f9BE9HLIqLO$dh7yGVmVSltksvMOczBklZzSQ23dPIJtw4b5+bWiqsk=",
+            null,
+            0,
+            "",
+            0,
+            1,
+            "2022-05-20 01:57:15.547574"
+        ],
+        [
+            8,
+            "straw",
+            "Isaac",
+            "Jobbins",
+            "pbkdf2_sha256$320000$xBhWnr0EhK0uRHio9eJDDe$K8f0hv8jaLG1kkjks\/0Du4G7R7UKISNIYrE1UvCC6l0=",
+            "2022-06-12 18:46:14.623752",
+            0,
+            "",
+            0,
+            1,
+            "2022-05-27 02:14:40.850926"
+        ],
+        [
+            9,
+            "spaghetti",
+            "Teresina",
+            "Pargeter",
+            "pbkdf2_sha256$320000$xJWafiXF6U2Vv2B2NbYbVi$UrNz9KJlcn7NKLgwl3MYyyOGHSkgU5R9jjvqqD5FBpI=",
+            null,
+            0,
+            "",
+            0,
+            1,
+            "2022-05-30 12:28:01.403163"
+        ],
+        [
+            10,
+            "pine",
+            "Firstname",
+            "Lastname",
+            "pbkdf2_sha256$320000$aw141ZIoTPFjN92aNQY7a1$cbHX7YXwofQ2OeuhXmQJ5H+OTBo1v+7EuN\/ZdjHX3qU=",
+            "2022-06-01 16:24:36.886017",
+            0,
+            "",
+            0,
+            1,
+            "2022-06-01 10:20:10.118692"
+        ],
+        [
+            13,
+            "JohnDoe123",
+            "John",
+            "Doe",
+            "pbkdf2_sha256$320000$7aTJNwJDILge8uI6rxphZH$63oLxJ24dXTrKLsa6HozO4mfgKnlrFEKx949MRSYVq4=",
+            "2022-07-03 17:39:43.234240",
+            0,
+            "",
+            0,
+            1,
+            "2022-06-20 18:01:08.320192"
+        ]
+    ]
+}

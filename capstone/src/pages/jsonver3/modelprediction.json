@@ -1,0 +1,423 @@
+{
+    "type": "table",
+    "database": null,
+    "name": "core_modelpredictionmodel",
+    "withoutRowId": true,
+    "ddl": "CREATE TABLE \"core_modelpredictionmodel\" (\"result_id\" integer NOT NULL PRIMARY KEY, \"applicant_percent\" real NOT NULL, \"applicant_id_id\" integer NOT NULL REFERENCES \"core_applicantmodel\" (\"applicant_id\") DEFERRABLE INITIALLY DEFERRED, \"job_id_id\" integer NOT NULL REFERENCES \"core_matchedjobmodel\" (\"job_id\") DEFERRABLE INITIALLY DEFERRED, \"applicant_skills\" varchar(100) NOT NULL);",
+    "columns": [
+        {
+            "name": "result_id",
+            "type": "integer",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL "
+                },
+                {
+                    "type": "PRIMARY KEY",
+                    "definition": "PRIMARY KEY"
+                }
+            ]
+        },
+        {
+            "name": "applicant_percent",
+            "type": "real",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        },
+        {
+            "name": "applicant_id_id",
+            "type": "integer",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL "
+                },
+                {
+                    "type": "FOREIGN KEY",
+                    "definition": "REFERENCES \"core_applicantmodel\" (\"applicant_id\") "
+                }
+            ]
+        },
+        {
+            "name": "job_id_id",
+            "type": "integer",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL "
+                },
+                {
+                    "type": "FOREIGN KEY",
+                    "definition": "REFERENCES \"core_matchedjobmodel\" (\"job_id\") "
+                }
+            ]
+        },
+        {
+            "name": "applicant_skills",
+            "type": "varchar",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        }
+    ],
+    "rows": [
+        [
+            1,
+            0.304,
+            1,
+            1,
+            "['microsoft', 'internet', 'software']"
+        ],
+        [
+            2,
+            0.776,
+            2,
+            1,
+            "['software']"
+        ],
+        [
+            3,
+            0.86,
+            3,
+            1,
+            "['microsoft', 'internet', 'software']"
+        ],
+        [
+            4,
+            0.564,
+            4,
+            1,
+            "['microsoft', 'software']"
+        ],
+        [
+            5,
+            0.718,
+            5,
+            1,
+            "['microsoft', 'software']"
+        ],
+        [
+            6,
+            0.652,
+            6,
+            1,
+            "['microsoft', 'software']"
+        ],
+        [
+            7,
+            0.893,
+            6,
+            2,
+            "['sql', 'javascript', 'html', 'jquery']"
+        ],
+        [
+            8,
+            0.355,
+            7,
+            1,
+            "['internet', 'software']"
+        ],
+        [
+            9,
+            0.695,
+            7,
+            2,
+            "['sql', 'javascript', 'html', 'jquery']"
+        ],
+        [
+            10,
+            0.482,
+            8,
+            1,
+            "['microsoft', 'software']"
+        ],
+        [
+            11,
+            0.171,
+            8,
+            2,
+            "['sql', 'javascript', 'html', 'jquery']"
+        ],
+        [
+            12,
+            0.716,
+            9,
+            1,
+            "['microsoft', 'software']"
+        ],
+        [
+            13,
+            0.527,
+            9,
+            2,
+            "['sql', 'javascript', 'html']"
+        ],
+        [
+            14,
+            0.898,
+            10,
+            1,
+            "['microsoft']"
+        ],
+        [
+            15,
+            0.39,
+            10,
+            2,
+            "['sql', 'javascript', 'html', 'jquery']"
+        ],
+        [
+            16,
+            0.958,
+            11,
+            1,
+            "['microsoft']"
+        ],
+        [
+            17,
+            0.518,
+            11,
+            3,
+            "['logistics', 'shipping']"
+        ],
+        [
+            18,
+            0.274,
+            11,
+            2,
+            "[]"
+        ],
+        [
+            19,
+            0.07,
+            12,
+            1,
+            "['microsoft', 'software']"
+        ],
+        [
+            20,
+            0.269,
+            12,
+            3,
+            "['logistics', 'shipping']"
+        ],
+        [
+            21,
+            0.916,
+            12,
+            2,
+            "['javascript', 'html']"
+        ],
+        [
+            22,
+            0.195,
+            13,
+            1,
+            "['microsoft', 'software']"
+        ],
+        [
+            23,
+            0.049,
+            13,
+            3,
+            "['logistics', 'shipping']"
+        ],
+        [
+            24,
+            0.162,
+            13,
+            2,
+            "[]"
+        ],
+        [
+            25,
+            0.062,
+            14,
+            1,
+            "[]"
+        ],
+        [
+            26,
+            0.36,
+            14,
+            3,
+            "['logistics']"
+        ],
+        [
+            27,
+            0.448,
+            14,
+            2,
+            "[]"
+        ],
+        [
+            28,
+            0.609,
+            15,
+            1,
+            "['internet']"
+        ],
+        [
+            29,
+            0.699,
+            15,
+            3,
+            "['logistics', 'shipping']"
+        ],
+        [
+            30,
+            0.38,
+            15,
+            2,
+            "[]"
+        ],
+        [
+            31,
+            0.243,
+            16,
+            1,
+            "['microsoft', 'software']"
+        ],
+        [
+            32,
+            0.466,
+            16,
+            3,
+            "[]"
+        ],
+        [
+            33,
+            0.694,
+            16,
+            4,
+            "[]"
+        ],
+        [
+            34,
+            0.816,
+            16,
+            2,
+            "['sql', 'javascript', 'html', 'jquery']"
+        ],
+        [
+            35,
+            0.395,
+            17,
+            1,
+            "['internet', 'software']"
+        ],
+        [
+            36,
+            0.74,
+            17,
+            3,
+            "['logistics']"
+        ],
+        [
+            37,
+            0.26,
+            17,
+            4,
+            "[]"
+        ],
+        [
+            38,
+            0.332,
+            17,
+            2,
+            "['sql', 'javascript', 'html', 'jquery']"
+        ],
+        [
+            39,
+            0.042,
+            18,
+            1,
+            "['microsoft', 'software']"
+        ],
+        [
+            40,
+            0.616,
+            18,
+            3,
+            "[]"
+        ],
+        [
+            41,
+            0.222,
+            18,
+            4,
+            "['excel']"
+        ],
+        [
+            42,
+            0.179,
+            18,
+            2,
+            "['sql', 'javascript', 'html', 'jquery']"
+        ],
+        [
+            43,
+            0.699,
+            19,
+            1,
+            "['microsoft', 'software']"
+        ],
+        [
+            44,
+            0.588,
+            19,
+            3,
+            "['logistics', 'shipping']"
+        ],
+        [
+            45,
+            0.711,
+            19,
+            4,
+            "[]"
+        ],
+        [
+            46,
+            0.991,
+            19,
+            2,
+            "['sql', 'javascript', 'html']"
+        ],
+        [
+            47,
+            0.844,
+            20,
+            1,
+            "['microsoft']"
+        ],
+        [
+            48,
+            0.617,
+            20,
+            3,
+            "[]"
+        ],
+        [
+            49,
+            0.579,
+            20,
+            4,
+            "[]"
+        ],
+        [
+            50,
+            0.465,
+            20,
+            2,
+            "['sql', 'javascript', 'html', 'jquery']"
+        ]
+    ]
+}

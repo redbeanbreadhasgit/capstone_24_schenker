@@ -13,14 +13,28 @@ import pred from "../json/model_prediction.json";
 import { Button, RootRef } from '@material-ui/core';
 import Invoice from '../../routes/invoice';
 
-import {getApplicantInfo, getJobInfo, getPredictionInfo} from "../json/jsonUtil";
+import {getApplicantInfo, getJobInfo, getPredictionInfo, getApplicantsNum, getPredictionsNum} from "../jsonver3/jsonUtil";
+import { tab } from '@testing-library/user-event/dist/tab';
 
 
 
 
-let num=applicants.rows.length;
-let predCount=pred.rows.length;
+let num=getApplicantsNum();
+let predCount=getPredictionsNum();
 // generate all jobs
+
+function createTable(){
+  let table=[];
+  for (let i=1; i<=getApplicantsNum(); i++){
+    table.push(getApplicantInfo(i));
+  }
+  return table;
+}
+
+// for (let i=0; i<predCount; i++){
+//   if (getPredictionInfo(i).predictionID === )
+// }
+
 let jobList=["Field Support Engineer","System Analyst","GPIS Executive","GPIS 2"];
 
 // generate all predictions
@@ -55,13 +69,7 @@ function findSuitability(applicantId,jobId){
 
 // findSuitability(1,1);
 
-let rows = [
-  // createData(0, '16 Mar, 2022', 'Elvis Presley', '45%', 'Java Engineer', 'rejected', 312.44),
-  // createData(1, '16 Mar, 2022', 'Paul McCartney', '78%', 'C Engineer', 'completed', 866.99),
-  // createData(2, '16 Mar, 2022', 'Tom Scholz', '19%', 'Data Analyst', 'rejected', 100.81),
-  // createData(3, '16 Mar, 2022', 'Michael Jackson', '99%', 'Java Engineer', 'pending', 654.39),
-  // createData(4, '15 Mar, 2022', 'Bruce Springsteen', '120%', 'Accountant', 'pending', 212.79),
-];
+let rows = [];
 
 // create rows
 for (let i=0; i<num; i++){
@@ -116,6 +124,7 @@ export default function Orders() {
   // useEffect(() => {
   //   setRowsInfo(originRows)
   // });
+  let table=createTable();
   return (
     <React.Fragment>
       <Title>All Applicants</Title>
@@ -132,14 +141,15 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.id}</TableCell>
-              <TableCell><Link component={routerLink} to={`/applicantList:${row.id}` } key={row.id}>{row.name}</Link></TableCell>
-              <TableCell>{row.role}</TableCell>
-              <TableCell>{row.suitability}</TableCell>
-              <TableCell>{row.status}</TableCell>
-              <TableCell>{row.date}</TableCell>
+          {table.map((each) => (
+            <TableRow >
+              <TableCell>{each.applicantID}</TableCell>
+              
+              <TableCell><Link component={routerLink} to={`/applicantList:${each.applicantID}` } >{each.applicantName}</Link></TableCell>
+              <TableCell>{getJobInfo(each.applicantAppliedJobID).jobTitle}</TableCell>
+              <TableCell>{getPredictionInfo(each.applicantID,each.applicantAppliedJobID).predictionResult}</TableCell>
+              <TableCell>{each.pendingStatus}</TableCell>
+              <TableCell>{"null"}</TableCell>
               {/* <TableCell align="right">{row.selected}</TableCell> */}
             </TableRow>
           ))}

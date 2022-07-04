@@ -1,0 +1,143 @@
+{
+    "type": "table",
+    "database": null,
+    "name": "core_matchedjobmodel",
+    "withoutRowId": true,
+    "ddl": "CREATE TABLE \"core_matchedjobmodel\" (\"job_id\" integer NOT NULL PRIMARY KEY, \"job_name\" varchar(50) NOT NULL UNIQUE, \"job_matching_date\" date NOT NULL, \"job_update_date\" date NOT NULL, \"recruiter_id_id\" integer NOT NULL REFERENCES \"auth_user\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"job_description\" varchar(100) NOT NULL, \"job_keywords\" varchar(200) NOT NULL, \"job_status\" varchar(20) NOT NULL);",
+    "columns": [
+        {
+            "name": "job_id",
+            "type": "integer",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL "
+                },
+                {
+                    "type": "PRIMARY KEY",
+                    "definition": "PRIMARY KEY"
+                }
+            ]
+        },
+        {
+            "name": "job_name",
+            "type": "varchar",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL "
+                },
+                {
+                    "type": "UNIQUE",
+                    "definition": "UNIQUE"
+                }
+            ]
+        },
+        {
+            "name": "job_matching_date",
+            "type": "date",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        },
+        {
+            "name": "job_update_date",
+            "type": "date",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        },
+        {
+            "name": "recruiter_id_id",
+            "type": "integer",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL "
+                },
+                {
+                    "type": "FOREIGN KEY",
+                    "definition": "REFERENCES \"auth_user\" (\"id\") "
+                }
+            ]
+        },
+        {
+            "name": "job_description",
+            "type": "varchar",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        },
+        {
+            "name": "job_keywords",
+            "type": "varchar",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        },
+        {
+            "name": "job_status",
+            "type": "varchar",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        }
+    ],
+    "rows": [
+        [
+            1,
+            "Field Support Engineer",
+            "2022-06-21",
+            "2022-07-03",
+            13,
+            "Job Description - Field Support Engineer.pdf",
+            "['microsoft', 'internet', 'software']",
+            "Closed"
+        ],
+        [
+            2,
+            "System Analyst",
+            "2022-06-21",
+            "2022-06-21",
+            9,
+            "Job Description - System Analyst.pdf",
+            "['sql', 'javascript', 'html', 'jquery']",
+            "Open"
+        ],
+        [
+            3,
+            "GPIS Executive",
+            "2022-06-21",
+            "2022-06-21",
+            8,
+            "Job Description - GPIS Executive.pdf",
+            "['logistics', 'shipping']",
+            "Open"
+        ],
+        [
+            4,
+            "HR Recruiter",
+            "2022-06-21",
+            "2022-06-21",
+            7,
+            "Job Description - HR Recruiter.pdf",
+            "['powerpoint', 'excel', 'word']",
+            "Open"
+        ]
+    ]
+}

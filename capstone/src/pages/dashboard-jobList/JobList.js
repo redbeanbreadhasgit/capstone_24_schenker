@@ -12,29 +12,23 @@ import pred from "../json/model_prediction.json";
 import jobs from "../json/all_jobs.json";
 import { Button, RootRef } from '@material-ui/core';
 
-import {getApplicantInfo, getJobInfo, getPredictionInfo} from "../json/jsonUtil";
+import {getApplicantInfo, getJobInfo, getPredictionInfo, getJobsNum,getPredictionsNum} from "../jsonver3/jsonUtil";
 import {Link as routerLink, Outlet } from 'react-router-dom';
 
 
-let num=applicants.rows.length;
-let jobnum=jobs.rows.length;
-let predCount=pred.rows.length;
-// generate all jobs
-let jobList=["Field Support Engineer","System Analyst","GPIS Executive","GPIS 2"];
 
-// record every applicant's info
-let applicantInfoList=[];
+let jobnum=getJobsNum();
+let predCount=getPredictionsNum();
 
-// generate all predictions
-let predList=[];
-for (var i in pred.rows){
-  predList.push(pred.rows[i][1])
+function createTable(){
+  let table=[];
+  for (let i=1; i<=jobnum; i++){
+    table.push(getJobInfo(i))
+  }
+  return table;
 }
 
-// Generate Order Data
-function createData(id, jobTitle, matchingDate, updateDate, hiringManager, recruiter, jobDescription) {
-  return { id, jobTitle, matchingDate, updateDate, hiringManager, recruiter, jobDescription };
-}
+
 
 function findSuitability(applicantId,jobId){
   let suitabilityList=[];
@@ -60,12 +54,7 @@ function findSuitability(applicantId,jobId){
 let rows = [
 ];
 
-// create rows
-for (let i=0; i<jobnum; i++){
-  let eachjob=jobs.rows[i];
-  rows.push(createData(eachjob[0], eachjob[1] ,eachjob[2],eachjob[3],eachjob[4],eachjob[5],eachjob[6]));
-  
-}
+
 
 // sort by suitability , id
 function sortSuitability(x,y){
@@ -109,6 +98,7 @@ export default function JobListTable() {
   // useEffect(() => {
   //   setRowsInfo(originRows)
   // });
+  let table=createTable();
   return (
     <React.Fragment>
       <Title>All Jobs</Title>
@@ -128,15 +118,15 @@ export default function JobListTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
+          {table.map((each) => (
+            <TableRow >
               {/* <TableCell>{row.id}</TableCell> */}
-              <TableCell><Link component={routerLink} to={`/jobList:${row.id}`}>{row.jobTitle}</Link></TableCell>
-              <TableCell>{row.matchingDate}</TableCell>
-              <TableCell>{row.updateDate}</TableCell>
-              <TableCell>{row.hiringManager}</TableCell>
-              <TableCell>{row.recruiter}</TableCell>
-              <TableCell>{row.jobDescription}</TableCell>
+              <TableCell><Link component={routerLink} to={`/jobList:${each.jobID}`}>{each.jobTitle}</Link></TableCell>
+              <TableCell>{each.jobMatchingDate}</TableCell>
+              <TableCell>{each.jobUpdateDate}</TableCell>
+              <TableCell>{"*each.hiringManager*"}</TableCell>
+              <TableCell>{each.recruiterID}</TableCell>
+              <TableCell>{each.jobDescription}</TableCell>
               {/* <TableCell align="right">{row.selected}</TableCell> */}
             </TableRow>
           ))}
