@@ -58,46 +58,36 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign Up
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} method="POST">
+
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
+              id="firstname"
               label="First Name"
-              name="email"
-              autoComplete="email"
+              name="firstname"
+              autoComplete="firstname"
               autoFocus
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
+              id="lastname"
               label="Last Name"
-              name="email"
-              autoComplete="email"
+              name="lastname"
+              autoComplete="lastname"
               autoFocus
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
+              id="username"
               label="Username"
-              name="email"
-              autoComplete="email"
+              name="username"
+              autoComplete="username"
               autoFocus
             />
             <TextField
@@ -114,10 +104,10 @@ export default function SignUp() {
               margin="normal"
               required
               fullWidth
-              name="password_repeated"
+              name="password2"
               label="Confirm Password"
               type="password"
-              id="password"
+              id="password2"
               autoComplete="current-password"
             />
             {/* <FormControlLabel
@@ -129,6 +119,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              defaultValue="Submit"
             >
               Create new acount
             </Button>
