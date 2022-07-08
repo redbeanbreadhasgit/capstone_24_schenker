@@ -181,14 +181,14 @@ export default function DashBoard_homepage() {
             {/* number of applicants */}
             {/* <Paper className={fixedHeightPaper}> */}
             <Grid container item xs={12} md={12} lg={12} space={10}>          
-              <Paper className={classes.paper}>
+              {/* <Paper className={classes.paper}> */}
                 <ReturnJobInfo></ReturnJobInfo>
-              </Paper> 
+              {/* </Paper>  */}
             </Grid>
             <Grid container item xs={12} md={12} lg={12} space={10}>          
-              <Paper className={classes.paper}>
+              {/* <Paper className={classes.paper}> */}
                 <ReturnApplicantsInfo></ReturnApplicantsInfo>
-              </Paper> 
+              {/* </Paper>  */}
             </Grid>
             
           </Grid>

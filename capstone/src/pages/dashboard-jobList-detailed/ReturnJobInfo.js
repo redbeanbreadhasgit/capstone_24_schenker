@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
-import {getApplicantInfo, getJobInfo, getPredictionInfo} from "../json/jsonUtil";
+import {getApplicantInfo, getJobInfo, getPredictionInfo} from "../jsonver3/jsonUtil";
 import { Typography } from "@material-ui/core";
 import {Box} from '@material-ui/core';
+import {Button} from "@material-ui/core";
 
 export function ReturnJobInfo(){
     let params=useParams();
@@ -10,7 +11,7 @@ export function ReturnJobInfo(){
     
     return (
         <div>
-            <Typography variant="h5" >Selected Job : jobID {jobID}</Typography>
+            {/* <Typography variant="h5" >Selected Job : jobID {jobID}</Typography> */}
             <Typography>
 
                 <Box fontWeight="fontWeightBold" > 
@@ -35,9 +36,17 @@ export function ReturnJobInfo(){
                     Job Requirments : 
                 </Box>
                 <Box fontWeight="fontWeightRegular" fontStyle="italic"> 
-                    {jobSelected.jobRequirements}
+                    {jobSelected.jobKeywords}
                 </Box> 
-
+                <Box fontWeight="fontWeightBold" > 
+                    Job Status : 
+                </Box>
+                <Box fontWeight="fontWeightRegular" fontStyle="italic"> 
+                    {jobSelected.jobStatus}
+                </Box> 
+                <Button variant="contained">
+                    Switch the Job Status
+                </Button>
                 {/* <Box fontWeight="fontWeightRegular" > 
                     Selected Applicant Infomation :
                 </Box>

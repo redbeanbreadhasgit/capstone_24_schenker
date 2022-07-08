@@ -127,15 +127,15 @@ export default function Orders() {
   let table=createTable();
   return (
     <React.Fragment>
-      <Title>All Applicants</Title>
+      {/* <Title>All Applicants</Title> */}
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>            
+            {/* <TableCell>ID</TableCell> */}
             <TableCell>Name</TableCell>
             <TableCell>Applied Role</TableCell>
             <TableCell>Suitability</TableCell>
-            <TableCell>Pending Status</TableCell>
+            {/* <TableCell>Pending Status</TableCell> */}
             <TableCell>Date</TableCell>
             {/* <TableCell align="right">Selected or not</TableCell> */}
           </TableRow>
@@ -143,12 +143,12 @@ export default function Orders() {
         <TableBody>
           {table.map((each) => (
             <TableRow >
-              <TableCell>{each.applicantID}</TableCell>
+              {/* <TableCell>{each.applicantID}</TableCell> */}
               
               <TableCell><Link component={routerLink} to={`/applicantList:${each.applicantID}` } >{each.applicantName}</Link></TableCell>
               <TableCell>{getJobInfo(each.applicantAppliedJobID).jobTitle}</TableCell>
               <TableCell>{getPredictionInfo(each.applicantID,each.applicantAppliedJobID).predictionResult}</TableCell>
-              <TableCell>{each.pendingStatus}</TableCell>
+              {/* <TableCell>{each.pendingStatus}</TableCell> */}
               <TableCell>{"null"}</TableCell>
               {/* <TableCell align="right">{row.selected}</TableCell> */}
             </TableRow>

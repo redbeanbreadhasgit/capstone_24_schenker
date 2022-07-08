@@ -179,21 +179,21 @@ export default function DashBoard_homepage() {
           <Grid container spacing={10}>
             {/* number of applicants */}
             {/* <Paper className={fixedHeightPaper}> */}
-            <Grid container item xs={12} md={12} lg={12} spacing={3}>  
-              <Grid item >
-                <Paper className={classes.paper}>
+            <Grid container item xs={12} md={12} lg={12} spacing={6}>  
+              <Grid item xs={12} md={12} lg={12}>
+                {/* <Paper className={classes.paper}> */}
                 <ReturnApplicantInfo></ReturnApplicantInfo>
-               </Paper> 
+               {/* </Paper>  */}
               </Grid>        
-              <Grid item >
-                <Paper className={classes.paper}>
+              <Grid item xs={12} md={12} lg={12}>
+                {/* <Paper className={classes.paper}> */}
                 <ReturnApplicantInfoTable></ReturnApplicantInfoTable>
-               </Paper> 
+               {/* </Paper>  */}
               </Grid>   
-              <Grid item >
-                <Paper className={classes.paper}>
+              <Grid item xs={12} md={12} lg={12}>
+                {/* <Paper className={classes.paper}> */}
                 <Reprofile></Reprofile>
-               </Paper> 
+               {/* </Paper>  */}
               </Grid> 
             </Grid>
             {/* <h4>{b}</h4> */}
@@ -213,9 +213,9 @@ export default function DashBoard_homepage() {
               </Paper>
             </Grid> */}
           </Grid>
-          <Box pt={4}>
+          {/* <Box pt={4}>
             <Copyright />
-          </Box>
+          </Box> */}
         </Container>
       </main>
     </div>

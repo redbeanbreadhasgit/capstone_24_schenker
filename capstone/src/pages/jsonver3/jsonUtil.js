@@ -139,7 +139,7 @@ export function getAppliedApplicants(jobID){
     let jobIDInt=parseInt(jobID);
     
     for (let i=1; i<=allApplicantsNum; i++){
-        let appliedJobID=parseInt(getApplicantInfo(i).applicantJob);
+        let appliedJobID=parseInt(getApplicantInfo(i).applicantAppliedJobID);
         if (appliedJobID===jobIDInt){
             result.push(i);
         }

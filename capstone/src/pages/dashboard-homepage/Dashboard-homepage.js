@@ -19,11 +19,18 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems,  } from '../components/listItems';
 import { applicantIcon, jobIcon, jobmatchingIcon } from '../components/icons';
-import { Button } from '@material-ui/core';
+import { Button, ThemeProvider } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
+import { createTheme } from '@material-ui/core';
 
 
-
+const Theme = createTheme({
+  palette: {
+    primary: {
+      main: '#108a95',
+    },
+  },
+});
 
 
 function Copyright() {
@@ -47,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
+    // color: '#108a95'
   },
   toolbarIcon: {
     display: 'flex',
@@ -61,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    // color: '#108a95'
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -134,7 +143,8 @@ export default function DashBoard_homepage() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      <ThemeProvider theme={Theme}>
+        <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
@@ -155,6 +165,8 @@ export default function DashBoard_homepage() {
           </IconButton>
         </Toolbar>
       </AppBar>
+      </ThemeProvider>
+      
       <Drawer
         variant="permanent"
         classes={{
@@ -181,43 +193,40 @@ export default function DashBoard_homepage() {
             <Grid container item xs={12} md={12} lg={12} space={10}>          
               {/* <Paper className={classes.paper}> */}
               <Grid item xs={12} md={3} lg={3}>
-                {applicantIcon}
-              </Grid>
-              <Grid item xs={12} md={3} lg={3}>
-                <Typography variant='h6'> Number of applicants : </Typography>
-                <Typography variant='h1'> 20 </Typography>
-              </Grid> 
-              <Grid item xs={12} md={3} lg={3}>
                 {jobIcon}
               </Grid>
               <Grid item xs={12} md={3} lg={3}>
                 <Typography variant='h6'> Number of jobs : </Typography>
                 <Typography variant='h1'> 7 </Typography>
               </Grid>  
-              <Grid item xs={12} md={6} lg={6}>
+                  
+              <Grid item xs={6} md={3} lg={3}>
+                <Button variant="contained" color="primary">View jobs</Button>
                 <div align='center'>
-                  <Button variant="contained" color="primary" >View applicants</Button>
-                </div>                
-              </Grid>      
-              <Grid item xs={12} md={6} lg={6}>
-                <div align='center'>
-                  <Button variant="contained" color="primary">View jobs</Button>
+                  
                 </div>                
               </Grid>
-              <br/>
-              <Grid item xs={12} md={3} lg={3}>
+              
+              {/* <Grid item xs={12} md={3} lg={3}>
                 {jobmatchingIcon}
               </Grid>
               <Grid item xs={12} md={9} lg={9}>
                 <Typography variant='h6'> Create new jobs </Typography>
-              </Grid>  
-              <Grid item xs={12} md={6} lg={6}>
-                <div align='center'>
+              </Grid>   */}
+              <Grid item xs={6} md={3} lg={3}>
+                <Button variant="contained" color="primary">Create new jobs</Button>
+                <div align='center'>           
                   
-                  <Button variant="contained" color="primary">Create new jobs</Button>
                 </div>                
-              </Grid>                
-       
+              </Grid>
+              <Grid item xs={12} md={3} lg={3}>
+                {applicantIcon}
+              </Grid>
+              <Grid item xs={12} md={3} lg={3}>
+                <Typography variant='h6'> Number of applicants : </Typography>
+                <Typography variant='h1'> 20 </Typography>
+              </Grid> 
+                              
                       
               {/* </Paper> */}
             </Grid>
@@ -243,9 +252,9 @@ export default function DashBoard_homepage() {
               </Paper>
             </Grid> */}
           </Grid>
-          <Box pt={4}>
+          {/* <Box pt={4}>
             <Copyright />
-          </Box>
+          </Box> */}
         </Container>
       </main>
     </div>

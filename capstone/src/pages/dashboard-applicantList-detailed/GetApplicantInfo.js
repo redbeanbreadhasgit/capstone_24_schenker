@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import {getApplicantInfo, getJobInfo, getPredictionInfo, getAllPredictionInfo} from "../json/jsonUtil";
+import {getApplicantInfo, getJobInfo, getPredictionInfo, getAllPredictionInfo} from "../jsonver3/jsonUtil";
 import { Tab, TableBody, TableCell, TableHead, TableRow, Typography } from "@material-ui/core";
 import {Box} from '@material-ui/core';
 import Title from "../components/Title";
@@ -10,7 +10,7 @@ export function ReturnApplicantInfo(){
     let params=useParams();
     let applicantID=params.applicantID;
     let applicantSelected=getApplicantInfo(parseInt(applicantID.substring(1,),10));
-    let jobSelected=getJobInfo(parseInt(applicantSelected.applicantJob));
+    let jobSelected=getJobInfo(parseInt(applicantSelected.applicantAppliedJobID));
     let predictionSelected=getPredictionInfo(parseInt(applicantID.substring(1,),10),parseInt(applicantSelected.applicantJob));
     
     
@@ -134,7 +134,7 @@ export function ReturnApplicantInfo(){
                     Current Reprofiled Job: {}
                 </Box>
                 <Box fontWeight={"fontWeightBold"}>
-                    Applicant Status:  {applicantSelected.applicantStatus}
+                    Applicant Status:  {applicantSelected.pendingStatus}
                 </Box>
                 
             </Typography>
@@ -161,7 +161,7 @@ export function ReturnApplicantInfoTable(){
                 <TableCell>Job Name</TableCell>
                 <TableCell>% Suitability</TableCell>
                 <TableCell>Rank in Job</TableCell>
-                <TableCell>Applciant Job Skilles</TableCell>
+                <TableCell>Applicant Job Skills</TableCell>
             </TableHead>
             <TableBody>
                 {
@@ -191,7 +191,7 @@ export function Reprofile(){
 
     return (
         <div>
-            <Title>Reprofile</Title>
+            <Title>Update Applicant Status</Title>
             <TableHead>
                 <TableCell>Recruiter Decision</TableCell>
                 <TableCell>Or</TableCell>

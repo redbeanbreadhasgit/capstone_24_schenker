@@ -144,7 +144,7 @@ export default function DashBoard_applicantList() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Applicant List
+            All Applicants
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
@@ -182,9 +182,9 @@ export default function DashBoard_applicantList() {
             </Grid> */}
             {/* applicants list */}
             <Grid item xs={12}>
-              <Paper className={classes.paper}>
+              {/* <Paper className={classes.paper}> */}
                 <ApplicantList />
-              </Paper>
+              {/* </Paper> */}
             </Grid>
           </Grid>
           {/* <Box pt={4}>

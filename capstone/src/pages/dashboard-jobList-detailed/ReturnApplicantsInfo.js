@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import {getApplicantInfo, getJobInfo, getPredictionInfo, getAppliedApplicants} from "../json/jsonUtil";
+import {getApplicantInfo, getJobInfo, getPredictionInfo, getAppliedApplicants, getApplicantsNum} from "../jsonver3/jsonUtil";
 import { Table, TableCell, TableHead, Typography, TableRow, TableBody } from "@material-ui/core";
 import {Box} from '@material-ui/core';
 import React from "react";
@@ -39,7 +39,7 @@ export function ReturnApplicantsInfo(){
     let params=useParams();
     let jobID=params.jobID;
     let jobSelected=getJobInfo(parseInt(jobID.substring(1,)));
-    let appliedApplicantsList=getAppliedApplicants(parseInt(jobID.substring(1,)));
+    let appliedApplicantsList=getAppliedApplicants(jobID.substring(1,));
     let table=createTable(appliedApplicantsList);
     let suitability=getPredictionInfo()
 
@@ -62,9 +62,9 @@ export function ReturnApplicantsInfo(){
                         table.map(each => (
                             <TableRow>
                                 <TableCell>{each.applicantName}</TableCell>
-                                <TableCell>{getPredictionInfo(each.applicantID,each.applicantJob).predictionResult}</TableCell>
-                                <TableCell>{getPredictionInfo(each.applicantID,each.applicantJob).applicantSkills}</TableCell>
-                                <TableCell>{getApplicantInfo(each.applicantID).applicantStatus}</TableCell>
+                                <TableCell>{getPredictionInfo(each.applicantID,each.applicantAppliedJobID).predictionResult*100}</TableCell>
+                                <TableCell>{getPredictionInfo(each.applicantID,each.applicantAppliedJobID).applicantSkills}</TableCell>
+                                <TableCell>{getApplicantInfo(each.applicantID).pendingStatus}</TableCell>
                                 <TableCell><Checkbox/></TableCell>
                             </TableRow>
                         ))
@@ -72,7 +72,7 @@ export function ReturnApplicantsInfo(){
                 </TableBody>
                 
             </Table>
-            {/* <text>Test: {appliedApplicantsList}</text> */}
+            {/* <text>Test: {appliedApplicantsList}{getApplicantsNum()}</text> */}
         </React.Fragment>
     )
 }

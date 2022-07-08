@@ -101,7 +101,7 @@ export default function JobListTable() {
   let table=createTable();
   return (
     <React.Fragment>
-      <Title>All Jobs</Title>
+      {/* <Title>All Jobs</Title> */}
       <Table size="small">
         <TableHead>
           <TableRow>
@@ -112,7 +112,7 @@ export default function JobListTable() {
             <TableCell>Hiring Manager</TableCell>
             <TableCell>Recruiter</TableCell>
             <TableCell>Job Description</TableCell>
-            
+            <TableCell>Job Status</TableCell>
             {/* <TableCell align="right">Selected or not</TableCell> */}
 
           </TableRow>
@@ -127,6 +127,7 @@ export default function JobListTable() {
               <TableCell>{"*each.hiringManager*"}</TableCell>
               <TableCell>{each.recruiterID}</TableCell>
               <TableCell>{each.jobDescription}</TableCell>
+              <TableCell>{each.jobStatus}</TableCell>
               {/* <TableCell align="right">{row.selected}</TableCell> */}
             </TableRow>
           ))}
