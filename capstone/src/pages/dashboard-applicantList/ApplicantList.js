@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component } from 'react';
 import {Link as routerLink, Outlet } from 'react-router-dom';
-import {Link as Link} from '@material-ui/core';
+import {Link as Link, TableSortLabel} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,19 +8,47 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from '../components/Title';
-import applicants from '../json/all_applicants.json';
-import pred from "../json/model_prediction.json";
+import applicants from '../jsonver3/applicant.json';
+import pred from "../jsonver3/modelprediction.json";
 import { Button, RootRef } from '@material-ui/core';
 import Invoice from '../../routes/invoice';
 
 import {getApplicantInfo, getJobInfo, getPredictionInfo, getApplicantsNum, getPredictionsNum} from "../jsonver3/jsonUtil";
 import { tab } from '@testing-library/user-event/dist/tab';
 
+import {EnhancedTableHead, getComparator, stableSort, } from "../components/enhancedTable";
+import {tableStyle} from "../styles/tableStyle";
 
-
-
-let num=getApplicantsNum();
 let predCount=getPredictionsNum();
+
+const tableHead=[
+  {
+    id: "applicantName",
+    label: "Name",
+    numeric: false,
+  },
+  {
+    id: "applicantAppliedRole",
+    label: "Applied Role",
+    numeric: false,
+  },
+  {
+    id: "suitability",
+    label: "Suitability",
+    numeric: true,
+  },
+  {
+    id: "applicantStatus",
+    label: "Applicant Status",
+    numeric: false,
+  },
+  {
+    id: "date",
+    label: "Date",
+    numeric: false,
+  },
+];
+
 // generate all jobs
 
 function createTable(){
@@ -31,11 +59,25 @@ function createTable(){
   return table;
 }
 
-// for (let i=0; i<predCount; i++){
-//   if (getPredictionInfo(i).predictionID === )
-// }
+// Generate Ordered Data
+function createEnhancedData(applicantID, applicantName, applicantAppliedRole, suitability, applicantStatus, date) {
+  return { applicantID, applicantName, applicantAppliedRole, suitability, applicantStatus, date };
+}
 
-let jobList=["Field Support Engineer","System Analyst","GPIS Executive","GPIS 2"];
+function createEnhancedTable(){
+  let table=createTable();
+  let enhancedTable=[];
+  table.map ((each) => enhancedTable.push(createEnhancedData(
+    each.applicantID, 
+    each.applicantName,
+    getJobInfo(each.applicantAppliedJobID).jobTitle,
+    getPredictionInfo(each.applicantID,each.applicantAppliedJobID).predictionResult,
+    each.pendingStatus,
+    "null",
+  )));
+  return enhancedTable;
+}
+
 
 // generate all predictions
 let predList=[];
@@ -43,10 +85,7 @@ for (var i in pred.rows){
   predList.push(pred.rows[i][1])
 }
 
-// Generate Order Data
-function createData(id, date, name, role, suitability, status, selected) {
-  return { id, date, name, role, suitability, status,  selected };
-}
+
 
 function findSuitability(applicantId,jobId){
   let suitabilityList=[];
@@ -67,41 +106,18 @@ function findSuitability(applicantId,jobId){
   }
 }
 
-// findSuitability(1,1);
-
-let rows = [];
-
-// create rows
-for (let i=0; i<num; i++){
-  let eachApplicant=applicants.rows[i];
-  let applicantId=eachApplicant[0];
-  let jobId=eachApplicant[4];
-  rows.push(createData(applicantId, "?" ,eachApplicant[1],jobList[jobId-1],findSuitability(applicantId,jobId),eachApplicant[3],0,0));
-  
-}
+function result (i){
+    return getPredictionInfo(i.applicantID,i.applicantAppliedJobID).predictionResult;
+};
 
 // sort by suitability , id
 function sortSuitability(x,y){
-  if (x.suitability < y.suitability) {return 1;}
-  if (x.suitability > y.suitability) {return -1;}
+  if (result(x) < result(y)) {return 1;}
+  if (result(x) > result(y)) {return -1;}
   return 0;
 }
 
-function sortId(x,y){
-  if (x.id < y.id) {return 1;}
-  if (x.id > y.id) {return -1;}
-  return 0;
-}
 
-function sortBySuitabilty(){
-  rows.sort(sortSuitability);  
-}
-
-function sortById(){
-  rows.sort(sortId);  
-}
-
-// rows.sort(sortSuitability);
 
 function preventDefault(event) {
   event.preventDefault();
@@ -113,76 +129,156 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//table head
 
- 
-const prevRowsInfo=rows;
 
-export default function Orders() {
-  const classes = useStyles();
-  const [rowsInfo,setRowsInfo]=useState(rows);
-  const prevRowsInfo=rows;
-  // useEffect(() => {
-  //   setRowsInfo(originRows)
-  // });
-  let table=createTable();
-  return (
-    <React.Fragment>
-      {/* <Title>All Applicants</Title> */}
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            {/* <TableCell>ID</TableCell> */}
-            <TableCell>Name</TableCell>
-            <TableCell>Applied Role</TableCell>
-            <TableCell>Suitability</TableCell>
-            {/* <TableCell>Pending Status</TableCell> */}
-            <TableCell>Date</TableCell>
-            {/* <TableCell align="right">Selected or not</TableCell> */}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {table.map((each) => (
-            <TableRow >
-              {/* <TableCell>{each.applicantID}</TableCell> */}
-              
-              <TableCell><Link component={routerLink} to={`/applicantList:${each.applicantID}` } >{each.applicantName}</Link></TableCell>
-              <TableCell>{getJobInfo(each.applicantAppliedJobID).jobTitle}</TableCell>
-              <TableCell>{getPredictionInfo(each.applicantID,each.applicantAppliedJobID).predictionResult}</TableCell>
-              {/* <TableCell>{each.pendingStatus}</TableCell> */}
-              <TableCell>{"null"}</TableCell>
-              {/* <TableCell align="right">{row.selected}</TableCell> */}
-            </TableRow>
-          ))}
-        </TableBody>        
-      </Table>
-      <Button variant="contained" color="primary" onClick={()=>{
-        setRowsInfo(rows.sort(sortSuitability))
-        // setRowsInfo(prevRowsInfo => {
-        //   console.log('read rowsInfo state in setRowsIngo function', prevRowsInfo);
-        //   return prevRowsInfo;
-        // });
-        }
-      }>sort by suitability %</Button>
-      <Button variant="contained" color="primary" onClick={()=>{
-        setRowsInfo(rows.sort(sortId))
-        // setRowsInfo(prevRowsInfo => {
-        //   console.log('read rowsInfo state in setRowsIngo function', prevRowsInfo);
-        //   return prevRowsInfo;
-        // });
-        }
-      }>sort by applicantId </Button>
-      <h3>{(applicants.rows)[4][1]}</h3>
-      <Button variant="contained" color="primary">
+
+
+
+// function UpdatedTableBody(props){
+//   const {tableInfo}= props;
+//   return (
+//     <TableBody>
+//       {tableInfo.map((each) => (
+//             <TableRow >
+//               {/* <TableCell>{each.applicantID}</TableCell> */}              
+//               <TableCell><Link component={routerLink} to={`/applicantList:${each.applicantID}` } >{each.applicantName}</Link></TableCell>
+//               <TableCell>{each.applicantAppliedJobID}</TableCell>
+//               <TableCell>{getPredictionInfo(each.applicantID,each.applicantAppliedJobID).predictionResult}</TableCell>
+//               <TableCell>{each.pendingStatus}</TableCell>
+//               <TableCell>{"null"}</TableCell>
+//               {/* <TableCell align="right">{row.selected}</TableCell> */}
+//             </TableRow>
+//           ))}
+//     </TableBody>
+//   )
+// }
+
+// export default function Orders() {
+
+//   const [table,setTable]=React.useState(createTable());
+
+//   const sortHandler= (property) => (event) => {
+//     setTable(table.sort(sortSuitability));
+//   }
+
+//   const classes = useStyles();
+  
+//   return (
+//     <React.Fragment>
+//       {/* <Title>All Applicants</Title> */}
+//       <Table size="small">
+//         <TableHead>
+//           <TableRow>
+//             {/* <TableCell>ID</TableCell> */}
+//             {
+//               tableHead.map((eachCell) => (
+//                 <TableCell
+//                   key={eachCell.id}
+//                   align={eachCell.numeric? "right" : "left"}
+//                   >
+//                     <TableSortLabel
+//                       // active={orderBy === eachCell.id}
+//                       // direction={orderBy === eachCell.id ? order : 'asc'}
+//                       // onClick={createSortHandler(eachCell.id)}
+//                       onClick={()=>{
+//                         setTable(() => [...table.sort(sortSuitability)])
+//                         }
+//                       }
+//                     >
+//                     {eachCell.label}
+//                     </TableSortLabel>
+//                 </TableCell>
+//               ))
+//             }
+
+//             {/* <TableCell>Name</TableCell>
+//             <TableCell>Applied Role</TableCell>
+//             <TableCell>Suitability</TableCell>
+//             <TableCell>Applicant Status</TableCell>
+//             <TableCell>Date</TableCell> */}
         
-      </Button>
-      <div className={classes.seeMore}>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          See more updates
-        </Link>
-      </div>
+//           </TableRow>
+//         </TableHead>
+//         <UpdatedTableBody tableInfo={table}>
+          
+//         </UpdatedTableBody>        
+//       </Table>
 
-      {/* <Outlet></Outlet> */}
-    </React.Fragment>
+
+//       <Button variant="contained" color="primary" onClick={()=>{
+//         setTable(() => [...table.sort(sortSuitability)])
+//         }
+//       }>sort by suitability %</Button>
+      
+//       <h3>{result(table[1])}</h3>
+
+//       <Button variant="contained" color="primary">
+        
+//       </Button>
+//       <div className={classes.seeMore}>
+//         <Link color="primary" href="#" onClick={preventDefault}>
+//           See more updates
+//         </Link>
+//       </div>
+
+//       {/* <Outlet></Outlet> */}
+//     </React.Fragment>
+//   );
+// }
+
+export default function EnhancedTable() {
+  const classes = tableStyle();
+  const [order, setOrder] = React.useState("asc");
+  const [orderBy, setOrderBy] = React.useState("applicantName");
+
+  const handleRequestSort = (event, property) => {
+    const isAsc = orderBy === property && order === "asc";
+    // switch between the 2 orders
+    setOrder(isAsc ? "desc" : "asc");
+    setOrderBy(property);
+  };
+
+  return (
+    <div className={classes.root}>
+      
+        
+          <Table
+            className={classes.table}
+            aria-labelledby="tableTitle"
+            aria-label="enhanced table"
+          >
+            <EnhancedTableHead
+              classes={classes}
+              order={order}
+              orderBy={orderBy}
+              onRequestSort={handleRequestSort}
+              tableHeadCells={tableHead}
+            />
+            <TableBody>
+              {stableSort(createEnhancedTable(), getComparator(order, orderBy))
+              
+                .map((each, index) => {
+
+                  const labelId = `enhanced-table-checkbox-${index}`;
+
+                  return (
+                    <TableRow >
+                      {/* <TableCell>{each.applicantID}</TableCell> */}              
+                      <TableCell><Link component={routerLink} to={`/applicantList:${each.applicantID}` } >{each.applicantName}</Link></TableCell>
+                      <TableCell>{each.applicantAppliedRole}</TableCell>
+                      <TableCell align='right'>{each.suitability}</TableCell>
+                      <TableCell>{each.applicantStatus}</TableCell>
+                      <TableCell>{each.date}</TableCell>
+                      {/* <TableCell align="right">{row.selected}</TableCell> */}
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
+          </Table>
+        
+      
+    </div>
   );
 }
 
