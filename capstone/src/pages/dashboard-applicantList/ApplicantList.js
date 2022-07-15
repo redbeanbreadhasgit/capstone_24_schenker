@@ -17,6 +17,7 @@ import {getApplicantInfo, getJobInfo, getPredictionInfo, getApplicantsNum, getPr
 import { tab } from '@testing-library/user-event/dist/tab';
 
 import {EnhancedTableHead, getComparator, stableSort, } from "../components/enhancedTable";
+
 import {tableStyle} from "../styles/tableStyle";
 
 let predCount=getPredictionsNum();
@@ -49,7 +50,7 @@ const tableHead=[
   },
 ];
 
-// generate all jobs
+// read raw data from databsse
 
 function createTable(){
   let table=[];
@@ -59,15 +60,16 @@ function createTable(){
   return table;
 }
 
-// Generate Ordered Data
+// generated processed data
 function createEnhancedData(applicantID, applicantName, applicantAppliedRole, suitability, applicantStatus, date) {
   return { applicantID, applicantName, applicantAppliedRole, suitability, applicantStatus, date };
 }
 
-function createEnhancedTable(){
+// generated table from processed data
+function createEnhancedTableBody(){
   let table=createTable();
-  let enhancedTable=[];
-  table.map ((each) => enhancedTable.push(createEnhancedData(
+  let enhancedTableBody=[];
+  table.map ((each) => enhancedTableBody.push(createEnhancedData(
     each.applicantID, 
     each.applicantName,
     getJobInfo(each.applicantAppliedJobID).jobTitle,
@@ -75,7 +77,7 @@ function createEnhancedTable(){
     each.pendingStatus,
     "null",
   )));
-  return enhancedTable;
+  return enhancedTableBody;
 }
 
 
@@ -106,16 +108,16 @@ function findSuitability(applicantId,jobId){
   }
 }
 
-function result (i){
-    return getPredictionInfo(i.applicantID,i.applicantAppliedJobID).predictionResult;
-};
+// function result (i){
+//     return getPredictionInfo(i.applicantID,i.applicantAppliedJobID).predictionResult;
+// };
 
-// sort by suitability , id
-function sortSuitability(x,y){
-  if (result(x) < result(y)) {return 1;}
-  if (result(x) > result(y)) {return -1;}
-  return 0;
-}
+// // sort by suitability , id
+// function sortSuitability(x,y){
+//   if (result(x) < result(y)) {return 1;}
+//   if (result(x) > result(y)) {return -1;}
+//   return 0;
+// }
 
 
 
@@ -256,7 +258,7 @@ export default function EnhancedTable() {
               tableHeadCells={tableHead}
             />
             <TableBody>
-              {stableSort(createEnhancedTable(), getComparator(order, orderBy))
+              {stableSort(createEnhancedTableBody(), getComparator(order, orderBy))
               
                 .map((each, index) => {
 
@@ -265,7 +267,11 @@ export default function EnhancedTable() {
                   return (
                     <TableRow >
                       {/* <TableCell>{each.applicantID}</TableCell> */}              
-                      <TableCell><Link component={routerLink} to={`/applicantList:${each.applicantID}` } >{each.applicantName}</Link></TableCell>
+                      <TableCell>
+                        <Link component={routerLink} to={`/applicantList:${each.applicantID}` }>
+                          {each.applicantName}
+                          </Link>
+                      </TableCell>
                       <TableCell>{each.applicantAppliedRole}</TableCell>
                       <TableCell align='right'>{each.suitability}</TableCell>
                       <TableCell>{each.applicantStatus}</TableCell>

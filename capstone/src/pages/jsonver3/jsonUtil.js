@@ -125,7 +125,7 @@ export function getUserInfo(userID){
     for (let i=0; i<allUsersNum; i++){
         let entry=allUsers[i]
         if (userIDInt===entry[0]){
-            return ({userID: entry[0], userName: entry[1], firstName: entry[2], lastName: entry[3],
+            return ({userID: entry[0], userName: entry[1], userFirstName: entry[2], userLastName: entry[3],
             password: entry[4], lastLogin: entry[5], isSuperUser: entry[6], email: entry[7],
             isStaff: entry[8], isActive: entry[9], dateJoined: entry[10]})
         }
