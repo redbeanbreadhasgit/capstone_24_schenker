@@ -3,7 +3,56 @@
 {% block title %} Page Blank {% endblock %} 
 
 <!-- Specific CSS goes HERE -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}<style>
+    table.sortable th {
+      font-weight: bold;
+      border-bottom: thin solid #888;
+      position: relative;
+    }
+    
+    table.sortable th button {
+      font-weight: bold;
+      background: transparent;
+      border: none;
+      display: inline;
+      right: 0;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      text-align: left;
+      outline: none;
+      cursor: pointer;
+    }
+    
+    table.sortable th button span {
+      position: absolute;
+      right: 4px;
+    }
+    
+    table.sortable th[aria-sort="descending"] span::after {
+      content: "▼";
+      color: currentcolor;
+      font-size: 100%;
+      top: 0;
+    }
+    
+    table.sortable th[aria-sort="ascending"] span::after {
+      content: "▲";
+      color: currentcolor;
+      font-size: 100%;
+      top: 0;
+    }
+    
+    table.sortable th:not([aria-sort]) button:focus span::after,
+    table.sortable th:not([aria-sort]) button:hover span::after {
+      content: "▼";
+      color: currentcolor;
+      font-size: 100%;
+      top: 0;
+    }
+    </style>
+    {% endblock stylesheets %}
 
 {% block content %}
 
@@ -35,14 +84,57 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="card">
-                                        <div class="card-header">
-                                            <h5>Hello card</h5>
+                                        <div>
+                                            <h1>Job: {{job_details.job_name}}</h1>
+                                            <a href="{% url 'logout' %}"><input type="button" value="Logout" style="float: right;"></a>
                                         </div>
-                                        <div class="card-block">
-                                            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                            </p>
+                                        
+                                        <button type="submit"><a href='/create'>Create New Job Matching</a></button>
+                                        <button type="submit"><a href='/alljobs'>View All Job Matches</a></button>
+                                        <button type="submit"><a href='/allapplicants'>View All Applicants</a></button>
+                                        
+                                        <div>
+                                          <style> h3{color: red; } </style>
+                                          {% for message in messages %}
+                                          <h3>{{message}}</h3>
+                                          {% endfor %}
                                         </div>
-                                    </div>
+                                        
+                                        <p>Job Status: {{job_details.job_status}} <form action="" method="POST"> {% csrf_token %}<input type="submit" name="closejob" value="Close Job" /></form></p>
+                                        <p>Job Matching Date: {{job_details.job_matching_date}}</p>
+                                        <p>Job Update Date: {{job_details.job_update_date}}</p>
+                                        <p>Recruiter: {{recruiter_name}}</p>
+                                        <p>Job Skills: {{job_details.job_keywords}}</p> 
+                                        <p><a href="{% url 'jdpdf' job_details.job_id %}", target="_blank">Click to view Job Description</a></p> 
+                                        <p><a href="{% url 'csv' job_details.job_id %}", target="_blank">Click to download Applicants' Status</a></p> 
+                                        
+                                        
+                                        <table class="sortable" id="myTable">
+                                          <thead>
+                                              <tr>
+                                                  <th onclick="sortTable(0)"><button>Applicant Name<span aria-hidden="true"></span></button><br>
+                                                      <input type="text" id="myInputApplicantName" onkeyup="myFunction('myInputApplicantName')" placeholder="Search..." style="float: left;"></th>
+                                                  <th onclick="sortTable(1)"><button>% Suitability<span aria-hidden="true"></span></button></th>
+                                                  <th onclick="sortTable(1)"><button>Skills<span aria-hidden="true"></span></button></th>
+                                                  <th onclick="sortTable(2)"><button>Applicant Status<span aria-hidden="true"></span></button></th>
+                                                  <form action="" method="POST"> {% csrf_token %}
+                                                  <th>{{ form.as_p }}<input type="submit" name="submitall" value="Change Applicant Status" /></th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                              {% for column in data %}
+                                              <tr>
+                                                  <td><a href="{% url 'applicant' column.applicant_id %}">{{column.applicant_name}}</a></td>
+                                                  <td>{{column.applicant_percent}}</td>
+                                                  <td>{{column.applicant_skills}}</td>
+                                                  <td>{{column.recruiter_decision}}</td>
+                                                  <td><input type="checkbox" name="checkboxall" value="{{column.applicant_id}}" style="text-align:center;"></td>
+                                              </tr>
+                                              {% endfor %}
+                                              </form>
+                                          </tbody>
+                                        </table>
+                                                                            </div>
                                 </div>
                             </div>
                             <!-- [ Main Content ] end -->
@@ -57,4 +149,187 @@
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}<script>
+    function myFunction(element) {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById(element);
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+    
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+</script>
+<script>
+    class SortableTable {
+      constructor(tableNode) {
+        this.tableNode = tableNode;
+    
+        this.columnHeaders = tableNode.querySelectorAll('thead th');
+    
+        this.sortColumns = [];
+    
+        for (var i = 0; i < this.columnHeaders.length; i++) {
+          var ch = this.columnHeaders[i];
+          var buttonNode = ch.querySelector('button');
+          if (buttonNode) {
+            this.sortColumns.push(i);
+            buttonNode.setAttribute('data-column-index', i);
+            buttonNode.addEventListener('click', this.handleClick.bind(this));
+          }
+        }
+    
+        this.optionCheckbox = document.querySelector(
+          'input[type="checkbox"][value="show-unsorted-icon"]'
+        );
+    
+        if (this.optionCheckbox) {
+          this.optionCheckbox.addEventListener(
+            'change',
+            this.handleOptionChange.bind(this)
+          );
+          if (this.optionCheckbox.checked) {
+            this.tableNode.classList.add('show-unsorted-icon');
+          }
+        }
+      }
+    
+      setColumnHeaderSort(columnIndex) {
+        if (typeof columnIndex === 'string') {
+          columnIndex = parseInt(columnIndex);
+        }
+    
+        for (var i = 0; i < this.columnHeaders.length; i++) {
+          var ch = this.columnHeaders[i];
+          var buttonNode = ch.querySelector('button');
+          if (i === columnIndex) {
+            var value = ch.getAttribute('aria-sort');
+            if (value === 'descending') {
+              ch.setAttribute('aria-sort', 'ascending');
+              this.sortColumn(
+                columnIndex,
+                'ascending',
+                ch.classList.contains('num')
+              );
+            } else {
+              ch.setAttribute('aria-sort', 'descending');
+              this.sortColumn(
+                columnIndex,
+                'descending',
+                ch.classList.contains('num')
+              );
+            }
+          } else {
+            if (ch.hasAttribute('aria-sort') && buttonNode) {
+              ch.removeAttribute('aria-sort');
+            }
+          }
+        }
+      }
+    
+      sortColumn(columnIndex, sortValue, isNumber) {
+        function compareValues(a, b) {
+          if (sortValue === 'ascending') {
+            if (a.value === b.value) {
+              return 0;
+            } else {
+              if (isNumber) {
+                return a.value - b.value;
+              } else {
+                return a.value < b.value ? -1 : 1;
+              }
+            }
+          } else {
+            if (a.value === b.value) {
+              return 0;
+            } else {
+              if (isNumber) {
+                return b.value - a.value;
+              } else {
+                return a.value > b.value ? -1 : 1;
+              }
+            }
+          }
+        }
+    
+        if (typeof isNumber !== 'boolean') {
+          isNumber = false;
+        }
+    
+        var tbodyNode = this.tableNode.querySelector('tbody');
+        var rowNodes = [];
+        var dataCells = [];
+    
+        var rowNode = tbodyNode.firstElementChild;
+    
+        var index = 0;
+        while (rowNode) {
+          rowNodes.push(rowNode);
+          var rowCells = rowNode.querySelectorAll('th, td');
+          var dataCell = rowCells[columnIndex];
+    
+          var data = {};
+          data.index = index;
+          data.value = dataCell.textContent.toLowerCase().trim();
+          if (isNumber) {
+            data.value = parseFloat(data.value);
+          }
+          dataCells.push(data);
+          rowNode = rowNode.nextElementSibling;
+          index += 1;
+        }
+    
+        dataCells.sort(compareValues);
+    
+        // remove rows
+        while (tbodyNode.firstChild) {
+          tbodyNode.removeChild(tbodyNode.lastChild);
+        }
+    
+        // add sorted rows
+        for (var i = 0; i < dataCells.length; i += 1) {
+          tbodyNode.appendChild(rowNodes[dataCells[i].index]);
+        }
+      }
+    
+      /* EVENT HANDLERS */
+    
+      handleClick(event) {
+        var tgt = event.currentTarget;
+        this.setColumnHeaderSort(tgt.getAttribute('data-column-index'));
+      }
+    
+      handleOptionChange(event) {
+        var tgt = event.currentTarget;
+    
+        if (tgt.checked) {
+          this.tableNode.classList.add('show-unsorted-icon');
+        } else {
+          this.tableNode.classList.remove('show-unsorted-icon');
+        }
+      }
+    }
+    
+    // Initialize sortable table buttons
+    window.addEventListener('load', function () {
+      var sortableTables = document.querySelectorAll('table.sortable');
+      for (var i = 0; i < sortableTables.length; i++) {
+        new SortableTable(sortableTables[i]);
+      }
+    });
+        
+    </script>
+    
+{% endblock javascripts %}
