@@ -8,14 +8,17 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
+from django.shortcuts import redirect, render
+
+from .models import *
 
 
 @login_required(login_url="/login/")
 def index(request):
-    context = {'segment': 'index'}
-
-    html_template = loader.get_template('home/index.html')
-    return HttpResponse(html_template.render(context, request))
+    pending_applicants = ApplicantModel.objects.filter(recruiter_decision="Pending").count()
+    open_jobs = MatchedJobModel.objects.filter(job_status="Open").count()
+    data = {"pending_applicants": pending_applicants,"open_jobs": open_jobs }
+    return render(request, 'home/index.html', {"data": data})
 
 
 @login_required(login_url="/login/")
