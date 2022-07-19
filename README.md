@@ -93,7 +93,7 @@ $ cd django-datta-able
 ```bash
 $ virtualenv env
 $ source env/bin/activate
-$ pip3 install -r requirements.txt
+$ pip install -r requirements.txt
 ```
 
 <br />
