@@ -12,6 +12,8 @@ from django.shortcuts import redirect, render
 
 
 from .models import *
+from .keyword import *
+from .forms import *
 
 import datetime
 import csv
