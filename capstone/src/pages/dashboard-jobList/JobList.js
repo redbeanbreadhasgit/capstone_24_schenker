@@ -16,7 +16,6 @@ import {getApplicantInfo, getJobInfo, getPredictionInfo, getJobsNum,getPredictio
 import {Link as routerLink, Outlet } from 'react-router-dom';
 
 import {EnhancedTableHead, getComparator, stableSort, } from "../components/enhancedTable";
-
 import {tableStyle} from "../styles/tableStyle";
 
 let jobnum=getJobsNum();

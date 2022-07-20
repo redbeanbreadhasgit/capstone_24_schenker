@@ -5,13 +5,18 @@ import {Box} from '@material-ui/core';
 import Title from "../components/Title";
 import {Select} from "@material-ui/core";
 
+import {EnhancedTableHead, getComparator, stableSort, } from "../components/enhancedTable";
+import {tableStyle} from "../styles/tableStyle";
+
+import { useState } from "react";
 
 export function ReturnApplicantInfo(){
     let params=useParams();
-    let applicantID=params.applicantID;
-    let applicantSelected=getApplicantInfo(parseInt(applicantID.substring(1,),10));
+    let applicantID=parseInt(params.applicantID.substring(1,),10);
+    let applicantSelected=getApplicantInfo(applicantID);
     let jobSelected=getJobInfo(parseInt(applicantSelected.applicantAppliedJobID));
-    let predictionSelected=getPredictionInfo(parseInt(applicantID.substring(1,),10),parseInt(applicantSelected.applicantJob));
+    let predictionSelected=getPredictionInfo(applicantID,parseInt(applicantSelected.applicantJob));
+    let AllPredictionInfoTable=getAllPredictionInfo(applicantID);
     
     
     
@@ -145,13 +150,14 @@ export function ReturnApplicantInfo(){
 
 export function ReturnApplicantInfoTable(){
     let params=useParams();
-    let applicantID=params.applicantID;
-    let applicantSelected=getApplicantInfo(parseInt(applicantID.substring(1,),10));
+    let applicantID=parseInt(params.applicantID.substring(1,),10);
+    let applicantSelected=getApplicantInfo(applicantID);
     let jobSelected=getJobInfo(parseInt(applicantSelected.applicantJob));
-    let predictionSelected=getPredictionInfo(parseInt(applicantID.substring(1,),10),parseInt(applicantSelected.applicantJob));
-    
-    let AllPredictionInfoTable=getAllPredictionInfo(applicantID.substring(1,),10);
+    let predictionSelected=getPredictionInfo(applicantID,parseInt(applicantSelected.applicantJob));
+    let AllPredictionInfoTable=getAllPredictionInfo(applicantID);
 
+
+    
     return(
         <div>
             <Title>
@@ -206,5 +212,116 @@ export function Reprofile(){
             </TableBody>
         </div>
 
+    )
+}
+
+export function ReturnApplicantHistory(){
+
+    // const classes = tableStyle();
+    // const [order, setOrder] = useState("asc");
+    // const [orderBy, setOrderBy] = useState("jobTitle");
+
+    // const handleRequestSort = (event, property) => {
+    //     const isAsc = orderBy === property && order === "asc";
+    //     // switch between the 2 orders
+    //     setOrder(isAsc ? "desc" : "asc");
+    //     setOrderBy(property);
+    // }
+
+    // // read raw data from databsse
+    // function createTable(){
+    //     let table=[];
+    //     for (let i=1; i<=getApplicantsNum(); i++){
+    //     table.push(getApplicantInfo(i));
+    //     }
+    //     return table;
+    // }
+    
+    // // generated processed data
+    // function createEnhancedData(applicantID, applicantName, applicantAppliedRole, suitability, applicantStatus, date) {
+    //     return { applicantID, applicantName, applicantAppliedRole, suitability, applicantStatus, date };
+    // }
+    
+    // // generated table from processed data
+    // function createEnhancedTableBody(){
+    //     let table=createTable();
+    //     let enhancedTableBody=[];
+    //     table.map ((each) => enhancedTableBody.push(createEnhancedData(
+    //     each.applicantID, 
+    //     each.applicantName,
+    //     getJobInfo(each.applicantAppliedJobID).jobTitle,
+    //     getPredictionInfo(each.applicantID,each.applicantAppliedJobID).predictionResult,
+    //     each.pendingStatus,
+    //     "null",
+    //     )));
+    //     return enhancedTableBody;
+    // }
+
+    let params=useParams();
+    let applicantID=parseInt(params.applicantID.substring(1,),10);
+    let applicantSelected=getApplicantInfo(applicantID);
+
+    const tableHead=[
+        {
+            id:"jobTitle",
+            label:"Job Title",
+        },
+        {
+            id:"status",
+            label:"Job Status",
+        },
+        {
+            id:"applicantAppliedDate",
+            label:"Date",
+        },
+        {
+            id:"recruiter",
+            label:"Recruiter",
+        },
+    ]
+
+    return (
+        <div>
+            <Title>
+                Applicant History
+            </Title>
+            {/* <Table
+                className={classes.table}
+                aria-labelledby="tableTitle"
+                aria-label="enhanced table"
+            >
+                <EnhancedTableHead
+                classes={classes}
+                order={order}
+                orderBy={orderBy}
+                onRequestSort={handleRequestSort}
+                tableHeadCells={tableHead}
+                />
+                <TableBody>
+                {stableSort(createEnhancedTableBody(), getComparator(order, orderBy))
+                
+                    .map((each, index) => {
+
+                    const labelId = `enhanced-table-checkbox-${index}`;
+
+                    return (
+                        <TableRow >
+                                   
+                        <TableCell>
+                            <Link component={routerLink} to={`/applicantList:${each.applicantID}` }>
+                            {each.applicantName}
+                            </Link>
+                        </TableCell>
+                        <TableCell>{each.applicantAppliedRole}</TableCell>
+                        <TableCell align='right'>{each.suitability}</TableCell>
+                        <TableCell>{each.applicantStatus}</TableCell>
+                        <TableCell>{each.date}</TableCell>
+                       
+                        </TableRow>
+                    );
+                    })}
+                </TableBody>
+            </Table> */}
+        </div>
     )
 }

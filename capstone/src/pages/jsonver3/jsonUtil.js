@@ -107,9 +107,9 @@ export function getApplicantHistoryInfo(applicantID){
     for (let i=0; i<allApplicantHistoryNum; i++){
         let entry=allApplicantHistory[i];
         if (applicantIDInt===entry[2]){
-            result.push({historyID:entry[0], pendingStatus:entry[1]
-                , applicantID:entry[2], jobID:entry[3]
-                , recruiterID:entry[4], statusChangeDate: entry[5], })
+            result.push({appicantHistoryID:entry[0], applicantPendingStatus:entry[1]
+                , applicantID:entry[2], applicantAppliedJobID:entry[3]
+                , recruiterID:entry[4], applicantStatusChangeDate: entry[5], })
         }
     }
     if (result.length===0){

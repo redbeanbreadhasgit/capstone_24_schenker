@@ -51,7 +51,6 @@ const tableHead=[
 ];
 
 // read raw data from databsse
-
 function createTable(){
   let table=[];
   for (let i=1; i<=getApplicantsNum(); i++){
@@ -240,6 +239,7 @@ export default function EnhancedTable() {
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
+  
 
   return (
     <div className={classes.root}>

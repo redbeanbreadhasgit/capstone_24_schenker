@@ -21,7 +21,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems,  } from '../components/listItems';
 import { applicantIcon, jobIcon } from '../components/icons';
 import { Button, ThemeProvider } from '@material-ui/core';
-import {ReturnApplicantInfo,ReturnApplicantName,ReturnApplicantInfoTable, Reprofile} from './GetApplicantInfo';
+import {ReturnApplicantInfo,ReturnApplicantName,ReturnApplicantInfoTable, Reprofile, ReturnApplicantHistory} from './GetApplicantInfo';
 
 import {mainTheme} from "../themes/mianTheme";
 import {mainStyle} from "../styles/mainStyle";
@@ -105,23 +105,11 @@ export default function DashBoard_homepage() {
                 <Reprofile></Reprofile>
                {/* </Paper>  */}
               </Grid> 
+              <Grid item xs={12} md={12} lg={12}>
+                {/* <ReturnApplicantHistory></ReturnApplicantHistory> */}
+              </Grid> 
             </Grid>
-            {/* <h4>{b}</h4> */}
-            {/* </Paper> */}
-            {/* number of jobs */}
             
-            {/* Filter */}
-            {/* <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Filter />
-              </Paper>
-            </Grid> */}
-            {/* Recent Orders */}
-            {/* <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
-            </Grid> */}
           </Grid>
           {/* <Box pt={4}>
             <Copyright />
