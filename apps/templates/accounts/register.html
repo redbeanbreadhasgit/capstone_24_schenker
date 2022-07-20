@@ -37,7 +37,7 @@
 
                     {% else %}
 
-                        <form role="form" method="post" action="">
+                        <form role="form" method="POST" action="">
 
                             {% csrf_token %}                    
 
@@ -47,9 +47,9 @@
                             <span class="text-error">{{ form.username.errors }}</span>
 
                             <div class="input-group mb-4">
-                                {{ form.password1 }}
+                                {{ form.password }}
                             </div>
-                            <span class="text-error">{{ form.password1.errors }}</span>
+                            <span class="text-error">{{ form.password.errors }}</span>
 
                             <div class="input-group mb-4">
                                 {{ form.password2 }}
