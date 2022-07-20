@@ -89,7 +89,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th onclick="sortTable(0)"><button>Job Title<span aria-hidden="true"></span></button><br>
-                                                          <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search..."></th>
+                                                          <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search..."></th>
                                                         <th onclick="sortTable(1)"><button>Matching Date<span aria-hidden="true"></span></button></th>
                                                         <th onclick="sortTable(2)"><button>Update Date<span aria-hidden="true"></span></button></th>
                                                         <th onclick="sortTable(4)"><button>Recruiter<span aria-hidden="true"></span></button></th>
@@ -128,7 +128,7 @@
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}<script>
-    function myFunction() {
+    function searchFunction() {
       // Declare variables
       var input, filter, table, tr, td, i, txtValue;
       input = document.getElementById("myInput");
