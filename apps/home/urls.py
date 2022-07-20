@@ -18,7 +18,7 @@ urlpatterns = [
 
 
     # Matches any html file
-    # re_path(r'^.*\.*', views.pages, name='pages'),
+    re_path(r'^.*\.*', views.pages, name='pages'),
     path('job/<int:job_id>/', viewjob, name="job"), # view individual job matching results
     path('applicant/<int:applicant_id>', viewapplicant, name="applicant"), # view applicant information
 
