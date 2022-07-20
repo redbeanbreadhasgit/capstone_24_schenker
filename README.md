@@ -12,8 +12,11 @@ This project is made by React (Frontend) and Django (Backend). Here is the steps
 - We use Material-UI as our UI library, We install it by run this under the root folder of project:
 
         $ npm install @material-ui/core
-    Tip: the Material-UI version fo the project is v 5.9.1, and all Material-UI packages will be installede under folder capstone/node_modules.
+    Tip: the Material-UI version fo the project is v 5.9.1, and all Material-UI packages will be installed under folder capstone/node_modules.
 
+    Tip: the frontend environment has already been well set up, if you clone frontend code from our github link:
+     https://github.com/redbeanbreadhasgit/capstone_24_schenker/tree/frontend 
+ 
 ## How to run:
 - Open then command line and cd to the capstone root folder, then run it by type:
 
