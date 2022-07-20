@@ -14,6 +14,8 @@ urlpatterns = [
     path('alljobs/', views.alljobs, name="alljobs"), # view all created job matches
     path('allapplicants/', views.allapplicants, name="allapplicants"), # view all applicants
     path('jobtest/', views.jobtest, name="jobtest"), # view all created job matches
+    path('create-new-job/', views.create, name="create"), # view all created job matches
+
 
     # Matches any html file
     # re_path(r'^.*\.*', views.pages, name='pages'),

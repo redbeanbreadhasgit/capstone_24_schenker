@@ -80,7 +80,7 @@ def create(request):
             # display message that job name is available and proceed
             else:
                 messages.info(request, "Job Name available, please proceed")
-                return render(request, 'create.html', {'data': new_jobname})
+                return render(request, 'home/create-new-job.html', {'data': new_jobname})
         
         # recruiter clicks "get job matching"
         else: # request.POST.get("getmatching"):
@@ -181,14 +181,14 @@ def create(request):
             
             except MultiValueDictKeyError:
                 messages.info(request, "Must upload files")
-                return render(request, 'create.html', {'data': new_jobname})
+                return render(request, 'home/create-new-job.html', {'data': new_jobname})
 
             # except IntegrityError:
             #     messages.info(request, "Job name taken, use another")
             #     return render(request, 'create.html')
 
     else:
-        return render(request, 'create.html')
+        return render(request, 'home/create-new-job.html')
 
 ##### VIEW ALL JOBS ##############################################################################################################
 @login_required(login_url='login')
