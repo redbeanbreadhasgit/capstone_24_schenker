@@ -221,7 +221,7 @@ def alljobs(request):
             "job_description": job_description,
             "job_status": job_status})
 
-    return render(request, 'all-jobs.html', {'data': store_data})
+    return render(request, 'home/alljobs.html', {'data': store_data})
 
 ##### VIEW ALL APPLICANTS ##############################################################################################################
 @login_required(login_url='login')
@@ -248,7 +248,7 @@ def allapplicants(request):
             "job_name": job,
             "recruiter_decision": decision})
 
-    return render(request, 'all-applicants.html', {'data': store_data})
+    return render(request, 'home/allapplicants.html', {'data': store_data})
 
 ##### VIEW INDIVIDUAL JOB ################################################################################################
 @login_required(login_url='login')
@@ -531,3 +531,34 @@ def csv_download(request, job_id):
 
         writer.writerow([resume_name, job_name, recruiter_decision, reprofiled, reprofiled_job_name])
     return response
+@login_required(login_url='login')
+def jobtest(request):
+    # get all jobs information from database
+    data = MatchedJobModel.objects.all() 
+
+    # initialise list to store data of all jobs
+    store_data = []
+
+    # get displayed data
+    for job in data:
+        job_id = job.job_id
+        job_name = job.job_name
+        job_matching_date = job.job_matching_date
+        job_update_date = job.job_update_date
+        recruiter_id = job.recruiter_id_id
+        recruiter_firstname = User.objects.filter(id=recruiter_id).values_list("first_name", flat=True)[0]
+        recruiter_lastname = User.objects.filter(id=recruiter_id).values_list("last_name", flat=True)[0]
+        recruiter_name = recruiter_firstname + " " + recruiter_lastname
+        job_description = job.job_description
+        job_status = job.job_status
+
+        store_data.append({            
+            "job_id": job_id,
+            "job_name": job_name,
+            "job_matching_date": job_matching_date,
+            "job_update_date": job_update_date,
+            "recruiter_name": recruiter_name,
+            "job_description": job_description,
+            "job_status": job_status})
+
+    return render(request, 'home/jobtest.html', {'data': store_data})

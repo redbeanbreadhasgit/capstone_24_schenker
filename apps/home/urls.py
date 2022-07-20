@@ -11,12 +11,13 @@ urlpatterns = [
 
     # The home page
     path('', views.index, name='home'),
+    path('alljobs/', views.alljobs, name="alljobs"), # view all created job matches
+    path('allapplicants/', views.allapplicants, name="allapplicants"), # view all applicants
+    path('jobtest/', views.jobtest, name="jobtest"), # view all created job matches
 
     # Matches any html file
-    re_path(r'^.*\.*', views.pages, name='pages'),
+    # re_path(r'^.*\.*', views.pages, name='pages'),
     path('job/<int:job_id>/', viewjob, name="job"), # view individual job matching results
     path('applicant/<int:applicant_id>', viewapplicant, name="applicant"), # view applicant information
-    path('alljobs/', alljobs, name="alljobs"), # view all created job matches
-    path('allapplicants/', allapplicants, name="allapplicants"), # view all applicants
 
 ]
