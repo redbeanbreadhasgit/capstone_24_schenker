@@ -92,12 +92,12 @@ def create(request):
                 skill_keywords = clean_words(skill_keywords, "text")
 
                 # set file locations
-                file_location = "static/" + new_jobname + "/"
+                file_location = "apps/static/" + new_jobname + "/"
                 file_storage = FileSystemStorage(location = file_location)
 
                 # save jd file
                 jd_fs =  file_storage
-                # jd_fs.save(jd_file.name, jd_file) # uncomment to enable file saving
+                jd_fs.save(jd_file.name, jd_file) # uncomment to enable file saving
 
                 # store jd info to database
                 MatchedJobModel.objects.create(
@@ -106,7 +106,6 @@ def create(request):
                     job_matching_date = datetime.date.today(), 
                     job_update_date = datetime.date.today(), 
                     recruiter_id_id = request.user.id,
-                    hiring_manager_id_id = 1, # TODO: remove hiring manager information?
                     job_description = jd_file.name)
                 
                 # get job_id of this newly created job
@@ -116,7 +115,7 @@ def create(request):
                 resume_fs = file_storage
                 for resume in resume_files:
                     resume_name = resume.name
-                    # resume_fs.save(resume_name, resume) # uncomment to enable file saving
+                    resume_fs.save(resume_name, resume) # uncomment to enable file saving
                     
                     # TODO: extract names from resume => hard to do, so currently we are using filenames
 

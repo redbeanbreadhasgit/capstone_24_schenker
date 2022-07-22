@@ -24,11 +24,6 @@ class ApplicantModel(models.Model):
     reprofile = models.BooleanField(default=False)
     job_id_reprofile = models.ForeignKey("MatchedJobModel", on_delete=models.CASCADE, null=True, related_name="reprofile")
 
-# hiring manager information table
-class HiringManagerModel(models.Model):
-    hiring_manager_id = models.IntegerField(primary_key=True)
-    hiring_manager_name = models.CharField(max_length=50)
-    hiring_manager_email = models.EmailField(max_length=100)
 
 # created job matchings table
 class MatchedJobModel(models.Model):
