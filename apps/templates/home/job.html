@@ -67,11 +67,10 @@
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="page-header-title">
-                                        <h5 class="m-b-10">Sample Page</h5>
                                     </div>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:">Sample Page</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:">{{job_details.job_name}}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -85,13 +84,8 @@
                                 <div class="col-sm-12">
                                     <div class="card">
                                         <div>
-                                            <h1>Job: {{job_details.job_name}}</h1>
-                                            <a href="{% url 'logout' %}"><input type="button" value="Logout" style="float: right;"></a>
+                                            <h2>Job: {{job_details.job_name}}</h2>
                                         </div>
-                                        
-                                        <button type="submit"><a href='/create'>Create New Job Matching</a></button>
-                                        <button type="submit"><a href='/alljobs'>View All Job Matches</a></button>
-                                        <button type="submit"><a href='/allapplicants'>View All Applicants</a></button>
                                         
                                         <div>
                                           <style> h3{color: red; } </style>
