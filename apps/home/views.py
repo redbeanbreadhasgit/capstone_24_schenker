@@ -106,7 +106,8 @@ def create(request):
                     job_matching_date = datetime.date.today(), 
                     job_update_date = datetime.date.today(), 
                     recruiter_id_id = request.user.id,
-                    job_description = jd_file.name)
+                    job_description = jd_file.name,
+                    job_status = "Open")
                 
                 # get job_id of this newly created job
                 new_job = MatchedJobModel.objects.get(job_name=new_jobname)
@@ -482,7 +483,7 @@ def resumepdf(request, applicant_id):
     # get resume filepath and filename
     resume_filename = str(applicant.applicant_resume)
     resume_foldername = str(jobname)
-    resume_filepath = "static/" + resume_foldername + "/" + resume_filename
+    resume_filepath = "apps/static/" + resume_foldername + "/" + resume_filename
     
     with open(resume_filepath, 'rb') as pdf:
         response = HttpResponse(pdf.read(), content_type='application/pdf')
@@ -496,7 +497,7 @@ def jdpdf(request, job_id):
     # get resume filepath and filename
     jd_filename = str(job.job_description)
     jd_foldername = str(job.job_name)
-    jd_filepath = "static/" + jd_foldername + "/" + jd_filename
+    jd_filepath = "apps/static/" + jd_foldername + "/" + jd_filename
     
     with open(jd_filepath, 'rb') as pdf:
         response = HttpResponse(pdf.read(), content_type='application/pdf')
