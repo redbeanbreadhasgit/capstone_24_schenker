@@ -338,7 +338,7 @@ def viewjob(request, job_id):
         # status_change_form = ApplicantModelForm(new_choices=(('1','Pending'), ('2','Shortlisted'), ('3','Rejected'),))    
         status_change_form = StatusChangeForm()    
 
-    return render(request, 'viewjob.html', 
+    return render(request, 'home/job.html', 
     {'job_details': job_details,
     'recruiter_name': recruiter_name,
     'data': applicant_data_sorted, 
@@ -472,7 +472,7 @@ def viewapplicant(request, applicant_id):
     'recruiter_decision': recruiter_decision, 
     'job_data': job_data,
     'history_data': history_data}
-    return render(request, 'viewapplicant.html', display_data)
+    return render(request, 'home/applicant.html', display_data)
 
 ##### VIEW APPLICANT RESUME FILES ##############################################################################################################
 def resumepdf(request, applicant_id):
