@@ -1,6 +1,9 @@
 from pdfminer.high_level import extract_text
 from nltk.corpus import stopwords
 import re
+import nltk
+
+# nltk.download('stopwords')
 
 def clean_words(input, type):
     if type == "file":

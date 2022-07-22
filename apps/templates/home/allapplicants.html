@@ -103,6 +103,7 @@
                                                         <td><a href="{% url 'job' row.job_id %}">{{row.job_name}}</td>
                                                         <td>{{row.applicant_percent}}</td>
                                                         <td>{{row.recruiter_decision}}</td>
+                                                        <td><a href="{% url 'resumepdf' row.applicant_id %}", target="_blank">View Resume</a></td>
                                                     </tr>
                                                     {% endfor %}
                                                 </tbody>
