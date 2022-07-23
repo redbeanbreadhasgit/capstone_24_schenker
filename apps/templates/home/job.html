@@ -84,22 +84,53 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="card">
-                                        <div>
-                                            <h2>Job: {{job_details.job_name}}</h2>
-                                        </div>
-                                        
-                                        <div>
-                                          <style> h3{color: red; } </style>
-                                          {% for message in messages %}
-                                          <h3>{{message}}</h3>
-                                          {% endfor %}
-                                        </div>
-                                        
-                                        <p>Job Status: {{job_details.job_status}} <form action="" method="POST"> {% csrf_token %}<input type="submit" name="closejob" value="Close Job" /></form></p>
-                                        <p>Job Matching Date: {{job_details.job_matching_date}}</p>
-                                        <p>Job Update Date: {{job_details.job_update_date}}</p>
-                                        <p>Recruiter: {{recruiter_name}}</p>
-                                        <p>Job Skills: {{job_details.job_keywords}}</p> 
+                                        <br>                                        
+                                                                                                   <!-- [ basic-table ] start -->
+                                                                                                   <div class="col-xl-12">
+                                                                                                    <div class="card">
+                                                                                                        <div class="card-header">
+                                                                                                            <h2>Job: {{job_details.job_name}}</h2>
+                                                                                                        </div>
+                                                                                                        <div>
+                                                                                                          <style> h3{color: red; } </style>
+                                                                                                          {% for message in messages %}
+                                                                                                          <h3>{{message}}</h3>
+                                                                                                          {% endfor %}
+                                                                                                        </div>
+                                                                
+                                                                                                        <div class="card-block table-border-style">
+                                                                                                            <div class="table-responsive">
+                                                                                                                <table class="table">
+                                                                                                                    <tbody>
+                                                                                                                        <tr>
+                                                                                                                            <th scope="row">Job Status</th>
+                                                                                                                            <td>{{job_details.job_status}}</td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <th scope="row">Job Matching Date</th>
+                                                                                                                            <td>{{job_details.job_matching_date}}</td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <th scope="row">Job Update Date</th>
+                                                                                                                            <td>{{job_details.job_update_date}}</td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                          <th scope="row">Recruiter</th>
+                                                                                                                          <td>{{recruiter_name}}</td>
+                                                                                                                      </tr>
+                                                                                                                      <tr>
+                                                                                                                        <th scope="row">Job Skills</th>
+                                                                                                                        <td>{{job_details.job_keywords}}</td>
+                                                                                                                    </tr>
+
+                                                                                                                    </tbody>
+                                                                                                                </table>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <!-- [ basic-table ] end -->
+                                     
                                         <p><a href="{% url 'jdpdf' job_details.job_id %}", target="_blank">Click to view Job Description</a></p> 
                                         <p><a href="{% url 'csv' job_details.job_id %}", target="_blank">Click to download Applicants' Status</a></p> 
                                         
@@ -129,6 +160,8 @@
                                               </form>
                                           </tbody>
                                         </table>
+                                        <p><form action="" method="POST"> {% csrf_token %}<input type="submit" name="closejob" value="Close Job" /></form></p>
+
                                                                             </div>
                                 </div>
                             </div>
