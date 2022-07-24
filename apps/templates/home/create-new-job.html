@@ -40,7 +40,7 @@
                                             
                                             <body>
                                             <div>
-                                              <style> h3{color: red; } </style>
+                                              <style> h3{color: royalblue; } </style>
                                               {% for message in messages %}
                                               <h3>{{message}}</h3>
                                               {% endfor %}
@@ -49,7 +49,7 @@
                                             <form action="" method="POST" enctype="multipart/form-data">
                                                 {% csrf_token %}
                                                 <label for="jobnamelabel">Job Name:</label>
-                                                <br/><input type="text" id="jobname" name="jobname" value="{{data}}">
+                                                <br/><input type="text" id="jobname" name="jobname" value="{{data}}"><br>
                                                 <br/><input type="submit" name="validation" value="Check Job Name"><br>
                                             
                                                 <br/><label for="uploadjdlabel" id="uploadjdlabel">Upload Job Description File:</label>
@@ -63,7 +63,7 @@
                                                 <br/><label for="jdkeywordslabel" id="jdkeywordslabel">Enter some technical skill words for matching, single words only (eg: HTML, CSS, JavaScript):</label>
                                                 <br/><input type="text" id="skillkeywords" name="skillkeywords">
                                             
-                                                <br/><input type="submit" name="getmatching" value="Get Job Matching"><br>
+                                                <br/><br><input type="submit" name="getmatching" value="Get Job Matching"><br>
                                             
                                             </form>                                        </div>
                                     </div>

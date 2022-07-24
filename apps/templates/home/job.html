@@ -52,6 +52,10 @@
     font-size: 100%;
     top: 0;
   }
+
+  .part2{
+    padding: 0 20px 20px 20px;
+  }
 </style>
 {% endblock stylesheets %}
 
@@ -134,13 +138,11 @@
                     </div>
                   </div>
                   <!-- [ basic-table ] end -->
-
-                  <p><a href="{% url 'jdpdf' job_details.job_id %}" , target="_blank">Click to view Job Description</a>
+                  <div class="part2">
+                  <p><a href="{% url 'jdpdf' job_details.job_id %}" class="btn btn-primary">Click to view Job Description</a>
+                   <a href="{% url 'csv' job_details.job_id %}" class="btn btn-primary">Click to download Applicants'
+                    Status</a>
                   </p>
-                  <p><a href="{% url 'csv' job_details.job_id %}" , target="_blank">Click to download Applicants'
-                      Status</a></p>
-
-
                   <table class="sortable" id="myTable">
                     <thead>
                       <tr>
@@ -175,7 +177,7 @@
                   <form action="" method="POST"> {% csrf_token %}<input type="submit" name="closejob"
                       value="Close Job" /></form>
                   </p>
-
+                </div>
                 </div>
               </div>
             </div>

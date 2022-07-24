@@ -51,6 +51,9 @@
     font-size: 100%;
     top: 0;
   }
+  .card{
+    padding-top:10px;
+  }
 </style>
 {% endblock stylesheets %}
 
@@ -119,8 +122,8 @@
                   <div class="card-header">
 
                     <div id="applicantinfo">
-                      <p><a href="{% url 'resumepdf' applicant_id %}" , target="_blank">Click to view Applicant
-                          Resume</a></p>
+                          <p><a href="{% url 'resumepdf' applicant_id %}" class="btn btn-primary">Click to view Applicant
+                            Resume</a></p>
                           <div>
                             <style>
                               h3 {
@@ -187,9 +190,9 @@
                             </td>
                           </tr>
                         </table>
-                        <br><br>
+                        <br>
                         <input type="submit" value="Update Applicant Details" />
-                      </form>
+                      </form><br>
                     </div>
                     <div>
                       <caption style="text-align:right">Applicant History:</caption>
