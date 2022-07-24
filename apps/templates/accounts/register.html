@@ -17,7 +17,7 @@
                     <div class="mb-4">
                         <i class="feather icon-user-plus auth-icon"></i>
                     </div>
-                    <h3 class="mb-4">Sign up</h3>
+                    <h3 class="mb-4">Sign Up</h3>
 
                     <span class="mb-0 text-muted">
                         {% if msg %}
@@ -33,29 +33,29 @@
                     <!-- Hide the form on success -->
                     {% if success %}
 
-                        <a href="{% url 'login' %}" class="btn btn-primary shadow-2 mb-4">Sign IN</a>
+                        <a href="{% url 'login' %}" class="btn btn-primary shadow-2 mb-4">Sign In</a>
 
                     {% else %}
 
                         <form role="form" method="POST" action="">
 
-                            {% csrf_token %}                    
-
-                            <div class="input-group mb-3">
-                                {{ form.username }}
-                            </div>
-                            <span class="text-error">{{ form.username.errors }}</span>
-
-                            <div class="input-group mb-4">
-                                {{ form.password }}
-                            </div>
-                            <span class="text-error">{{ form.password.errors }}</span>
-
-                            <div class="input-group mb-4">
-                                {{ form.password2 }}
-                            </div>
-                            <span class="text-error">{{ form.password2.errors }}</span>
+                            {% csrf_token %}
                             
+                            <label for="firstname">First Name:</label>
+                            <input type="text" id="firstname" name="firstname"><br><br>
+                          
+                            <label for="lastname">Last Name:</label>
+                            <input type="text" id="lastname" name="lastname"><br><br>
+                          
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username"><br><br>
+                          
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password"><br><br>
+                          
+                            <label for="password2">Confirm Password:</label>
+                            <input type="password" id="password2" name="password2"><br><br>
+                                                                                
                             <button type="submit" name="register" class="btn btn-primary shadow-2 mb-4">Register</button>
 
                         </form>
