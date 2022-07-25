@@ -53,7 +53,7 @@
     top: 0;
   }
 
-  .part2{
+  .part2 {
     padding: 0 20px 20px 20px;
   }
 </style>
@@ -139,45 +139,44 @@
                   </div>
                   <!-- [ basic-table ] end -->
                   <div class="part2">
-                  <p><a href="{% url 'jdpdf' job_details.job_id %}" class="btn btn-primary">Click to view Job Description</a>
-                   <a href="{% url 'csv' job_details.job_id %}" class="btn btn-primary">Click to download Applicants'
-                    Status</a>
-                  </p>
-                  <table class="sortable" id="myTable">
-                    <thead>
-                      <tr>
-                        <th onclick="sortTable(0)"><button>Applicant Name<span aria-hidden="true"></span></button><br>
-                          <input type="text" id="myInputApplicantName" onkeyup="myFunction('myInputApplicantName')"
-                            placeholder="Search..." style="float: left;">
-                        </th>
-                        <th onclick="sortTable(1)"><button>% Suitability<span aria-hidden="true"></span></button></th>
-                        <th onclick="sortTable(1)"><button>Skills<span aria-hidden="true"></span></button></th>
-                        <th onclick="sortTable(2)"><button>Applicant Status<span aria-hidden="true"></span></button>
-                        </th>
-                        <form action="" method="POST"> {% csrf_token %}
-                          <th>{{ form.as_p }}<input type="submit" name="submitall" value="Change Applicant Status" />
+                    <table class="sortable" id="myTable">
+                      <thead>
+                        <tr>
+                          <th onclick="sortTable(0)"><button>Applicant Name<span aria-hidden="true"></span></button><br>
+                            <input type="text" id="myInputApplicantName" onkeyup="myFunction('myInputApplicantName')"
+                              placeholder="Search..." style="float: left;">
                           </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for column in data %}
-                      <tr>
-                        <td><a href="{% url 'applicant' column.applicant_id %}">{{column.applicant_name}}</a></td>
-                        <td>{{column.applicant_percent}}</td>
-                        <td>{{column.applicant_skills}}</td>
-                        <td>{{column.recruiter_decision}}</td>
-                        <td><input type="checkbox" name="checkboxall" value="{{column.applicant_id}}"
-                            style="text-align:center;"></td>
-                      </tr>
-                      {% endfor %}
-                      </form>
-                    </tbody>
-                  </table>
-                  <p>
-                  <form action="" method="POST"> {% csrf_token %}<input type="submit" name="closejob"
-                      value="Close Job" class="btn btn-danger"/></form>
-                  </p>
-                </div>
+                          <th onclick="sortTable(1)"><button>% Suitability<span aria-hidden="true"></span></button></th>
+                          <th onclick="sortTable(1)"><button>Skills<span aria-hidden="true"></span></button></th>
+                          <th onclick="sortTable(2)"><button>Applicant Status<span aria-hidden="true"></span></button>
+                          </th>
+                          <form action="" method="POST"> {% csrf_token %}
+                            <th>{{ form.as_p }}<input type="submit" name="submitall" value="Change Applicant Status" />
+                            </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for column in data %}
+                        <tr>
+                          <td><a href="{% url 'applicant' column.applicant_id %}">{{column.applicant_name}}</a></td>
+                          <td>{{column.applicant_percent}}</td>
+                          <td>{{column.applicant_skills}}</td>
+                          <td>{{column.recruiter_decision}}</td>
+                          <td><input type="checkbox" name="checkboxall" value="{{column.applicant_id}}"
+                              style="text-align:center;"></td>
+                        </tr>
+                        {% endfor %}
+                        </form>
+                      </tbody>
+                    </table>
+                    <br><br>
+                    <p> <a href="{% url 'jdpdf' job_details.job_id %}" class="btn btn-primary">View Job Description</a>
+                      <a href="{% url 'csv' job_details.job_id %}" class="btn btn-primary">Download List of Applicants'
+                        Status</a>
+                    <form action="" method="POST"> {% csrf_token %}<input type="submit" name="closejob"
+                        value="Close Job" class="btn btn-danger" /></form>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
