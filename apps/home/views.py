@@ -20,6 +20,7 @@ from django.db.models import Q
 from .models import *
 from .keyword import *
 from .forms import *
+from .finalModel import *
 
 import datetime
 import csv
@@ -114,6 +115,9 @@ def create(request):
 
                 # save resume files & store info to database
                 resume_fs = file_storage
+
+                # loop through all resumes, create a new entry for each resume, initialise history, 
+                # then loop through all available jobs and get % suitability for each job
                 for resume in resume_files:
                     resume_name = resume.name
                     resume_fs.save(resume_name, resume) # uncomment to enable file saving
@@ -139,19 +143,24 @@ def create(request):
                         status_change_date = datetime.date.today()
                     )
 
+                    # Get list of predictions
+                    predictions_list = getModelPredictions(file_location+resume_name)
+                    fse_prediction = predictions_list[0][3]
+                    gpis_prediction = predictions_list[0][4]
+                    sa_prediction = predictions_list[0][5]
+
                     # get names of all created job matchings, including the newly created one for % suitability
                     created_jobs_list = MatchedJobModel.objects.values_list("job_name", flat=True)
                     for job in created_jobs_list:
-                        # print("job: " + job)
 
                         # get job id
                         if job == new_jobname: # if this is the newly created job
-                            created_job_id = int(new_job.job_id)
+                            created_job_id = new_job.job_id
                         else: # for the jobs that already exist in the database
-                            created_job_id = MatchedJobModel.objects.filter(job_name = job).values_list("job_id", flat=True)[0]
+                            created_job_id = MatchedJobModel.objects.get(job_name = job).job_id
 
                         # get job keywords for the job
-                        created_jd_keywords = MatchedJobModel.objects.filter(job_name = job).values_list("job_keywords", flat=True)[0]
+                        created_jd_keywords = MatchedJobModel.objects.get(job_name = job).job_keywords
                         # print(created_jd_keywords)
 
                         # split job keywords into list of words
@@ -163,10 +172,19 @@ def create(request):
                         # print(applicant_skills)
 
                         # TODO: load files into prediction model, get % suitability for this job & resume
-                        created_jd_filename = MatchedJobModel.objects.filter(job_name = job).values_list("job_description", flat=True)[0]
-                        created_jd_filepath = "static/" + job + "/" + created_jd_filename
-                        ### percent = Model(file_location+resume_name, created_jd_filepath) # get % suit for this job and resume
-                        percent = round(random.random(), 3)
+                        # created_jd_filename = MatchedJobModel.objects.get(job_name = job).job_description
+                        # created_jd_filepath = "static/" + job + "/" + created_jd_filename
+                        
+                        if job == "Field Support Engineer":
+                            percent = fse_prediction
+                        elif job == "GPIS Executive":
+                            percent = gpis_prediction
+                        elif job == "System Analyst":
+                            percent = sa_prediction
+                        else:
+                            percent = random.random()
+
+                        percent = round(percent, 3)
 
                         # save model prediction information into database
                         ModelPredictionModel.objects.create(
