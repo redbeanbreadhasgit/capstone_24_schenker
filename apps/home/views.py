@@ -191,7 +191,7 @@ def create(request):
                                 applicant_id_id = applicant_id,
                                 job_id_id = created_job_id,
                                 applicant_skills = applicant_skills,
-                                applicant_percent = percent)
+                                applicant_percent = percent*100)
 
                 # message to inform recruiter that matching has been completed
                 messages.info(request, "Matching Created")
