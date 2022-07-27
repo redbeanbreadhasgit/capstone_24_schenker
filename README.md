@@ -6,7 +6,7 @@ This project is made by React (Frontend) and Django (Backend). Here is the steps
 
 
 ## How to install frontend:
-- We use Create React App to make our frontend. We start it by run:
+- We use Create React App to make our frontend. We start it by run: 
 
         $ npx create-react-app capstone
 
