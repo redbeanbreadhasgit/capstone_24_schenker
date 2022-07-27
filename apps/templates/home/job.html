@@ -93,16 +93,18 @@
                   <div class="col-xl-12">
                     <div class="card">
                       <div class="card-header">
-                        <h2>Job: {{job_details.job_name}}</h2>
+                        <h3>Job: {{job_details.job_name}}</h3>
                       </div>
                       <div>
                         <style>
-                          h3 {
+                          h4 {
                             color: red;
+                            padding-top: 2%;
+                            padding-left: 2%;
                           }
                         </style>
                         {% for message in messages %}
-                        <h3>{{message}}</h3>
+                        <h4>{{message}}</h4>
                         {% endfor %}
                       </div>
 
