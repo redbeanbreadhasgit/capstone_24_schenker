@@ -4,13 +4,13 @@
 
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}<style>
-  table.sortable th {
+  table#myTable th {
     font-weight: bold;
     border-bottom: thin solid #888;
     position: relative;
   }
 
-  table.sortable th button {
+  table#myTable th button {
     font-weight: bold;
     background: transparent;
     border: none;
@@ -25,27 +25,27 @@
     cursor: pointer;
   }
 
-  table.sortable th button span {
+  table#myTable th button span {
     position: absolute;
     right: 4px;
   }
 
-  table.sortable th[aria-sort="descending"] span::after {
+  table#myTable th[aria-sort="descending"] span::after {
     content: "▼";
     color: currentcolor;
     font-size: 100%;
     top: 0;
   }
 
-  table.sortable th[aria-sort="ascending"] span::after {
+  table#myTable th[aria-sort="ascending"] span::after {
     content: "▲";
     color: currentcolor;
     font-size: 100%;
     top: 0;
   }
 
-  table.sortable th:not([aria-sort]) button:focus span::after,
-  table.sortable th:not([aria-sort]) button:hover span::after {
+  table#myTable th:not([aria-sort]) button:focus span::after,
+  table#myTable th:not([aria-sort]) button:hover span::after {
     content: "▼";
     color: currentcolor;
     font-size: 100%;
@@ -99,15 +99,13 @@
                           <table class="table">
                             <tbody>
                               <tr>
-                                <th scope="row">Applicant Applied Job</th>
-                                <td>{{applied_job_name}}</td>
-                              </tr>
-                              <tr>
                                 <th scope="row">Applicant Status</th>
-                                <td>{{recruiter_decision}}</td>
+                                <th scope="row">Applicant Applied Job</th>
+                                <th scope="row">Current Reprofiled Job</th>
                               </tr>
                               <tr>
-                                <th scope="row">Current Reprofiled Job</th>
+                                <td>{{recruiter_decision}}</td>
+                                <td>{{applied_job_name}}</td>
                                 <td>{{reprofiled_job_name}}</td>
                               </tr>
 
@@ -136,7 +134,7 @@
                           </div>
       
                       <h4><caption style="text-align:right">Job Matching Results:</caption></h4>
-                      <table class="sortable" id="myTable">
+                      <table class="table" id="myTable">
                         <thead>
                           <tr>
                             <th onclick="sortTable(0)"><button>Job Name<span aria-hidden="true"></span></button></th>
@@ -408,7 +406,7 @@
 
   // Initialize sortable table buttons
   window.addEventListener('load', function () {
-    var sortableTables = document.querySelectorAll('table.sortable');
+    var sortableTables = document.querySelectorAll('table#myTable');
     for (var i = 0; i < sortableTables.length; i++) {
       new SortableTable(sortableTables[i]);
     }
