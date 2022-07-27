@@ -170,7 +170,7 @@
                       </tbody>
                     </table>
                     <br><br>
-                    <p> <a href="{% url 'jdpdf' job_details.job_id %}" class="btn btn-primary">View Job Description</a>
+                    <p> <a href="{% url 'jdpdf' job_details.job_id %}" target="_blank" class="btn btn-primary">View Job Description</a>
                       <a href="{% url 'csv' job_details.job_id %}" class="btn btn-primary">Download List of Applicants'
                         Status</a>
                     <form action="" method="POST"> {% csrf_token %}<input type="submit" name="closejob"
