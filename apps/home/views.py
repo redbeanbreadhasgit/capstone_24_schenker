@@ -90,7 +90,8 @@ def create(request):
                 jd_file = request.FILES["jdfile"]
                 resume_files = request.FILES.getlist("resumes")
                 skill_keywords = request.POST["skillkeywords"]
-                skill_keywords = clean_words(skill_keywords, "text")
+                skill_keywords = keywords_list(skill_keywords)
+                skill_keywords = list_to_string(skill_keywords)
 
                 # set file locations
                 file_location = "apps/static/" + new_jobname + "/"
@@ -161,15 +162,10 @@ def create(request):
 
                         # get job keywords for the job
                         created_jd_keywords = MatchedJobModel.objects.get(job_name = job).job_keywords
-                        # print(created_jd_keywords)
-
-                        # split job keywords into list of words
-                        keywords_list = created_jd_keywords.split("'")[1::2]
-                        # print(keywords_list)
 
                         # match keywords to resume to extract applicant's skills for that job
-                        applicant_skills = keyword_matching(keywords_list, file_location+resume_name)
-                        # print(applicant_skills)
+                        applicant_skills = keyword_matching(created_jd_keywords, file_location+resume_name)
+                        applicant_skills = list_to_string(applicant_skills)
 
                         # TODO: load files into prediction model, get % suitability for this job & resume
                         # created_jd_filename = MatchedJobModel.objects.get(job_name = job).job_description
@@ -184,14 +180,12 @@ def create(request):
                         else:
                             percent = random.random()
 
-                        percent = round(percent, 3)
-
                         # save model prediction information into database
                         ModelPredictionModel.objects.create(
                                 applicant_id_id = applicant_id,
                                 job_id_id = created_job_id,
                                 applicant_skills = applicant_skills,
-                                applicant_percent = percent*100)
+                                applicant_percent = round(percent*100, 1))
 
                 # message to inform recruiter that matching has been completed
                 messages.info(request, "Matching Created")
@@ -255,6 +249,8 @@ def allapplicants(request):
         applicant_id = applicant.applicant_id
         job_id = applicant.job_id_id
         job = MatchedJobModel.objects.get(job_id = job_id).job_name
+        print(job_id)
+        print(applicant_id)
         applicant_percent = ModelPredictionModel.objects.get(job_id_id = job_id, applicant_id_id = applicant_id).applicant_percent
         decision = applicant.recruiter_decision
 

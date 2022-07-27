@@ -2,33 +2,32 @@ from pdfminer.high_level import extract_text
 from nltk.corpus import stopwords
 import re
 import nltk
+from .finalModel import *
 
 # nltk.download('stopwords')
 
-def clean_words(input, type):
-    if type == "file":
-        input = extract_text(input)
-        
-    text = input.replace('\n', ' ')
-    text = text.strip()
-    text = re.sub(r'\w+:\/{2}[\d\w-]+(\.[\d\w-]+)*(?:(?:\/[^\s/]*))*', ' ', text)
-    text = re.sub(r'[^\w\s]', ' ', text)
-    text = ' '.join([word for word in text.split() if word not in (stopwords.words('english'))])
-    text = text.lower()
-    
-    if type == "file":
-        return text
-    else:
-        return text.split()
+
+def resume_words(input):
+    text = getRawText(input)
+    text = getCleanText(text)
+    return text
+
+def keywords_list(input_keywords):
+    kw_list = input_keywords.split(",")
+    kw_list = [skill.strip() for skill in kw_list]
+    kw_list = [getCleanText(skill) for skill in kw_list]
+    return kw_list
+
+def list_to_string(keyword_list):
+    sep = ", "
+    return sep.join(keyword_list)
 
 
-def keyword_matching(keywords, resume):
-    # keywords have been cleaned already
-    resume = clean_words(resume, "file")
-    
+def keyword_matching(keywords, resume_filepath):
+    resume_text = resume_words(resume_filepath)
+    keywords = keywords_list(keywords)
     applicant_keywords = []
-    for word in keywords:
-        if word in resume:
-            applicant_keywords.append(word)
-            
-    return(applicant_keywords)
+    for skill in keywords:
+        if skill in resume_text:
+            applicant_keywords.append(skill)
+    return applicant_keywords
