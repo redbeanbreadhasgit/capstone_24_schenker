@@ -58,12 +58,9 @@ def getCleanText(text):
     newtext = ''
     for EachLine in text:
         newtext += EachLine.lower()
-    # newtext = remove_noneng_nonskill(newtext)
     newtext = stopword(newtext)
     newtext = lemmatizer(newtext)
-    # newtext = remove_noneng_nonskill(newtext)
     newtext_lst = re.findall(pat, newtext)
-    # print(newtext_lst)
     if len(newtext_lst) <= 20:
         return " ".join(newtext_lst[0:len(newtext_lst)])
     else:
