@@ -1,8 +1,11 @@
-# Capstone DB_Schenker
+# Capstone DB_Schenker Technical Documentation
 
-This project is made by React (Frontend) and Django (Backend). Here is the steps to set up the React environment and how to run it.
 
-## How to install:
+This project is made by React (Frontend) and Django (Backend). Here is the steps to set up the React and Django environment and how to run them.
+
+
+
+## How to install frontend:
 - We use Create React App to make our frontend. We start it by run:
 
         $ npx create-react-app capstone
@@ -25,7 +28,7 @@ This project is made by React (Frontend) and Django (Backend). Here is the steps
 
         http://localhost:3000
      
-## File structure:
+## Frontend File Structure:
 - All capstone files are under:
 
         capstone/
@@ -38,7 +41,7 @@ This project is made by React (Frontend) and Django (Backend). Here is the steps
 
         capstone/src/pages/
 
-- After the frontend starts, the output of this file will be rendered:
+- After the frontend starts, the output of this file will be rendered here:
 
         capstone/src/App.js
 
@@ -51,3 +54,30 @@ This project is made by React (Frontend) and Django (Backend). Here is the steps
         capstone/public/
 
     e.g. root element is defined in capstone/public/index.html
+
+## How to install backend:
+- These are needed for our backend setup:
+
+        pip install regex 
+        pip install pdfminer 
+        pip install django 
+        pip install djangorestframework 
+        pip install pdfminer.six 
+        pip install nltk
+
+## Backend File Structure:
+
+> talentmatching > cores
+>> 1. **views.py**: here you code the logic, getting the data etc. mostly you will code in this file.
+>> 2. **models.py**: this file modifies the database tables & input type. DO NOT EDIT
+>> 3. **urls.py**: this file handles the routing, modify this if want to add new pages.
+
+> talentmatching > templates
+
+>> the frontend (html for now) files are stored here. modify them to change the UI
+
+> talentmatching
+>> **db.sqlite**: database file. can download SQLiteStudio to view. DO 
+
+
+
