@@ -124,14 +124,15 @@
                             Resume</a></p>
                           <div>
                             <style>
-                              h4 {
+                              .message {
                                 color: red;
                                 padding-top: 2%;
-                                padding-left: 2%;
+                                padding-left: 1%;
+                                padding-bottom: 2%;
                               }
                             </style>    
                             {% for message in messages %}
-                            <h4>{{message}}</h4>
+                            <h4 class="message">{{message}}</h4>
                             {% endfor %}
                           </div>
       
@@ -195,8 +196,8 @@
                       </form><br>
                     </div>
                     <div>
-                      <caption style="text-align:right">Applicant History:</caption>
-                      <table id="historyTable">
+                      <h4><caption style="text-align:right">Applicant History:</caption></h4>
+                      <table class="table" id="historyTable">
                         <thead>
                           <tr>
                             <th>Job Name</th>
@@ -208,7 +209,7 @@
 
                         {% for row in history_data %}
                         <tr>
-                          <td>{row.history_job_name}}</td>
+                          <td>{{row.history_job_name}}</td>
                           <td>{{row.history_status}}</td>
                           <td>{{row.history_date | date:"Y-m-d H:i:s"}}</td>
                           <td>{{row.history_recruiter_name}}</td>
