@@ -399,6 +399,7 @@ def viewapplicant(request, applicant_id):
 
         # append to job_data list for frontend display purposes
         job_data.append({"job_name": predict_job_name,
+            "job_id": predict_job_id,
             "applicant_percent": percent,
             "applicant_rankinjob": applicant_rankinjob,
             "applicant_skills": skills})

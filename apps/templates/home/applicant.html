@@ -150,7 +150,7 @@
 
                         {% for row in job_data %}
                         <tr>
-                          <td>{{row.job_name}}</td>
+                          <td><a href="{% url 'job' row.job_id %}">{{row.job_name}}</a></td>
                           <td>{{row.applicant_percent}}</td>
                           <td>{{row.applicant_rankinjob}}</td>
                           <td>{{row.applicant_skills}}</td>
@@ -208,7 +208,7 @@
 
                         {% for row in history_data %}
                         <tr>
-                          <td>{{row.history_job_name}}</td>
+                          <td>{row.history_job_name}}</td>
                           <td>{{row.history_status}}</td>
                           <td>{{row.history_date | date:"Y-m-d H:i:s"}}</td>
                           <td>{{row.history_recruiter_name}}</td>
