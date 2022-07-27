@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>{% if request.user.is_authenticated %}
+    Welcome, {{request.user.get_full_name}}!
+  {% endif %}</h2>
+  <div class="dropdown" style="float: right;">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Recruiter
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li class="dropdown-header">{{request.user}}</li>
+      {% comment %} <li><a href="#">Settings</a></li> {% endcomment %}
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="container">
+  <div>
+  <h1>Number of Pending Applicants: {{data.pending_applicants}}</h1>
+  <button type="submit"><a href='/allapplicants'>View All Applicants</a></button>
+  </div>
+  <div>
+    <h1>Number of Open Jobs: {{data.open_jobs}}</h1>
+    <button type="submit"><a href='/alljobs'>View All Job Matches</a></button>
+  </div>
+  <br><br>
+  <div>
+    <button type="submit"><a href='/create'>Create New Job Matching</a></button>
+  </div>
+</div>
+
+
+</body>
+</html>
+
+    

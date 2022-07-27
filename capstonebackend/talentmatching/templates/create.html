@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<h1>Create new job matching page</h1>
+<a href="{% url 'logout' %}"><input type="button" value="Logout" style="float: right;"></a>
+</head>
+<button type="submit"><a href='/create'>Create New Job Matching</a></button>
+<button type="submit"><a href='/alljobs'>View All Job Matches</a></button>
+<button type="submit"><a href='/allapplicants'>View All Applicants</a></button>
+
+<body>
+<div>
+  <style> h3{color: red; } </style>
+  {% for message in messages %}
+  <h3>{{message}}</h3>
+  {% endfor %}
+</div>
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="jobnamelabel">Job Name:</label>
+    <br/><input type="text" id="jobname" name="jobname" value="{{data}}">
+    <br/><input type="submit" name="validation" value="Check Job Name"><br>
+
+    <br/><label for="uploadjdlabel" id="uploadjdlabel">Upload Job Description File:</label>
+    <br/><input type="file" accept="application/pdf" id="jdfile" name="jdfile" onchange="javascript:updateJD()" />
+    <div id="jdfilename"></div>
+    
+    <br/><label for="uploadresumefileslabel" id="uploadresumefileslabel">Upload Applicant Resume Files:</label>
+    <br/><input type="file" accept="application/pdf" id="resumes" name="resumes" multiple onchange="javascript:updateResumeList()" />
+    <div id="resumelist"></div>
+
+    <br/><label for="jdkeywordslabel" id="jdkeywordslabel">Enter some technical skill words for matching, single words only (eg: HTML, CSS, JavaScript):</label>
+    <br/><input type="text" id="skillkeywords" name="skillkeywords">
+
+    <br/><input type="submit" name="getmatching" value="Get Job Matching"><br>
+
+</form>
+
+<script>
+  updateJD = function() {
+    var input = document.getElementById('jdfile');
+    var output = document.getElementById('jdfilename');
+  
+    output.innerHTML = 'Selected job decription file: </br><li>' + input.files.item(0).name + "</li>";
+  }
+
+  updateResumeList = function() {
+    var input = document.getElementById('resumes');
+    var output = document.getElementById('resumelist');
+  
+    output.innerHTML = 'Selected resume files: </br>';
+    for (var i = 0; i < input.files.length; ++i) {
+      output.innerHTML += '<li>' + input.files.item(i).name + '</li>';
+    }
+  }
+</script>
+
+</body>
+</html>
