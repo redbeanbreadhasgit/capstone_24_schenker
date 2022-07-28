@@ -11,8 +11,7 @@ from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
-from django.db import IntegrityError
-from django.forms import SelectDateWidget
+# from django.db import IntegrityError
 from django.core.files.storage import FileSystemStorage
 from django.utils.datastructures import MultiValueDictKeyError
 from django.db.models import Q
@@ -24,7 +23,7 @@ from .finalModel import *
 
 import datetime
 import csv
-import random, pickle
+import random
 
 
 @login_required(login_url="/login/")
