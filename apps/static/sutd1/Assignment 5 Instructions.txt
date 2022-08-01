@@ -1,0 +1,53 @@
+Fifth Assignment (individual work)
+Steps
+□ Consider the slot allocation problem described in Slide 43 and 
+
+formulated in slide 49. 
+
+□ Consider also the slot allocation instance provided under the 
+
+Homework sheet in Ex_SlotAllocation.xls
+
+1.
+
+Compute the solution that would be obtained by allocating flights sequentially, 
+i.e. giving priority to the flights that are requested for a longer period - similar to
+current slot allocation approaches).
+
+2. Compute the optimal solution using the AMPL model ExampleSlotAllocation.run –
+
+do not forget to update the ExampleSlotAllocation.dat
+
+3. Add a new constraint ensuring that no flight can be displaced by more than 2 
+periods (maximum displacement = 2) – Compute the new optimal solution
+
+4. Consider that the maximum displacement = 1 ; Compute the new optimal 
+
+solution. If no feasible solution can be found, create a new decision variable 
+named flight rejected 𝑹𝒊. The objective function should now have two objectives: 
+(i) minimizing the number of flights rejected; (ii) minimizing total displacement. A 
+larger weight (e.g. 1000) should be given to objective (i) to minimize first the 
+number of flights rejected, and then the total displacement.
+
+40.321 - Airport Systems Modeling and Simulation, 2022
+
+63
+
+Fifth Assignment (individual work)
+Deliverables
+
+Note: The deliverables should be submitted to edimension
+
+□ PDF/Word file
+
+▪ Solution obtained in Ex.1.
+▪ Solution obtained in Ex.2.
+▪ Solution obtained in Ex.3.
+▪ Solution obtained in Ex.4.
+▪ Print screen of the final AMPL mod. file
+
+40.321 - Airport Systems Modeling and Simulation, 2022
+
+64
+
+
