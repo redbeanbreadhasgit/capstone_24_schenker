@@ -311,9 +311,9 @@ def viewjob(request, job_id):
 
     # for recruiter to close the job
     if request.POST.get("closejob"):
-        job_details.job_status = "Closed"
+        job_details.job_status = "Completed"
         job_details.save()
-        messages.info(request, "Job has been closed.")
+        messages.info(request, "Job has been completed.")
         return redirect(reverse("job",kwargs={'job_id':str(job_id)}))
 
     # for recruiter to multi change status of applicants
