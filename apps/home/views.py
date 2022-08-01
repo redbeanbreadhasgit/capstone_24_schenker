@@ -11,9 +11,10 @@ from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
-# from django.db import IntegrityError
+from django.db import IntegrityError
 from django.core.files.storage import FileSystemStorage
 from django.utils.datastructures import MultiValueDictKeyError
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 
 from .models import *
@@ -190,13 +191,16 @@ def create(request):
                 messages.info(request, "Matching Created")
                 return redirect('create')
             
+            ### Errors
+            # when no files are uploaded
             except MultiValueDictKeyError:
                 messages.info(request, "Must upload files")
                 return render(request, 'home/create-new-job.html', {'data': new_jobname})
 
-            # except IntegrityError:
-            #     messages.info(request, "Job name taken, use another")
-            #     return render(request, 'create.html')
+            # when job name already exists in database
+            except IntegrityError:
+                messages.info(request, "Job name taken, use another")
+                return render(request, 'home/create-new-job.html')
 
     else:
         return render(request, 'home/create-new-job.html')
@@ -280,19 +284,24 @@ def viewjob(request, job_id):
     # get applicant information for display
     for applicant in data:
         id = applicant.applicant_id
-        predict_data = ModelPredictionModel.objects.get(applicant_id_id = id, job_id_id = job_id)
 
-        name = applicant.applicant_name
-        percent = predict_data.applicant_percent
-        decision = applicant.recruiter_decision
-        skills = predict_data.applicant_skills
+        try:
+            predict_data = ModelPredictionModel.objects.get(applicant_id_id = id, job_id_id = job_id)
+            name = applicant.applicant_name
+            percent = predict_data.applicant_percent
+            decision = applicant.recruiter_decision
+            skills = predict_data.applicant_skills
 
-        applicant_data.append({"applicant_id": id,
-        "applicant_name": name,
-        "applicant_percent": percent,
-        "recruiter_decision": decision,
-        "applicant_skills": skills})
-    
+            applicant_data.append({"applicant_id": id,
+            "applicant_name": name,
+            "applicant_percent": percent,
+            "recruiter_decision": decision,
+            "applicant_skills": skills})
+        
+        # error when modelprediction query returns 0 rows
+        except ObjectDoesNotExist:
+            continue
+
     # sort applicant information by their % suit, descending
     applicant_data_sorted = sorted(applicant_data, key=lambda x: x['applicant_percent'], reverse=True)
 
