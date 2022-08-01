@@ -58,6 +58,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <!--[ Number of Applicants section ] end-->
 
                         </div>
@@ -73,4 +74,9 @@
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+    <!-- chart-morris Js -->
+    <script src="{{ ASSETS_ROOT }}/plugins/chart-morris/js/raphael.min.js"></script>
+    <script src="{{ ASSETS_ROOT }}/plugins/chart-morris/js/morris.min.js"></script>
+    <script src="{{ ASSETS_ROOT }}/js/pages/chart-morris-custom.js"></script>
+{% endblock javascripts %}
