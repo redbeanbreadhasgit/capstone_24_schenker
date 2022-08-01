@@ -1,7 +1,14 @@
+# load packages
 import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
 import re
+
+from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+from pdfminer.converter import TextConverter
+from pdfminer.layout import LAParams
+from pdfminer.pdfpage import PDFPage
+from io import StringIO
 
 from nltk.tokenize import word_tokenize
 from nltk import pos_tag
@@ -9,17 +16,46 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
 
-# import aspose.words as aw
 import pickle
-import pdftotext
 
 ##### Functions for cleaning text, extracting skills #####
-# Get raw text from file
-def getRawText(filepath):
-    with open(filepath, "rb") as f:
-        pdf = pdftotext.PDF(f)
-    resume_text = ("\n\n".join(pdf))
+# Get raw text from .pdf
+def getRawText(resume_pdf_filepath):
+    rsrcmgr = PDFResourceManager()
+    retstr = StringIO()
+    codec = 'utf-8'
+    laparams = LAParams()
+    device = TextConverter(rsrcmgr, retstr, codec=codec, laparams=laparams)
+    fp = open(resume_pdf_filepath, "rb")
+    interpreter = PDFPageInterpreter(rsrcmgr, device)
+    password = ""
+    maxpages = 0
+    caching = True
+    pagenos=set()
+
+    for page in PDFPage.get_pages(fp, pagenos, maxpages=maxpages, password=password,caching=caching, check_extractable=True):
+        interpreter.process_page(page)
+
+    resume_text = retstr.getvalue()
+
+    fp.close()
+    device.close()
+    retstr.close()
     return resume_text
+
+# save raw text to .txt
+def pdf2Txt(resume_pdf_filepath):
+    text = getRawText(resume_pdf_filepath)
+    resume_txt_filepath = resume_pdf_filepath.replace(".pdf", ".txt")
+    with open(resume_txt_filepath, "w", encoding = 'utf-8') as f:
+        f.write("".join(text))
+    return resume_txt_filepath
+
+# extract text from .txt
+def read_txt(txtFilepath):
+    f = open(txtFilepath, encoding = 'ISO-8859-1')
+    text = f.readlines()
+    return text
 
 # STOPWORD REMOVAL
 def stopword(string):
@@ -58,15 +94,18 @@ def getCleanText(text):
     newtext = ''
     for EachLine in text:
         newtext += EachLine.lower()
+    # newtext = remove_noneng_nonskill(newtext)
     newtext = stopword(newtext)
     newtext = lemmatizer(newtext)
+    # newtext = remove_noneng_nonskill(newtext)
     newtext_lst = re.findall(pat, newtext)
+    # print(newtext_lst)
     if len(newtext_lst) <= 20:
         return " ".join(newtext_lst[0:len(newtext_lst)])
     else:
         return " ".join(newtext_lst[9:len(newtext_lst)])
 
-skills_csv = pd.read_csv('apps/home/skills_df_cleaned.csv')
+skills_csv = pd.read_csv('/Users/weils/Downloads/Telegram Desktop/Final Model for Integration/skills_df_cleaned.csv')
 skill_list = skills_csv['name'].tolist()
 skill_list += [
     "itil", "php", "jquery", "javascript" , "bootstrap", "codeigniter", "visual", "c", "powerbuilder", "html", "css",
@@ -89,7 +128,8 @@ def getSkills(filepath):
     return list(dict.fromkeys(skills))
 
 def getModelPredictions(filepath):
-    raw_text = getRawText(filepath)
+    txt_filepath = pdf2Txt(filepath)
+    raw_text = read_txt(txt_filepath)
     text = getCleanText(raw_text)
     tfidf = pickle.load(open("apps/home/tfidfVectorizer.pkl", "rb"))
     X_tfidf = tfidf.transform([text])
@@ -97,8 +137,16 @@ def getModelPredictions(filepath):
     predictions = model.predict_proba(X_tfidf)
     return predictions
 
-# applicant_skills = getSkills("apps/home/Sample Field Support CV 1 (ML - Selected).pdf")
+# applicant_skills = getSkills("Sample Field Support CV 1 (ML - Selected).pdf")
 # print(applicant_skills)
 
-# applicant_predictions = getModelPredictions("apps/home/Sample Field Support CV 1 (ML - Selected).pdf")
-# print(applicant_predictions[0][3])
+# applicant_predictions = getModelPredictions("Sample Field Support CV 1 (ML - Selected).pdf")
+# print(applicant_predictions)
+
+# 0: not suitable for fse
+# 1: not suitable for gpis
+# 2: not suitable for system analyst
+# 3: suitable for fse
+# 4: suitable for gpis
+# 5: suitable for system analyst
+
