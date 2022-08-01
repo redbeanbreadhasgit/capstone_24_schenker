@@ -247,23 +247,27 @@ def allapplicants(request):
     # get all applicants data from database
     data = ApplicantModel.objects.all()
     for applicant in data:
+        try:
         # get displayed data
-        name = applicant.applicant_name
-        applicant_id = applicant.applicant_id
-        job_id = applicant.job_id_id
-        job = MatchedJobModel.objects.get(job_id = job_id).job_name
-        print(job_id)
-        print(applicant_id)
-        applicant_percent = ModelPredictionModel.objects.get(job_id_id = job_id, applicant_id_id = applicant_id).applicant_percent
-        decision = applicant.recruiter_decision
+            name = applicant.applicant_name
+            applicant_id = applicant.applicant_id
+            job_id = applicant.job_id_id
+            job = MatchedJobModel.objects.get(job_id = job_id).job_name
+            print(job_id)
+            print(applicant_id)
+            applicant_percent = ModelPredictionModel.objects.get(job_id_id = job_id, applicant_id_id = applicant_id).applicant_percent
+            decision = applicant.recruiter_decision
 
-        store_data.append({            
-            "applicant_id": applicant_id,
-            "applicant_name": name,
-            "applicant_percent": applicant_percent,
-            "job_id": job_id,
-            "job_name": job,
-            "recruiter_decision": decision})
+            store_data.append({            
+                "applicant_id": applicant_id,
+                "applicant_name": name,
+                "applicant_percent": applicant_percent,
+                "job_id": job_id,
+                "job_name": job,
+                "recruiter_decision": decision})
+        
+        except ObjectDoesNotExist:
+            continue
 
     return render(request, 'home/allapplicants.html', {'data': store_data})
 
