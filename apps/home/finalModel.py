@@ -105,7 +105,7 @@ def getCleanText(text):
     else:
         return " ".join(newtext_lst[9:len(newtext_lst)])
 
-skills_csv = pd.read_csv('/Users/weils/Downloads/Telegram Desktop/Final Model for Integration/skills_df_cleaned.csv')
+skills_csv = pd.read_csv('apps/home/Final Model for Integration/skills_df_cleaned.csv')
 skill_list = skills_csv['name'].tolist()
 skill_list += [
     "itil", "php", "jquery", "javascript" , "bootstrap", "codeigniter", "visual", "c", "powerbuilder", "html", "css",
