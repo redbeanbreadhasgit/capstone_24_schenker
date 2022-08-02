@@ -447,10 +447,13 @@ def viewapplicant(request, applicant_id):
             applicant.recruiter_decision = status_change
             applicant.save()
 
+            # get applicant's current job from history
+            current_job_id = ApplicantHistoryModel.objects.filter(applicant_id_id = applicant.applicant_id).latest("status_change_date").job_id_id
+
             # create entry in the applicant history table
             ApplicantHistoryModel.objects.create(
                         applicant_id = applicant,
-                        job_id = MatchedJobModel.objects.get(job_id = applied_job_id),
+                        job_id = MatchedJobModel.objects.get(job_id = current_job_id),
                         recruiter_decision = status_change,
                         recruiter_id = request.user,
                         status_change_date = datetime.date.today())
@@ -476,7 +479,7 @@ def viewapplicant(request, applicant_id):
                 ApplicantHistoryModel.objects.create(
                         applicant_id = applicant,
                         job_id = MatchedJobModel.objects.get(job_name=chosen_reprofile_job),
-                        recruiter_decision = status_change,
+                        recruiter_decision = "Reprofiled",
                         recruiter_id = request.user,
                         status_change_date = datetime.date.today())
 
