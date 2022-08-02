@@ -89,9 +89,9 @@
                   <!-- [ basic-table ] start -->
                   <div class="col-xl-12">
                     <div class="card">
-                      <div class="card-header">
+                      {% comment %} <div class="card-header">
                         <h3>Applicant: {{name}}</h3>
-                      </div>
+                      </div> {% endcomment %}
 
                       <div class="card-block table-border-style">
                         <div class="table-responsive">
@@ -135,7 +135,7 @@
                             {% endfor %}
                           </div>
       
-                      <h3><caption style="text-align:right">Job Matching Results:</caption></h3>
+                      <h4><caption style="text-align:right">Job Matching Results:</caption></h4>
                       <table class="table" id="myTable">
                         <thead>
                           <tr>
@@ -164,11 +164,11 @@
                         {% csrf_token %}
                         {% comment %} {{ form.as_p }} {% endcomment %}
 
-                        <table class="sortable" id="myTable">
+                        <table class="table" id="myTable">
                           <thead>
                             <tr>
                               <th>Recruiter Decision:</th>
-                              <th>OR</th>
+                              {% comment %} <th>OR</th> {% endcomment %}
                               <th>If reprofiling, select job: </th>
                             </tr>
                           </thead>
@@ -180,7 +180,7 @@
                                 <option value="Pending">Pending</option>
                               </select>
                             </td>
-                            <td></td>
+                            {% comment %} <td></td> {% endcomment %}
                             <td><select name="chosen_reprofile_job" id="chosen_reprofile_job">
                                 <option value="">Job Name</option>
                                 {% for row in job_data %}
