@@ -121,19 +121,7 @@
                     <div id="applicantinfo">
                           <p><a href="{% url 'resumepdf' applicant_id %}" target="_blank" class="btn btn-primary">Click to view Applicant
                             Resume</a></p>
-                          <div>
-                            <style>
-                              .message {
-                                color: red;
-                                padding-top: 2%;
-                                padding-left: 1%;
-                                padding-bottom: 2%;
-                              }
-                            </style>    
-                            {% for message in messages %}
-                            <h4 class="message">{{message}}</h4>
-                            {% endfor %}
-                          </div>
+                          
       
                       <h4><caption style="text-align:right">Job Matching Results:</caption></h4>
                       <table class="table" id="myTable">
@@ -191,7 +179,18 @@
                           </tr>
                         </table>
                         <br>
-                        <input type="submit" value="Update Applicant Details" class="btn btn-secondary" />
+                        <input type="submit" value="Update Applicant Details" class="btn btn-secondary"/>
+                              <style>
+                                .message {
+                                  color: red;
+                                  padding-top: 2%;
+                                  padding-left: 1%;
+                                  padding-bottom: 2%;
+                                }
+                              </style>    
+                              {% for message in messages %}
+                              <p class="message" style="display: inline;">{{message}}</p>
+                              {% endfor %}
                       </form><br>
                     </div>
                     <div>
@@ -230,7 +229,12 @@
 <!-- [ Main Content ] end -->
 
 {% endblock content %}
-
+.message {
+  color: red;
+  padding-top: 2%;
+  padding-left: 1%;
+  padding-bottom: 2%;
+}
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
 <script>
