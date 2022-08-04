@@ -1,0 +1,423 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Applicant{% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}<style>
+  table#myTable th {
+    font-weight: bold;
+    border-bottom: thin solid #888;
+    position: relative;
+  }
+
+  table#myTable th button {
+    font-weight: bold;
+    background: transparent;
+    border: none;
+    display: inline;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: left;
+    outline: none;
+    cursor: pointer;
+  }
+
+  table#myTable th button span {
+    position: absolute;
+    right: 4px;
+  }
+
+  table#myTable th[aria-sort="descending"] span::after {
+    content: "▼";
+    color: currentcolor;
+    font-size: 100%;
+    top: 0;
+  }
+
+  table#myTable th[aria-sort="ascending"] span::after {
+    content: "▲";
+    color: currentcolor;
+    font-size: 100%;
+    top: 0;
+  }
+
+  table#myTable th:not([aria-sort]) button:focus span::after,
+  table#myTable th:not([aria-sort]) button:hover span::after {
+    content: "▼";
+    color: currentcolor;
+    font-size: 100%;
+    top: 0;
+  }
+  .card{
+    padding-top:10px;
+  }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+<!-- [ Main Content ] start -->
+<div class="pcoded-main-container">
+  <div class="pcoded-wrapper">
+    <div class="pcoded-content">
+      <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+          <div class="page-block">
+            <div class="row align-items-center">
+              <div class="col-md-12">
+                <div class="page-header-title">
+                </div>
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item" style="font-size: x-large"><a href="/"><i class="feather icon-home"></i></a></li>
+                  <li class="breadcrumb-item" style="font-size: x-large"><a href="javascript:">{{name}}</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+          <div class="page-wrapper">
+            <!-- [ Main Content ] start -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card">
+                  <!-- [ basic-table ] start -->
+                  <div class="col-xl-12">
+                    <div class="card">
+                      {% comment %} <div class="card-header">
+                        <h3>Applicant: {{name}}</h3>
+                      </div> {% endcomment %}
+
+                      <div class="card-block table-border-style">
+                        <div class="table-responsive">
+                          <table class="table">
+                            <tbody>
+                              <tr>
+                                <th scope="row">Applicant Status</th>
+                                <th scope="row">Applicant Applied Job</th>
+                                <th scope="row">Current Reprofiled Job</th>
+                              </tr>
+                              <tr>
+                                <td>{{recruiter_decision}}</td>
+                                <td>{{applied_job_name}}</td>
+                                <td>{{reprofiled_job_name}}</td>
+                              </tr>
+
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- [ basic-table ] end -->
+
+                  <div class="card-header">
+
+                    <div id="applicantinfo">
+                          <p><a href="{% url 'resumepdf' applicant_id %}" target="_blank" class="btn btn-primary">Click to view Applicant
+                            Resume</a></p>
+                          
+      
+                      <h4><caption style="text-align:right">Job Matching Results:</caption></h4>
+                      <table class="table" id="myTable">
+                        <thead>
+                          <tr>
+                            <th onclick="sortTable(0)"><button>Job Name<span aria-hidden="true"></span></button></th>
+                            <th onclick="sortTable(1)"><button>% Suitability<span aria-hidden="true"></span></button>
+                            </th>
+                            <th onclick="sortTable(2)"><button>Rank In Job<span aria-hidden="true"></span></button></th>
+                            <th onclick="sortTable(3)"><button>Applicant Job Skills<span
+                                  aria-hidden="true"></span></button></th>
+                          </tr>
+                        </thead>
+
+                        {% for row in job_data %}
+                        <tr>
+                          <td><a href="{% url 'job' row.job_id %}">{{row.job_name}}</a></td>
+                          <td>{{row.applicant_percent}}</td>
+                          <td>{{row.applicant_rankinjob}}</td>
+                          <td>{{row.applicant_skills}}</td>
+                        </tr>
+                        {% endfor %}
+                      </table>
+                    </div>
+                    <br>
+                    <div>
+                      <form action="" method="POST">
+                        {% csrf_token %}
+                        {% comment %} {{ form.as_p }} {% endcomment %}
+
+                        <table class="table" id="myTable">
+                          <thead>
+                            <tr>
+                              <th>Recruiter Decision:</th>
+                              {% comment %} <th>OR</th> {% endcomment %}
+                              <th>If reprofiling, select job: </th>
+                            </tr>
+                          </thead>
+                          <tr>
+                            <td><select name="status_change_form" id="status_change_form">
+                                <option value="">Status</option>
+                                <option value="Shortlisted">Shortlisted</option>
+                                <option value="Rejected">Rejected</option>
+                                <option value="Pending">Pending</option>
+                              </select>
+                            </td>
+                            {% comment %} <td></td> {% endcomment %}
+                            <td><select name="chosen_reprofile_job" id="chosen_reprofile_job">
+                                <option value="">Job Name</option>
+                                {% for row in job_data %}
+                                <option value="{{row.job_name}}">{{row.job_name}}</option>
+                                {% endfor %}
+                              </select>
+                            </td>
+                          </tr>
+                        </table>
+                        <br>
+                        <input type="submit" value="Update Applicant Details" class="btn btn-secondary"/>
+                              <style>
+                                .message {
+                                  color: red;
+                                  padding-top: 2%;
+                                  padding-left: 1%;
+                                  padding-bottom: 2%;
+                                }
+                              </style>    
+                              {% for message in messages %}
+                              <p class="message" style="display: inline;">{{message}}</p>
+                              {% endfor %}
+                      </form><br>
+                    </div>
+                    <div>
+                      <h4><caption style="text-align:right">Applicant History:</caption></h4>
+                      <table class="table" id="historyTable">
+                        <thead>
+                          <tr>
+                            <th>Job Name</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Recruiter</th>
+                          </tr>
+                        </thead>
+
+                        {% for row in history_data %}
+                        <tr>
+                          <td>{{row.history_job_name}}</td>
+                          <td>{{row.history_status}}</td>
+                          <td>{{row.history_date | date:"Y-m-d H:i:s"}}</td>
+                          <td>{{row.history_recruiter_name}}</td>
+                        </tr>
+                        {% endfor %}
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- [ Main Content ] end -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- [ Main Content ] end -->
+
+{% endblock content %}
+.message {
+  color: red;
+  padding-top: 2%;
+  padding-left: 1%;
+  padding-bottom: 2%;
+}
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+  function myFunction(element) {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById(element);
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
+<script>
+  class SortableTable {
+    constructor(tableNode) {
+      this.tableNode = tableNode;
+
+      this.columnHeaders = tableNode.querySelectorAll('thead th');
+
+      this.sortColumns = [];
+
+      for (var i = 0; i < this.columnHeaders.length; i++) {
+        var ch = this.columnHeaders[i];
+        var buttonNode = ch.querySelector('button');
+        if (buttonNode) {
+          this.sortColumns.push(i);
+          buttonNode.setAttribute('data-column-index', i);
+          buttonNode.addEventListener('click', this.handleClick.bind(this));
+        }
+      }
+
+      this.optionCheckbox = document.querySelector(
+        'input[type="checkbox"][value="show-unsorted-icon"]'
+      );
+
+      if (this.optionCheckbox) {
+        this.optionCheckbox.addEventListener(
+          'change',
+          this.handleOptionChange.bind(this)
+        );
+        if (this.optionCheckbox.checked) {
+          this.tableNode.classList.add('show-unsorted-icon');
+        }
+      }
+    }
+
+    setColumnHeaderSort(columnIndex) {
+      if (typeof columnIndex === 'string') {
+        columnIndex = parseInt(columnIndex);
+      }
+
+      for (var i = 0; i < this.columnHeaders.length; i++) {
+        var ch = this.columnHeaders[i];
+        var buttonNode = ch.querySelector('button');
+        if (i === columnIndex) {
+          var value = ch.getAttribute('aria-sort');
+          if (value === 'descending') {
+            ch.setAttribute('aria-sort', 'ascending');
+            this.sortColumn(
+              columnIndex,
+              'ascending',
+              ch.classList.contains('num')
+            );
+          } else {
+            ch.setAttribute('aria-sort', 'descending');
+            this.sortColumn(
+              columnIndex,
+              'descending',
+              ch.classList.contains('num')
+            );
+          }
+        } else {
+          if (ch.hasAttribute('aria-sort') && buttonNode) {
+            ch.removeAttribute('aria-sort');
+          }
+        }
+      }
+    }
+
+    sortColumn(columnIndex, sortValue, isNumber) {
+      function compareValues(a, b) {
+        if (sortValue === 'ascending') {
+          if (a.value === b.value) {
+            return 0;
+          } else {
+            if (isNumber) {
+              return a.value - b.value;
+            } else {
+              return a.value < b.value ? -1 : 1;
+            }
+          }
+        } else {
+          if (a.value === b.value) {
+            return 0;
+          } else {
+            if (isNumber) {
+              return b.value - a.value;
+            } else {
+              return a.value > b.value ? -1 : 1;
+            }
+          }
+        }
+      }
+
+      if (typeof isNumber !== 'boolean') {
+        isNumber = false;
+      }
+
+      var tbodyNode = this.tableNode.querySelector('tbody');
+      var rowNodes = [];
+      var dataCells = [];
+
+      var rowNode = tbodyNode.firstElementChild;
+
+      var index = 0;
+      while (rowNode) {
+        rowNodes.push(rowNode);
+        var rowCells = rowNode.querySelectorAll('th, td');
+        var dataCell = rowCells[columnIndex];
+
+        var data = {};
+        data.index = index;
+        data.value = dataCell.textContent.toLowerCase().trim();
+        if (isNumber) {
+          data.value = parseFloat(data.value);
+        }
+        dataCells.push(data);
+        rowNode = rowNode.nextElementSibling;
+        index += 1;
+      }
+
+      dataCells.sort(compareValues);
+
+      // remove rows
+      while (tbodyNode.firstChild) {
+        tbodyNode.removeChild(tbodyNode.lastChild);
+      }
+
+      // add sorted rows
+      for (var i = 0; i < dataCells.length; i += 1) {
+        tbodyNode.appendChild(rowNodes[dataCells[i].index]);
+      }
+    }
+
+    /* EVENT HANDLERS */
+
+    handleClick(event) {
+      var tgt = event.currentTarget;
+      this.setColumnHeaderSort(tgt.getAttribute('data-column-index'));
+    }
+
+    handleOptionChange(event) {
+      var tgt = event.currentTarget;
+
+      if (tgt.checked) {
+        this.tableNode.classList.add('show-unsorted-icon');
+      } else {
+        this.tableNode.classList.remove('show-unsorted-icon');
+      }
+    }
+  }
+
+  // Initialize sortable table buttons
+  window.addEventListener('load', function () {
+    var sortableTables = document.querySelectorAll('table#myTable');
+    for (var i = 0; i < sortableTables.length; i++) {
+      new SortableTable(sortableTables[i]);
+    }
+  });
+
+</script>
+
+{% endblock javascripts %}

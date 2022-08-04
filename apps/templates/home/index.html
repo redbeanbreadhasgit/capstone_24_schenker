@@ -1,0 +1,82 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Home {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<!-- [ Main Content ] start -->
+<div class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <!-- [ breadcrumb ] start -->
+
+                <!-- [ breadcrumb ] end -->
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        <!-- [ Main Content ] start -->
+                        <div class="row">
+                            <!--[ Number of Jobs section ] starts-->
+                            <div class="col-md-6 col-xl-4">
+                                <div class="card">
+                                    <div class="card-block border-bottom">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-auto">
+                                                <i class="feather icon-file f-30 text-c-black"></i>
+                                            </div>
+                                            <div class="col">
+                                                <h3 class="f-w-300">{{data.open_jobs}}</h3>
+                                                <a href="alljobs">
+                                                    <span class="d-block text-uppercase">Open Jobs</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--[ Number of Jobs section ] end-->
+                            <!--[ Number of Applicants ] start-->
+                            <div class="col-md-6 col-xl-4">
+                                <div class="card num-applicants">
+                                    <div class="card-block">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-auto">
+                                                <i class="feather icon-users f-30 text-c-black"></i>
+                                            </div>
+                                            <div class="col">
+                                                <h3 class="f-w-300">{{data.pending_applicants}}</h3>
+                                                <a href="allapplicants">
+                                                    <span class="d-block text-uppercase">Pending Applicants</span>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--[ Number of Applicants section ] end-->
+
+                        </div>
+                        <!-- [ Main Content ] end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- [ Main Content ] end -->
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <!-- chart-morris Js -->
+    <script src="{{ ASSETS_ROOT }}/plugins/chart-morris/js/raphael.min.js"></script>
+    <script src="{{ ASSETS_ROOT }}/plugins/chart-morris/js/morris.min.js"></script>
+    <script src="{{ ASSETS_ROOT }}/js/pages/chart-morris-custom.js"></script>
+{% endblock javascripts %}
