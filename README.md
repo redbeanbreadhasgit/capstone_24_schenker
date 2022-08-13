@@ -13,3 +13,6 @@
 `pip install imblearn`
 7. pickle
 `pip install pickle-mixin`
+
+`finalisedModel.ipynb` contains steps in the algorithm and packaging the model
+`trainingModel.ipynb` contains steps to train and package the model
