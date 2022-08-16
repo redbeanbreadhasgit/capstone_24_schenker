@@ -150,6 +150,9 @@ def create(request):
                     gpis_prediction = predictions_list[0][4]
                     sa_prediction = predictions_list[0][5]
 
+                    classless_prediction = getClasslessPredictions(file_location+jd_file.name, file_location+resume_name)
+                    classless_prediction = classless_prediction[0] * 100
+
                     # get names of all created job matchings, including the newly created one for % suitability
                     created_jobs_list = MatchedJobModel.objects.values_list("job_name", flat=True)
                     for job in created_jobs_list:
@@ -178,7 +181,7 @@ def create(request):
                         elif job == "System Analyst":
                             percent = sa_prediction
                         else:
-                            percent = random.random()
+                            percent = classless_prediction
 
                         # save model prediction information into database
                         ModelPredictionModel.objects.create(

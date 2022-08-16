@@ -1,4 +1,3 @@
-# load packages
 import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
@@ -17,6 +16,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
 
 import pickle
+import pdftotext
 
 ##### Functions for cleaning text, extracting skills #####
 # Get raw text from .pdf
@@ -137,11 +137,32 @@ def getModelPredictions(filepath):
     predictions = model.predict_proba(X_tfidf)
     return predictions
 
+def getClasslessPredictions(jdfilepath, resumefilepath):
+    resume_filepath_txt = pdf2Txt(resumefilepath)
+    resume_raw_text = read_txt(resume_filepath_txt)
+    resume_text = getCleanText(resume_raw_text)
+    
+    jd_raw_text = getRawText(jdfilepath)
+    jd_text = getCleanText(jd_raw_text)
+
+
+    X_predict = [jd_text, resume_text]
+    X_predict = pd.DataFrame([X_predict], columns=["JD Text", "Resume Text"])
+
+    classless_model = pickle.load(open('apps/home/no_class_model.pkl', 'rb'))
+
+    classless_prediction = classless_model.predict(X_predict)
+    return classless_prediction
+
+
 # applicant_skills = getSkills("Sample Field Support CV 1 (ML - Selected).pdf")
 # print(applicant_skills)
 
 # applicant_predictions = getModelPredictions("Sample Field Support CV 1 (ML - Selected).pdf")
 # print(applicant_predictions)
+
+# classless_predictions = getClasslessPredictions("Job Description - Field Support Engineer.pdf", "Sample Field Support CV 1 (ML - Selected).pdf")
+# print(classless_predictions)
 
 # 0: not suitable for fse
 # 1: not suitable for gpis

@@ -1,0 +1,249 @@
+NAME                   : Zin Min Htet 
+
+Email                    : zinminhtet248@gmail.com 
+
+Mobile                  : +65-86208501 
+
+DOB                     :14 Jul 1992 
+
+Nationality            : Myanmar 
+
+--------------------------------------------------------------------------------------------------------------------- 
+
+EDUCATION QUALIFICATIONS 
+
+National University of Singapore                                             Feb 2016 –March 217 
+
+●  Post Graduate Diploma in Systems 0 Analysis                         
+
+Bachelor of Engineering (Information Technology)               Dec-2008 to Feb-2014             
+
+●  Mandalay Technological University      
+
+Employment History 
+
+Application Analyst (Courts Asia Limited)                                             2017-(Current) 
+
+●  Managed the full SDLC - reviewed requirements, coordinated with the application 
+development team, distributed tasks, created test plans, coordinated production 
+installation, and participated in support for those internal users like 
+logistics,Finance,online ,Marketing and operation,etc. 
+
+⮚  Reactive problem investigation, diagnosis & resolution 
+⮚  Participate in post mortem activities for any breaks in system availability 
+⮚  Carry out root cause and trend analysis of problems and to identify, implement solutions to 
+
+prevent repeat reoccurrence 
+
+●  Communicated weekly application status to business users, stake holder and end 
+
+users. 
+
+⮚  Participate in change review meetings to review application development and infrastructure 
+
+changes that impacting applications 
+
+●  Review and amend technical documentation such as support and disaster recovery 
+
+procedures to ensure that they are kept up to date. 
+
+●  Utilized MS project to update project plans. 
+●  Documented system process flows. 
+●  Use metrics to maintain and enhance system performance 
+●  Define and implement best practice operational standards(e.g.standardised 
+
+monitoring,logging,escalation and scheduling) 
+
+●  Working on Dynamic 365 project 
+
+ 
+ 
+                                         
+Project Experiences 
+
+1.  Institute of System Science 
+
+KepDesk Project (Internship Project at Keppel Land)          
+
+●  The  aim  of  this  project  is  that  it  simplifies  and  automates  help  desk  ticket 
+
+management and support IT technicians to manage tickets. 
+
+●  Coded 
+
+the 
+
+system 
+
+with 
+
+Agile 
+
+platform 
+
+by 
+
+outsystem,C#,CSS,javascript,mysql ,ionic creator and jQuery. 
+
+●  Make the user to create helpdesk ticket, to give feedback, supported the FAQ for 
+user, gave the real chat with IT technicians and can track the helpdesk ticket‘s 
+process easily. 
+
+●  Save time and resources on manual and repetitive help desk tasks. 
+● 
+
+Improve operational efficiency of customer service. 
+
+Logic University Stationary Store Management Control System   
+
+Team Size-8(1 month AD project) 
+
+●  Provided a software application to carry out the tasks related to stationary order of 
+the department and then tracking and maintain the stocks levels for the inventory. 
+●  Developed the mobile application for ordering stationary, accepting order request, 
+checking  the  stock  levels,  showing  the  inventory  maps  and  approved  the  order 
+form(to help store management). 
+
+Online Customized Wholesales and Distribution System 
+
+●  Developed online sales management system using OOAD(Oriented Analysis and 
+
+Design) 
+
+●  Delivered  services  to  achieve  the  time  efficiency  and  effective  on  the  user 
+
+experience 
+
+Library Management System       
+
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+●  Designed this system by using C#.Net, SQL Server, Entity Framework.  
+●  Stored procedures development and accomplished the database design 
+●  Provided  online  real  time  information  for  the  books  in  library  and  kept  the  user 
+information to reduce the manual work like book issues, returns, reports, etc. and 
+tracking of books rental records. 
+
+●  Solved  the  problems  when  we  integrated  the  projects  and  rectified  the  errors 
+
+through troubleshooting 
+
+Club Application System (Booking Register) 
+
+Identified and corrected the software deficiencies.  
+
+●  Coded this system by using java language and spring framework. 
+● 
+●  Built  our  booking  system  from  the  ground  up  for  small,  local  and  mid-sized 
+business of all shapes and sizes to attract new customers, the existing ones, and 
+took booking for 24 hours a day. 
+
+Mobile Track Application Development        
+
+●  Designed  the  app  of  mobile  and  IOS  for  supermarket  especially  for  to  track 
+inventory  system  and  manage  the  goods  in  supermarket  by  using  prototype.io 
+tools 
+
+Tracking diet plan (Android Application) 
+
+●  Coded  this  application  by  using  java  swing,  SQLite  and  web  service  by  using 
+
+Asp.net. 
+
+●  Designed the prototype for App and websites. 
+●  Allowed the user to know the exact BMI, amount of calories based on food and 
+
+exercises. 
+
+ Flickr Application (IOS Application)    
+
+●  Designed IOS application to be able to take photo, upload videos, search and save 
+
+in Flickr by using swift. 
+
+2 .Mandalay Technological University-Myanmar 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Project Experiences 
+
+      Video Rental Shop Nov-2010 
+
+●  Offer the largest selection of independent films, children’s movies or foreign films 
+to build a brand and to minimize the cost of providing the labor costs and to save 
+the manual work. 
+
+Wireless Network Infrastructure Plan over TU (Mdy) campus    Oct-2011 
+
+●  Connected two or more devices by using a wireless distribution methods within a 
+limited area such as buildings,labs,etc that gives users the ability to move around 
+within a local coverage area and still be connected to the network, and can provide 
+a connection to get the wider internet . 
+
+●  Design and Implementation of Iris Recognition system based on  
+
+Hamming Distance Matching TechniqueOct-2013 
+
+●  Used  video  camera  technology  with  subtle  near infrared  illumination  to acquire 
+images of the iris and checked for speed of matching and its extreme resistance 
+to false matches to give the precise results. 
+
+TECHNICAL SKILLS 
+
+●  Business  Analysis,  Project  plan  preparation  &execution  (Project  initiation  to 
+
+closure). 
+
+●  Requirement  analysis  and  design,  documentation,  flow  chart  &use  case 
+
+preparation. 
+
+●  Gap analysis, test case preparation & test execution. 
+●  J2SE, J2EE,Servlets,Spring and Struts frameworks, C#,Asp.net,Android ,IOS 
+●  SQL Server 2000-2008,MySQL,SQLite,macro 
+●  Visual Studio 2008/2015,IDE,Eclipse ,Android Studio ,XCode ,Agile platform by 
+
+out system 
+
+●  HTML,CSS, Java Script, JQuery 
+
+Others Skills 
+
+●  Ability to learn new technologies 
+● 
+
+ Have Positive attitude and quick learner 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+●  Good  interpersonal,  communication  skills  and  comprehensive  problem  solving 
+
+skills. 
+Independent as well as a team player with drive and leadership abilities 
+
+● 
+
+
